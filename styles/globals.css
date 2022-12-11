@@ -24,3 +24,12 @@ a {
     background: black;
   }
 }
+
+input:-webkit-autofill:focus,
+.ui.form .field.no-auto-fill-color.field input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 0 transparent inset !important;
+}
+input:-webkit-autofill:focus,
+.ui.form .field.no-auto-fill-color.field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 0 transparent inset !important;
+}
