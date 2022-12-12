@@ -1,0 +1,50 @@
+[
+  {
+    "tableAutoSize": true,
+    "defaultStyles": {
+      "b": { "bold": true },
+      "strong": { "bold": true },
+      "u": { "decoration": "underline" },
+      "s": { "decoration": "lineThrough" },
+      "em": { "italics": true },
+      "i": { "italics": true },
+      "h1": { "fontSize": 24, "bold": true, "marginBottom": 5 },
+      "h2": { "fontSize": 22, "bold": true, "marginBottom": 5 },
+      "h3": { "fontSize": 20, "bold": true, "marginBottom": 5 },
+      "h4": { "fontSize": 18, "bold": true, "marginBottom": 5 },
+      "h5": { "fontSize": 16, "bold": true, "marginBottom": 5 },
+      "h6": { "fontSize": 14, "bold": true, "marginBottom": 5 },
+      "a": { "color": "blue", "decoration": "underline" },
+      "strike": { "decoration": "lineThrough" },
+      "p": { "margin": [0, 3, 0, 3] },
+      "ul": { "marginBottom": 5 },
+      "li": { "marginLeft": 5 },
+      "table": { "marginBottom": 5 },
+      "th": { "bold": true, "fillColor": "#EEEEEE" }
+    }
+  },
+  {
+    "green": {
+      "color": "green"
+    },
+    "t-d": {
+      "width": 10
+    },
+    "t-v": {
+      "width": 60
+    },
+    "c-1": {
+      "width": 25,
+      "alignment": "center"
+    },
+    "c-2": {
+      "width": "auto"
+    },
+    "c-row": {
+      "fillColor": "#EEEEEE"
+    },
+    "n-a": {
+      "fillColor": "#5A5A5A"
+    }
+  }
+]

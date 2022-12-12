@@ -36,7 +36,7 @@ export default withRouter(
       this.setState({ loading: true });
       if (checkGSTIN(this.state.gstin)) {
         this.setState({ error: false });
-        this.props.router.push(`/${this.state.gstin}`);
+        this.props.router.push(`/report/${this.state.gstin}`);
       } else {
         this.setState({ error: true });
       }
