@@ -1571,9 +1571,6 @@ export default function GSTR9({ tableData }) {
   let docDefinition = useRef({
     content: [html],
     styles: {
-      green: {
-        color: "green",
-      },
       "t-d": {
         width: 10,
       },
