@@ -285,13 +285,13 @@
       <td>
         From a supplier under composition scheme, Exempt, Nil rated supply
       </td>
-      <td>${inward_supJSON.isup_details[0]?.inter ?? "-"}</td>
-      <td>${inward_supJSON.isup_details[0]?.intra ?? "-"}</td>
+      <td>${inward_supJSON?.isup_details[0]?.inter ?? "-"}</td>
+      <td>${inward_supJSON?.isup_details[0]?.intra ?? "-"}</td>
     </tr>
     <tr>
       <td>Non GST supply</td>
-      <td>${inward_supJSON.isup_details[1]?.inter ?? "-"}</td>
-      <td>${inward_supJSON.isup_details[1]?.intra ?? "-"}</td>
+      <td>${inward_supJSON?.isup_details[1]?.inter ?? "-"}</td>
+      <td>${inward_supJSON?.isup_details[1]?.intra ?? "-"}</td>
     </tr>
   </table>
 

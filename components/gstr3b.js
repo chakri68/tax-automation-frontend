@@ -336,26 +336,24 @@ export default function GSTR3B({ tableData }) {
     </tr>
   </table>
 
-  <h6>5. Values of exempt, nil-rated and non-GST inward supplies</h6>
-  <table>
-    <tr>
-      <th style="width: 50%">Nature of Supplies</th>
-      <th style="width: auto">Inter-State supplies</th>
-      <th style="width: auto">Intra-State supplies</th>
-    </tr>
-    <tr>
-      <td>
-        From a supplier under composition scheme, Exempt, Nil rated supply
-      </td>
-      <td>${inward_supJSON.isup_details[0]?.inter ?? "-"}</td>
-      <td>${inward_supJSON.isup_details[0]?.intra ?? "-"}</td>
-    </tr>
-    <tr>
-      <td>Non GST supply</td>
-      <td>${inward_supJSON.isup_details[1]?.inter ?? "-"}</td>
-      <td>${inward_supJSON.isup_details[1]?.intra ?? "-"}</td>
-    </tr>
-  </table>
+    <h6>5. Values of exempt, nil-rated and non-GST inward supplies</h6>
+    <table>
+        <tr>
+            <th style="width:50%">Nature of Supplies</td>
+            <th style="width:auto">Inter-State supplies</th>
+            <th style="width:auto">Intra-State supplies</th>
+        </tr>
+        <tr>
+            <td>From a supplier under composition scheme, Exempt, Nil rated supply</td>
+            <td>${inward_supJSON?.isup_details[0]?.inter ?? "-"}</td>
+            <td>${inward_supJSON?.isup_details[0]?.intra ?? "-"}</td>
+        </tr>
+        <tr>
+            <td>Non GST supply</td>
+            <td>${inward_supJSON?.isup_details[1]?.inter ?? "-"}</td>
+            <td>${inward_supJSON?.isup_details[1]?.intra ?? "-"}</td>
+        </tr>
+    </table>
 
   <h6>5.1 Interest and Late fee for previous tax period</h6>
   <table>
