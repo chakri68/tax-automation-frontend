@@ -116,49 +116,49 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">A</td>
         <td>Supplies made to un-registered persons (B2C)</td>
-        <td>${table4?.b2c?.txval || "-"}</td>
-        <td>${table4?.b2c?.camt || "-"}</td>
-        <td>${table4?.b2c?.samt || "-"}</td>
-        <td>${table4?.b2c?.iamt || "-"}</td>
-        <td>${table4?.b2c?.csamt || "-"}</td>
+        <td>${table4?.b2c?.txval ?? "-"}</td>
+        <td>${table4?.b2c?.camt ?? "-"}</td>
+        <td>${table4?.b2c?.samt ?? "-"}</td>
+        <td>${table4?.b2c?.iamt ?? "-"}</td>
+        <td>${table4?.b2c?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">B</td>
         <td>Supplies made to registered persons (B2B)</td>
-        <td>${table4?.b2b?.txval || "-"}</td>
-        <td>${table4?.b2b?.camt || "-"}</td>
-        <td>${table4?.b2b?.samt || "-"}</td>
-        <td>${table4?.b2b?.iamt || "-"}</td>
-        <td>${table4?.b2b?.csamt || "-"}</td>
+        <td>${table4?.b2b?.txval ?? "-"}</td>
+        <td>${table4?.b2b?.camt ?? "-"}</td>
+        <td>${table4?.b2b?.samt ?? "-"}</td>
+        <td>${table4?.b2b?.iamt ?? "-"}</td>
+        <td>${table4?.b2b?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">C</td>
         <td>
           Zero rated supply (Export) on payment of tax (except supplies to SEZs)
         </td>
-        <td>${table4?.exp?.txval || "-"}</td>
+        <td>${table4?.exp?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
-        <td>${table4?.exp?.iamt || "-"}</td>
-        <td>${table4?.exp?.csamt || "-"}</td>
+        <td>${table4?.exp?.iamt ?? "-"}</td>
+        <td>${table4?.exp?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">D</td>
         <td>Supply to SEZs on payment of tax</td>
-        <td>${table4?.sez?.txval || "-"}</td>
+        <td>${table4?.sez?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
-        <td>${table4?.sez?.iamt || "-"}</td>
-        <td>${table4?.sez?.csamt || "-"}</td>
+        <td>${table4?.sez?.iamt ?? "-"}</td>
+        <td>${table4?.sez?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">E</td>
         <td>Deemed Exports</td>
-        <td>${table4?.deemed?.txval || "-"}</td>
-        <td>${table4?.deemed?.camt || "-"}</td>
-        <td>${table4?.deemed?.samt || "-"}</td>
-        <td>${table4?.deemed?.iamt || "-"}</td>
-        <td>${table4?.deemed?.csamt || "-"}</td>
+        <td>${table4?.deemed?.txval ?? "-"}</td>
+        <td>${table4?.deemed?.camt ?? "-"}</td>
+        <td>${table4?.deemed?.samt ?? "-"}</td>
+        <td>${table4?.deemed?.iamt ?? "-"}</td>
+        <td>${table4?.deemed?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">F</td>
@@ -166,31 +166,31 @@ export default function GSTR9({ tableData }) {
           Advances on which tax has been paid but invoice has not been issued
           (not covered under (A) to (E) above)
         </td>
-        <td>${table4?.at?.txval || "-"}</td>
-        <td>${table4?.at?.camt || "-"}</td>
-        <td>${table4?.at?.samt || "-"}</td>
-        <td>${table4?.at?.iamt || "-"}</td>
-        <td>${table4?.at?.csamt || "-"}</td>
+        <td>${table4?.at?.txval ?? "-"}</td>
+        <td>${table4?.at?.camt ?? "-"}</td>
+        <td>${table4?.at?.samt ?? "-"}</td>
+        <td>${table4?.at?.iamt ?? "-"}</td>
+        <td>${table4?.at?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">G</td>
         <td>
           Inward supplies on which tax is to be paid on reverse charge basis
         </td>
-        <td>${table4?.rchrg?.txval || "-"}</td>
-        <td>${table4?.rchrg?.camt || "-"}</td>
-        <td>${table4?.rchrg?.samt || "-"}</td>
-        <td>${table4?.rchrg?.iamt || "-"}</td>
-        <td>${table4?.rchrg?.csamt || "-"}</td>
+        <td>${table4?.rchrg?.txval ?? "-"}</td>
+        <td>${table4?.rchrg?.camt ?? "-"}</td>
+        <td>${table4?.rchrg?.samt ?? "-"}</td>
+        <td>${table4?.rchrg?.iamt ?? "-"}</td>
+        <td>${table4?.rchrg?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">H</td>
         <td>Sub-total (A to G above)</td>
-        <td>${table4?.sub_totalAG?.txval || "-"}</td>
-        <td>${table4?.sub_totalAG?.camt || "-"}</td>
-        <td>${table4?.sub_totalAG?.samt || "-"}</td>
-        <td>${table4?.sub_totalAG?.iamt || "-"}</td>
-        <td>${table4?.sub_totalAG?.csamt || "-"}</td>
+        <td>${table4?.sub_totalAG?.txval ?? "-"}</td>
+        <td>${table4?.sub_totalAG?.camt ?? "-"}</td>
+        <td>${table4?.sub_totalAG?.samt ?? "-"}</td>
+        <td>${table4?.sub_totalAG?.iamt ?? "-"}</td>
+        <td>${table4?.sub_totalAG?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">I</td>
@@ -198,11 +198,11 @@ export default function GSTR9({ tableData }) {
           Credit Notes issued in respect of transactions specified in (B) to (E)
           above (-)
         </td>
-        <td>${table4?.cr_nt?.txval || "-"}</td>
-        <td>${table4?.cr_nt?.camt || "-"}</td>
-        <td>${table4?.cr_nt?.samt || "-"}</td>
-        <td>${table4?.cr_nt?.iamt || "-"}</td>
-        <td>${table4?.cr_nt?.csamt || "-"}</td>
+        <td>${table4?.cr_nt?.txval ?? "-"}</td>
+        <td>${table4?.cr_nt?.camt ?? "-"}</td>
+        <td>${table4?.cr_nt?.samt ?? "-"}</td>
+        <td>${table4?.cr_nt?.iamt ?? "-"}</td>
+        <td>${table4?.cr_nt?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">J</td>
@@ -210,47 +210,47 @@ export default function GSTR9({ tableData }) {
           Debit Notes issued in respect of transactions specified in (B) to (E)
           above (+)
         </td>
-        <td>${table4?.dr_nt?.txval || "-"}</td>
-        <td>${table4?.dr_nt?.camt || "-"}</td>
-        <td>${table4?.dr_nt?.samt || "-"}</td>
-        <td>${table4?.dr_nt?.iamt || "-"}</td>
-        <td>${table4?.dr_nt?.csamt || "-"}</td>
+        <td>${table4?.dr_nt?.txval ?? "-"}</td>
+        <td>${table4?.dr_nt?.camt ?? "-"}</td>
+        <td>${table4?.dr_nt?.samt ?? "-"}</td>
+        <td>${table4?.dr_nt?.iamt ?? "-"}</td>
+        <td>${table4?.dr_nt?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">K</td>
         <td>Supplies / tax declared through Amendments (+)</td>
-        <td>${table4?.amd_pos?.txval || "-"}</td>
-        <td>${table4?.amd_pos?.camt || "-"}</td>
-        <td>${table4?.amd_pos?.samt || "-"}</td>
-        <td>${table4?.amd_pos?.iamt || "-"}</td>
-        <td>${table4?.amd_pos?.csamt || "-"}</td>
+        <td>${table4?.amd_pos?.txval ?? "-"}</td>
+        <td>${table4?.amd_pos?.camt ?? "-"}</td>
+        <td>${table4?.amd_pos?.samt ?? "-"}</td>
+        <td>${table4?.amd_pos?.iamt ?? "-"}</td>
+        <td>${table4?.amd_pos?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">L</td>
         <td>Supplies / tax reduced through Amendments (-)</td>
-        <td>${table4?.amd_neg?.txval || "-"}</td>
-        <td>${table4?.amd_neg?.camt || "-"}</td>
-        <td>${table4?.amd_neg?.samt || "-"}</td>
-        <td>${table4?.amd_neg?.iamt || "-"}</td>
-        <td>${table4?.amd_neg?.csamt || "-"}</td>
+        <td>${table4?.amd_neg?.txval ?? "-"}</td>
+        <td>${table4?.amd_neg?.camt ?? "-"}</td>
+        <td>${table4?.amd_neg?.samt ?? "-"}</td>
+        <td>${table4?.amd_neg?.iamt ?? "-"}</td>
+        <td>${table4?.amd_neg?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">M</td>
         <td>Sub-total (I to L above)</td>
-        <td>${table4?.sub_totalIL?.txval || "-"}</td>
-        <td>${table4?.sub_totalIL?.camt || "-"}</td>
-        <td>${table4?.sub_totalIL?.samt || "-"}</td>
-        <td>${table4?.sub_totalIL?.iamt || "-"}</td>
-        <td>${table4?.sub_totalIL?.csamt || "-"}</td>
+        <td>${table4?.sub_totalIL?.txval ?? "-"}</td>
+        <td>${table4?.sub_totalIL?.camt ?? "-"}</td>
+        <td>${table4?.sub_totalIL?.samt ?? "-"}</td>
+        <td>${table4?.sub_totalIL?.iamt ?? "-"}</td>
+        <td>${table4?.sub_totalIL?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">N</td>
         <td>Supplies and advances on which tax is to be paid (H + M) above</td>
-        <td>${table4?.sup_adv?.txval || "-"}</td>
-        <td>${table4?.sup_adv?.camt || "-"}</td>
-        <td>${table4?.sup_adv?.samt || "-"}</td>
-        <td>${table4?.sup_adv?.iamt || "-"}</td>
-        <td>${table4?.sup_adv?.csamt || "-"}</td>
+        <td>${table4?.sup_adv?.txval ?? "-"}</td>
+        <td>${table4?.sup_adv?.camt ?? "-"}</td>
+        <td>${table4?.sup_adv?.samt ?? "-"}</td>
+        <td>${table4?.sup_adv?.iamt ?? "-"}</td>
+        <td>${table4?.sup_adv?.csamt ?? "-"}</td>
       </tr>
     </tbody>
   </table>
@@ -271,7 +271,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">A</td>
         <td>Zero rated supply (Export) without payment of tax</td>
-        <td>${table5?.zero_rtd?.txval || "-"}</td>
+        <td>${table5?.zero_rtd?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -280,7 +280,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">B</td>
         <td>Supply to SEZs without payment of tax</td>
-        <td>${table5?.sez?.txval || "-"}</td>
+        <td>${table5?.sez?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -292,7 +292,7 @@ export default function GSTR9({ tableData }) {
           Supplies on which tax is to be paid by the recipient on reverse charge
           basis
         </td>
-        <td>${table5?.rchrg?.txval || "-"}</td>
+        <td>${table5?.rchrg?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -301,7 +301,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">D</td>
         <td>Exempted</td>
-        <td>${table5?.exmt?.txval || "-"}</td>
+        <td>${table5?.exmt?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -310,7 +310,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">E</td>
         <td>Nil Rated</td>
-        <td>${table5?.nil?.txval || "-"}</td>
+        <td>${table5?.nil?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -319,7 +319,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">F</td>
         <td>Non-GST supply</td>
-        <td>${table5?.non_gst?.txval || "-"}</td>
+        <td>${table5?.non_gst?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -328,7 +328,7 @@ export default function GSTR9({ tableData }) {
       <tr class="c-row">
         <td class="c-1">G</td>
         <td>Sub-total (A to F above)</td>
-        <td>${table5?.sub_totalAF?.txval || "-"}</td>
+        <td>${table5?.sub_totalAF?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -340,7 +340,7 @@ export default function GSTR9({ tableData }) {
           Credit Notes issued in respect of transactions specified in A to F
           above (-)
         </td>
-        <td>${table5?.cr_nt?.txval || "-"}</td>
+        <td>${table5?.cr_nt?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -352,7 +352,7 @@ export default function GSTR9({ tableData }) {
           Debit Notes issued in respect of transactions specified in A to F
           above (+)
         </td>
-        <td>${table5?.dr_nt?.txval || "-"}</td>
+        <td>${table5?.dr_nt?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -361,7 +361,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">J</td>
         <td>Supplies declared through Amendments (+)</td>
-        <td>${table5?.amd_pos?.txval || "-"}</td>
+        <td>${table5?.amd_pos?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -370,7 +370,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">K</td>
         <td>Supplies reduced through Amendments (-)</td>
-        <td>${table5?.amd_neg?.txval || "-"}</td>
+        <td>${table5?.amd_neg?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -379,7 +379,7 @@ export default function GSTR9({ tableData }) {
       <tr class="c-row">
         <td class="c-1">L</td>
         <td>Sub-Total (H to K above)</td>
-        <td>${table5?.sub_totalHK?.txval || "-"}</td>
+        <td>${table5?.sub_totalHK?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -387,7 +387,7 @@ export default function GSTR9({ tableData }) {
       </tr>
       <tr class="c-row">
         <td class="c-1">M</td>
-        <td>${table5?.tover_tax_np?.txval || "-"}</td>
+        <td>${table5?.tover_tax_np?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -397,11 +397,11 @@ export default function GSTR9({ tableData }) {
       <tr class="c-row">
         <td class="c-1">N</td>
         <td>Total Turnover (including advances) (4N + 5M - 4G above)</td>
-        <td>${table5?.total_tover?.txval || "-"}</td>
-        <td>${table5?.total_tover?.camt || "-"}</td>
-        <td>${table5?.total_tover?.samt || "-"}</td>
-        <td>${table5?.total_tover?.iamt || "-"}</td>
-        <td>${table5?.total_tover?.csamt || "-"}</td>
+        <td>${table5?.total_tover?.txval ?? "-"}</td>
+        <td>${table5?.total_tover?.camt ?? "-"}</td>
+        <td>${table5?.total_tover?.samt ?? "-"}</td>
+        <td>${table5?.total_tover?.iamt ?? "-"}</td>
+        <td>${table5?.total_tover?.csamt ?? "-"}</td>
       </tr>
     </tbody>
   </table>
@@ -447,10 +447,10 @@ export default function GSTR9({ tableData }) {
           Total amount of input tax credit availed through FORM GSTR-3B (sum
           total of Table 4A of FORM GSTR-3B)
         </td>
-        <td>${table6?.itc_3b?.camt || "-"}</td>
-        <td>${table6?.itc_3b?.samt || "-"}</td>
-        <td>${table6?.itc_3b?.iamt || "-"}</td>
-        <td>${table6?.itc_3b?.csamt || "-"}</td>
+        <td>${table6?.itc_3b?.camt ?? "-"}</td>
+        <td>${table6?.itc_3b?.samt ?? "-"}</td>
+        <td>${table6?.itc_3b?.iamt ?? "-"}</td>
+        <td>${table6?.itc_3b?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1" rowspan="3">B</td>
@@ -462,25 +462,25 @@ export default function GSTR9({ tableData }) {
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.camt || "-"
+              ?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.samt || "-"
+              ?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.iamt || "-"
+              ?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.csamt || "-"
+              ?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -489,25 +489,25 @@ export default function GSTR9({ tableData }) {
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.camt || "-"
+              ?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.samt || "-"
+              ?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.iamt || "-"
+              ?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.csamt || "-"
+              ?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -516,25 +516,25 @@ export default function GSTR9({ tableData }) {
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.camt || "-"
+              ?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.samt || "-"
+              ?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.iamt || "-"
+              ?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_non_rchrg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.csamt || "-"
+              ?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -549,28 +549,28 @@ export default function GSTR9({ tableData }) {
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "ip"
-            )[0]?.camt || "-"
+            )[0]?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "ip"
-            )[0]?.samt || "-"
+            )[0]?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "ip"
-            )[0]?.iamt || "-"
+            )[0]?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "ip"
-            )[0]?.csamt || "-"
+            )[0]?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -580,28 +580,28 @@ export default function GSTR9({ tableData }) {
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "cg"
-            )[0]?.camt || "-"
+            )[0]?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "cg"
-            )[0]?.samt || "-"
+            )[0]?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "cg"
-            )[0]?.iamt || "-"
+            )[0]?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "cg"
-            )[0]?.csamt || "-"
+            )[0]?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -611,28 +611,28 @@ export default function GSTR9({ tableData }) {
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "is"
-            )[0]?.camt || "-"
+            )[0]?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "is"
-            )[0]?.samt || "-"
+            )[0]?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "is"
-            )[0]?.iamt || "-"
+            )[0]?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_unreg?.filter(
               ({ itc_typ }) => itc_typ == "is"
-            )[0]?.csamt || "-"
+            )[0]?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -646,25 +646,25 @@ export default function GSTR9({ tableData }) {
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.camt || "-"
+              ?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.samt || "-"
+              ?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.iamt || "-"
+              ?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "ip")[0]
-              ?.csamt || "-"
+              ?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -673,25 +673,25 @@ export default function GSTR9({ tableData }) {
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.camt || "-"
+              ?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.samt || "-"
+              ?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.iamt || "-"
+              ?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "cg")[0]
-              ?.csamt || "-"
+              ?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -700,25 +700,25 @@ export default function GSTR9({ tableData }) {
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.camt || "-"
+              ?.camt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.samt || "-"
+              ?.samt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.iamt || "-"
+              ?.iamt ?? "-"
           }
         </td>
         <td>
           ${
             table6?.supp_rchrg_reg?.filter(({ itc_typ }) => itc_typ == "is")[0]
-              ?.csamt || "-"
+              ?.csamt ?? "-"
           }
         </td>
       </tr>
@@ -730,12 +730,12 @@ export default function GSTR9({ tableData }) {
         <td class="n-a"></td>
         <td>
           ${
-            table6.iog?.filter(({ itc_typ }) => itc_typ == "ip")[0]?.iamt || "-"
+            table6.iog?.filter(({ itc_typ }) => itc_typ == "ip")[0]?.iamt ?? "-"
           }
         </td>
         <td>
           ${
-            table6.iog?.filter(({ itc_typ }) => itc_typ == "ip")[0]?.csamt ||
+            table6.iog?.filter(({ itc_typ }) => itc_typ == "ip")[0]?.csamt ??
             "-"
           }
         </td>
@@ -746,12 +746,12 @@ export default function GSTR9({ tableData }) {
         <td class="n-a"></td>
         <td>
           ${
-            table6.iog?.filter(({ itc_typ }) => itc_typ == "cg")[0]?.iamt || "-"
+            table6.iog?.filter(({ itc_typ }) => itc_typ == "cg")[0]?.iamt ?? "-"
           }
         </td>
         <td>
           ${
-            table6.iog?.filter(({ itc_typ }) => itc_typ == "cg")[0]?.csamt ||
+            table6.iog?.filter(({ itc_typ }) => itc_typ == "cg")[0]?.csamt ??
             "-"
           }
         </td>
@@ -763,16 +763,16 @@ export default function GSTR9({ tableData }) {
         </td>
         <td class="n-a"></td>
         <td class="n-a"></td>
-        <td>${table6?.ios?.iamt || "-"}</td>
-        <td>${table6?.ios?.csamt || "-"}</td>
+        <td>${table6?.ios?.iamt ?? "-"}</td>
+        <td>${table6?.ios?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">G</td>
         <td colspan="2">Input Tax credit received from ISD</td>
-        <td>${table6?.isd?.camt || "-"}</td>
-        <td>${table6?.isd?.samt || "-"}</td>
-        <td>${table6?.isd?.iamt || "-"}</td>
-        <td>${table6?.isd?.csamt || "-"}</td>
+        <td>${table6?.isd?.camt ?? "-"}</td>
+        <td>${table6?.isd?.samt ?? "-"}</td>
+        <td>${table6?.isd?.iamt ?? "-"}</td>
+        <td>${table6?.isd?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">H</td>
@@ -780,68 +780,68 @@ export default function GSTR9({ tableData }) {
           Amount of ITC reclaimed (other than B above) under the provisions of
           the Act
         </td>
-        <td>${table6?.itc_clmd?.camt || "-"}</td>
-        <td>${table6?.itc_clmd?.samt || "-"}</td>
-        <td>${table6?.itc_clmd?.iamt || "-"}</td>
-        <td>${table6?.itc_clmd?.csamt || "-"}</td>
+        <td>${table6?.itc_clmd?.camt ?? "-"}</td>
+        <td>${table6?.itc_clmd?.samt ?? "-"}</td>
+        <td>${table6?.itc_clmd?.iamt ?? "-"}</td>
+        <td>${table6?.itc_clmd?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">I</td>
         <td colspan="2">Sub-total (B to H above)</td>
-        <td>${table6?.sub_totalBH?.camt || "-"}</td>
-        <td>${table6?.sub_totalBH?.samt || "-"}</td>
-        <td>${table6?.sub_totalBH?.iamt || "-"}</td>
-        <td>${table6?.sub_totalBH?.csamt || "-"}</td>
+        <td>${table6?.sub_totalBH?.camt ?? "-"}</td>
+        <td>${table6?.sub_totalBH?.samt ?? "-"}</td>
+        <td>${table6?.sub_totalBH?.iamt ?? "-"}</td>
+        <td>${table6?.sub_totalBH?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">J</td>
         <td colspan="2">Difference (I - A above)</td>
-        <td>${table6?.difference?.camt || "-"}</td>
-        <td>${table6?.difference?.samt || "-"}</td>
-        <td>${table6?.difference?.iamt || "-"}</td>
-        <td>${table6?.difference?.csamt || "-"}</td>
+        <td>${table6?.difference?.camt ?? "-"}</td>
+        <td>${table6?.difference?.samt ?? "-"}</td>
+        <td>${table6?.difference?.iamt ?? "-"}</td>
+        <td>${table6?.difference?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">K</td>
         <td colspan="2">
           Transition Credit through TRAN-I (including revisions if any)
         </td>
-        <td>${table6?.tran1?.camt || "-"}</td>
-        <td>${table6?.tran1?.samt || "-"}</td>
+        <td>${table6?.tran1?.camt ?? "-"}</td>
+        <td>${table6?.tran1?.samt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
       </tr>
       <tr>
         <td class="c-1">L</td>
         <td colspan="2">Transition Credit through TRAN-II</td>
-        <td>${table6?.tran2?.camt || "-"}</td>
-        <td>${table6?.tran2?.samt || "-"}</td>
+        <td>${table6?.tran2?.camt ?? "-"}</td>
+        <td>${table6?.tran2?.samt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
       </tr>
       <tr class="c-row">
         <td class="c-1">M</td>
         <td colspan="2">Any other ITC availed but not specified above</td>
-        <td>${table6?.other?.camt || "-"}</td>
-        <td>${table6?.other?.samt || "-"}</td>
-        <td>${table6?.other?.iamt || "-"}</td>
-        <td>${table6?.other?.csamt || "-"}</td>
+        <td>${table6?.other?.camt ?? "-"}</td>
+        <td>${table6?.other?.samt ?? "-"}</td>
+        <td>${table6?.other?.iamt ?? "-"}</td>
+        <td>${table6?.other?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">N</td>
         <td colspan="2">Sub-total (K to M above)</td>
-        <td>${table6?.sub_totalKM?.camt || "-"}</td>
-        <td>${table6?.sub_totalKM?.samt || "-"}</td>
-        <td>${table6?.sub_totalKM?.iamt || "-"}</td>
-        <td>${table6?.sub_totalKM?.csamt || "-"}</td>
+        <td>${table6?.sub_totalKM?.camt ?? "-"}</td>
+        <td>${table6?.sub_totalKM?.samt ?? "-"}</td>
+        <td>${table6?.sub_totalKM?.iamt ?? "-"}</td>
+        <td>${table6?.sub_totalKM?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">O</td>
         <td colspan="2">Total ITC availed (I + N above)</td>
-        <td>${table6?.total_itc_availed?.camt || "-"}</td>
-        <td>${table6?.total_itc_availed?.samt || "-"}</td>
-        <td>${table6?.total_itc_availed?.iamt || "-"}</td>
-        <td>${table6?.total_itc_availed?.csamt || "-"}</td>
+        <td>${table6?.total_itc_availed?.camt ?? "-"}</td>
+        <td>${table6?.total_itc_availed?.samt ?? "-"}</td>
+        <td>${table6?.total_itc_availed?.iamt ?? "-"}</td>
+        <td>${table6?.total_itc_availed?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <th class="c-1">7</th>
@@ -853,82 +853,82 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">A</td>
         <td colspan="2">As per Rule 37</td>
-        <td>${table7?.rule37?.camt || "-"}</td>
-        <td>${table7?.rule37?.samt || "-"}</td>
-        <td>${table7?.rule37?.iamt || "-"}</td>
-        <td>${table7?.rule37?.csamt || "-"}</td>
+        <td>${table7?.rule37?.camt ?? "-"}</td>
+        <td>${table7?.rule37?.samt ?? "-"}</td>
+        <td>${table7?.rule37?.iamt ?? "-"}</td>
+        <td>${table7?.rule37?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">B</td>
         <td colspan="2">As per Rule 39</td>
-        <td>${table7?.rule39?.camt || "-"}</td>
-        <td>${table7?.rule39?.samt || "-"}</td>
-        <td>${table7?.rule39?.iamt || "-"}</td>
-        <td>${table7?.rule39?.csamt || "-"}</td>
+        <td>${table7?.rule39?.camt ?? "-"}</td>
+        <td>${table7?.rule39?.samt ?? "-"}</td>
+        <td>${table7?.rule39?.iamt ?? "-"}</td>
+        <td>${table7?.rule39?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">C</td>
         <td colspan="2">As per Rule 42</td>
-        <td>${table7?.rule42?.camt || "-"}</td>
-        <td>${table7?.rule42?.samt || "-"}</td>
-        <td>${table7?.rule42?.iamt || "-"}</td>
-        <td>${table7?.rule42?.csamt || "-"}</td>
+        <td>${table7?.rule42?.camt ?? "-"}</td>
+        <td>${table7?.rule42?.samt ?? "-"}</td>
+        <td>${table7?.rule42?.iamt ?? "-"}</td>
+        <td>${table7?.rule42?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">D</td>
         <td colspan="2">As per Rule 43</td>
-        <td>${table7?.rule43?.camt || "-"}</td>
-        <td>${table7?.rule43?.samt || "-"}</td>
-        <td>${table7?.rule43?.iamt || "-"}</td>
-        <td>${table7?.rule43?.csamt || "-"}</td>
+        <td>${table7?.rule43?.camt ?? "-"}</td>
+        <td>${table7?.rule43?.samt ?? "-"}</td>
+        <td>${table7?.rule43?.iamt ?? "-"}</td>
+        <td>${table7?.rule43?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">E</td>
         <td colspan="2">As per section 17(5)</td>
-        <td>${table7?.sec17?.camt || "-"}</td>
-        <td>${table7?.sec17?.samt || "-"}</td>
-        <td>${table7?.sec17?.iamt || "-"}</td>
-        <td>${table7?.sec17?.csamt || "-"}</td>
+        <td>${table7?.sec17?.camt ?? "-"}</td>
+        <td>${table7?.sec17?.samt ?? "-"}</td>
+        <td>${table7?.sec17?.iamt ?? "-"}</td>
+        <td>${table7?.sec17?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">F</td>
         <td colspan="2">Reversal of TRAN-I credit</td>
-        <td>${table7?.revsl_tran1?.camt || "-"}</td>
-        <td>${table7?.revsl_tran1?.samt || "-"}</td>
+        <td>${table7?.revsl_tran1?.camt ?? "-"}</td>
+        <td>${table7?.revsl_tran1?.samt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
       </tr>
       <tr>
         <td class="c-1">G</td>
         <td colspan="2">Reversal of TRAN-II credit</td>
-        <td>${table7?.revsl_tran2?.camt || "-"}</td>
-        <td>${table7?.revsl_tran2?.samt || "-"}</td>
+        <td>${table7?.revsl_tran2?.camt ?? "-"}</td>
+        <td>${table7?.revsl_tran2?.samt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
       </tr>
       <tr>
         <td class="c-1">H</td>
         <td colspan="2">Other reversals (pl. specify)</td>
-        <td>${table7?.other?.camt || "-"}</td>
-        <td>${table7?.other?.samt || "-"}</td>
-        <td>${table7?.other?.iamt || "-"}</td>
-        <td>${table7?.other?.csamt || "-"}</td>
+        <td>${table7?.other?.camt ?? "-"}</td>
+        <td>${table7?.other?.samt ?? "-"}</td>
+        <td>${table7?.other?.iamt ?? "-"}</td>
+        <td>${table7?.other?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">I</td>
         <td colspan="2">Total ITC Reversed (A to H above)</td>
-        <td>${table7?.tot_itc_revd?.camt || "-"}</td>
-        <td>${table7?.tot_itc_revd?.samt || "-"}</td>
-        <td>${table7?.tot_itc_revd?.iamt || "-"}</td>
-        <td>${table7?.tot_itc_revd?.csamt || "-"}</td>
+        <td>${table7?.tot_itc_revd?.camt ?? "-"}</td>
+        <td>${table7?.tot_itc_revd?.samt ?? "-"}</td>
+        <td>${table7?.tot_itc_revd?.iamt ?? "-"}</td>
+        <td>${table7?.tot_itc_revd?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">J</td>
         <td colspan="2">Net ITC Available for Utilization (6O - 7I)</td>
-        <td>${table7?.net_itc_aval?.camt || "-"}</td>
-        <td>${table7?.net_itc_aval?.samt || "-"}</td>
-        <td>${table7?.net_itc_aval?.iamt || "-"}</td>
-        <td>${table7?.net_itc_aval?.csamt || "-"}</td>
+        <td>${table7?.net_itc_aval?.camt ?? "-"}</td>
+        <td>${table7?.net_itc_aval?.samt ?? "-"}</td>
+        <td>${table7?.net_itc_aval?.iamt ?? "-"}</td>
+        <td>${table7?.net_itc_aval?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <th class="c-1">8</th>
@@ -939,18 +939,18 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">A</td>
         <td colspan="2">ITC as per GSTR-2A (Table 3 & 5 thereof)</td>
-        <td>${table8?.itc_2a?.camt || "-"}</td>
-        <td>${table8?.itc_2a?.samt || "-"}</td>
-        <td>${table8?.itc_2a?.iamt || "-"}</td>
-        <td>${table8?.itc_2a?.csamt || "-"}</td>
+        <td>${table8?.itc_2a?.camt ?? "-"}</td>
+        <td>${table8?.itc_2a?.samt ?? "-"}</td>
+        <td>${table8?.itc_2a?.iamt ?? "-"}</td>
+        <td>${table8?.itc_2a?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">B</td>
         <td colspan="2">ITC as per sum total of 6(B) and 6(H) above</td>
-        <td>${table8?.itc_tot?.camt || "-"}</td>
-        <td>${table8?.itc_tot?.samt || "-"}</td>
-        <td>${table8?.itc_tot?.iamt || "-"}</td>
-        <td>${table8?.itc_tot?.csamt || "-"}</td>
+        <td>${table8?.itc_tot?.camt ?? "-"}</td>
+        <td>${table8?.itc_tot?.samt ?? "-"}</td>
+        <td>${table8?.itc_tot?.iamt ?? "-"}</td>
+        <td>${table8?.itc_tot?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">C</td>
@@ -959,82 +959,82 @@ export default function GSTR9({ tableData }) {
           to reverse charge but includes services received from SEZs) received
           during 2017-18 but availed during April to September, 2018
         </td>
-        <td>${table8?.itc_inwd_supp?.camt || "-"}</td>
-        <td>${table8?.itc_inwd_supp?.samt || "-"}</td>
-        <td>${table8?.itc_inwd_supp?.iamt || "-"}</td>
-        <td>${table8?.itc_inwd_supp?.csamt || "-"}</td>
+        <td>${table8?.itc_inwd_supp?.camt ?? "-"}</td>
+        <td>${table8?.itc_inwd_supp?.samt ?? "-"}</td>
+        <td>${table8?.itc_inwd_supp?.iamt ?? "-"}</td>
+        <td>${table8?.itc_inwd_supp?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">D</td>
         <td colspan="2">Difference [A-(B+C)]</td>
-        <td>${table8?.differenceABC?.camt || "-"}</td>
-        <td>${table8?.differenceABC?.samt || "-"}</td>
-        <td>${table8?.differenceABC?.iamt || "-"}</td>
-        <td>${table8?.differenceABC?.csamt || "-"}</td>
+        <td>${table8?.differenceABC?.camt ?? "-"}</td>
+        <td>${table8?.differenceABC?.samt ?? "-"}</td>
+        <td>${table8?.differenceABC?.iamt ?? "-"}</td>
+        <td>${table8?.differenceABC?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">E</td>
         <td colspan="2">ITC available but not availed (out of D)</td>
-        <td>${table8?.itc_nt_availd?.camt || "-"}</td>
-        <td>${table8?.itc_nt_availd?.samt || "-"}</td>
-        <td>${table8?.itc_nt_availd?.iamt || "-"}</td>
-        <td>${table8?.itc_nt_availd?.csamt || "-"}</td>
+        <td>${table8?.itc_nt_availd?.camt ?? "-"}</td>
+        <td>${table8?.itc_nt_availd?.samt ?? "-"}</td>
+        <td>${table8?.itc_nt_availd?.iamt ?? "-"}</td>
+        <td>${table8?.itc_nt_availd?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">F</td>
         <td colspan="2">ITC available but ineligible (out of D)</td>
-        <td>${table8?.itc_nt_eleg?.camt || "-"}</td>
-        <td>${table8?.itc_nt_eleg?.samt || "-"}</td>
-        <td>${table8?.itc_nt_eleg?.iamt || "-"}</td>
-        <td>${table8?.itc_nt_eleg?.csamt || "-"}</td>
+        <td>${table8?.itc_nt_eleg?.camt ?? "-"}</td>
+        <td>${table8?.itc_nt_eleg?.samt ?? "-"}</td>
+        <td>${table8?.itc_nt_eleg?.iamt ?? "-"}</td>
+        <td>${table8?.itc_nt_eleg?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">G</td>
         <td colspan="2">
           IGST paid on import of goods (including supplies from SEZ)
         </td>
-        <td>${table8?.iog_taxpaid?.camt || "-"}</td>
-        <td>${table8?.iog_taxpaid?.samt || "-"}</td>
-        <td>${table8?.iog_taxpaid?.iamt || "-"}</td>
-        <td>${table8?.iog_taxpaid?.csamt || "-"}</td>
+        <td>${table8?.iog_taxpaid?.camt ?? "-"}</td>
+        <td>${table8?.iog_taxpaid?.samt ?? "-"}</td>
+        <td>${table8?.iog_taxpaid?.iamt ?? "-"}</td>
+        <td>${table8?.iog_taxpaid?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">H</td>
         <td colspan="2">
           IGST credit availed on import of goods (as per 6(E) above)
         </td>
-        <td>${table8?.iog_itc_availd?.camt || "-"}</td>
-        <td>${table8?.iog_itc_availd?.samt || "-"}</td>
-        <td>${table8?.iog_itc_availd?.iamt || "-"}</td>
-        <td>${table8?.iog_itc_availd?.csamt || "-"}</td>
+        <td>${table8?.iog_itc_availd?.camt ?? "-"}</td>
+        <td>${table8?.iog_itc_availd?.samt ?? "-"}</td>
+        <td>${table8?.iog_itc_availd?.iamt ?? "-"}</td>
+        <td>${table8?.iog_itc_availd?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">I</td>
         <td colspan="2">Difference (G-H)</td>
-        <td>${table8?.differenceGH?.camt || "-"}</td>
-        <td>${table8?.differenceGH?.samt || "-"}</td>
-        <td>${table8?.differenceGH?.iamt || "-"}</td>
-        <td>${table8?.differenceGH?.csamt || "-"}</td>
+        <td>${table8?.differenceGH?.camt ?? "-"}</td>
+        <td>${table8?.differenceGH?.samt ?? "-"}</td>
+        <td>${table8?.differenceGH?.iamt ?? "-"}</td>
+        <td>${table8?.differenceGH?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">J</td>
         <td colspan="2">
           ITC available but not availed on import of goods (Equal to I)
         </td>
-        <td>${table8?.iog_itc_ntavaild?.camt || "-"}</td>
-        <td>${table8?.iog_itc_ntavaild?.samt || "-"}</td>
-        <td>${table8?.iog_itc_ntavaild?.iamt || "-"}</td>
-        <td>${table8?.iog_itc_ntavaild?.csamt || "-"}</td>
+        <td>${table8?.iog_itc_ntavaild?.camt ?? "-"}</td>
+        <td>${table8?.iog_itc_ntavaild?.samt ?? "-"}</td>
+        <td>${table8?.iog_itc_ntavaild?.iamt ?? "-"}</td>
+        <td>${table8?.iog_itc_ntavaild?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <td class="c-1">K</td>
         <td colspan="2">
           Total ITC to be lapsed in current financial year (E + F + J)
         </td>
-        <td>${table8?.tot_itc_lapsed?.camt || "-"}</td>
-        <td>${table8?.tot_itc_lapsed?.samt || "-"}</td>
-        <td>${table8?.tot_itc_lapsed?.iamt || "-"}</td>
-        <td>${table8?.tot_itc_lapsed?.csamt || "-"}</td>
+        <td>${table8?.tot_itc_lapsed?.camt ?? "-"}</td>
+        <td>${table8?.tot_itc_lapsed?.samt ?? "-"}</td>
+        <td>${table8?.tot_itc_lapsed?.iamt ?? "-"}</td>
+        <td>${table8?.tot_itc_lapsed?.csamt ?? "-"}</td>
       </tr>
     </tbody>
   </table>
@@ -1076,44 +1076,44 @@ export default function GSTR9({ tableData }) {
       </tr>
       <tr>
         <td>Integrated Tax</td>
-        <td>${table9?.iamt?.txpyble || "-"}</td>
-        <td>${table9?.iamt?.txpaid_cash || "-"}</td>
-        <td>${table9?.iamt?.tax_paid_itc_camt || "-"}</td>
-        <td>${table9?.iamt?.tax_paid_itc_samt || "-"}</td>
-        <td>${table9?.iamt?.tax_paid_itc_iamt || "-"}</td>
+        <td>${table9?.iamt?.txpyble ?? "-"}</td>
+        <td>${table9?.iamt?.txpaid_cash ?? "-"}</td>
+        <td>${table9?.iamt?.tax_paid_itc_camt ?? "-"}</td>
+        <td>${table9?.iamt?.tax_paid_itc_samt ?? "-"}</td>
+        <td>${table9?.iamt?.tax_paid_itc_iamt ?? "-"}</td>
         <td class="n-a"></td>
       </tr>
       <tr>
         <td>Central Tax</td>
-        <td>${table9?.camt?.txpyble || "-"}</td>
-        <td>${table9?.camt?.txpaid_cash || "-"}</td>
-        <td>${table9?.camt?.tax_paid_itc_camt || "-"}</td>
+        <td>${table9?.camt?.txpyble ?? "-"}</td>
+        <td>${table9?.camt?.txpaid_cash ?? "-"}</td>
+        <td>${table9?.camt?.tax_paid_itc_camt ?? "-"}</td>
         <td class="n-a"></td>
-        <td>${table9?.camt?.tax_paid_itc_iamt || "-"}</td>
+        <td>${table9?.camt?.tax_paid_itc_iamt ?? "-"}</td>
         <td class="n-a"></td>
       </tr>
       <tr>
         <td>State/UT Tax</td>
-        <td>${table9?.samt?.txpyble || "-"}</td>
-        <td>${table9?.samt?.txpaid_cash || "-"}</td>
+        <td>${table9?.samt?.txpyble ?? "-"}</td>
+        <td>${table9?.samt?.txpaid_cash ?? "-"}</td>
         <td class="n-a"></td>
-        <td>${table9?.samt?.tax_paid_itc_samt || "-"}</td>
-        <td>${table9?.samt?.tax_paid_itc_iamt || "-"}</td>
+        <td>${table9?.samt?.tax_paid_itc_samt ?? "-"}</td>
+        <td>${table9?.samt?.tax_paid_itc_iamt ?? "-"}</td>
         <td class="n-a"></td>
       </tr>
       <tr>
         <td>Cess</td>
-        <td>${table9?.csamt?.txpyble || "-"}</td>
-        <td>${table9?.csamt?.txpaid_cash || "-"}</td>
+        <td>${table9?.csamt?.txpyble ?? "-"}</td>
+        <td>${table9?.csamt?.txpaid_cash ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
-        <td>${table9?.csamt?.tax_paid_itc_csamt || "-"}</td>
+        <td>${table9?.csamt?.tax_paid_itc_csamt ?? "-"}</td>
       </tr>
       <tr>
         <td>Interest</td>
-        <td>${table9?.intr?.txpyble || "-"}</td>
-        <td>${table9?.intr?.txpaid_cash || "-"}</td>
+        <td>${table9?.intr?.txpyble ?? "-"}</td>
+        <td>${table9?.intr?.txpaid_cash ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1121,8 +1121,8 @@ export default function GSTR9({ tableData }) {
       </tr>
       <tr>
         <td>Late fee</td>
-        <td>${table9?.fee?.txpyble || "-"}</td>
-        <td>${table9?.fee?.txpaid_cash || "-"}</td>
+        <td>${table9?.fee?.txpyble ?? "-"}</td>
+        <td>${table9?.fee?.txpaid_cash ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1130,8 +1130,8 @@ export default function GSTR9({ tableData }) {
       </tr>
       <tr>
         <td>Penalty</td>
-        <td>${table9?.pen?.txpyble || "-"}</td>
-        <td>${table9?.pen?.txpaid_cash || "-"}</td>
+        <td>${table9?.pen?.txpyble ?? "-"}</td>
+        <td>${table9?.pen?.txpaid_cash ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1139,8 +1139,8 @@ export default function GSTR9({ tableData }) {
       </tr>
       <tr>
         <td>Other</td>
-        <td>${table9?.other?.txpyble || "-"}</td>
-        <td>${table9?.other?.txpaid_cash || "-"}</td>
+        <td>${table9?.other?.txpyble ?? "-"}</td>
+        <td>${table9?.other?.txpaid_cash ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1184,40 +1184,40 @@ export default function GSTR9({ tableData }) {
         <td>
           Supplies / tax declared through Amendments (+) (net of debit notes)
         </td>
-        <td>${table10?.dbn_amd?.txval || "-"}</td>
-        <td>${table10?.dbn_amd?.camt || "-"}</td>
-        <td>${table10?.dbn_amd?.samt || "-"}</td>
-        <td>${table10?.dbn_amd?.iamt || "-"}</td>
-        <td>${table10?.dbn_amd?.csamt || "-"}</td>
+        <td>${table10?.dbn_amd?.txval ?? "-"}</td>
+        <td>${table10?.dbn_amd?.camt ?? "-"}</td>
+        <td>${table10?.dbn_amd?.samt ?? "-"}</td>
+        <td>${table10?.dbn_amd?.iamt ?? "-"}</td>
+        <td>${table10?.dbn_amd?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td><strong>11</strong></td>
         <td>
           Supplies / tax reduced through Amendments (-) (net of credit notes)
         </td>
-        <td>${table10?.cdn_amd?.txval || "-"}</td>
-        <td>${table10?.cdn_amd?.camt || "-"}</td>
-        <td>${table10?.cdn_amd?.samt || "-"}</td>
-        <td>${table10?.cdn_amd?.iamt || "-"}</td>
-        <td>${table10?.cdn_amd?.csamt || "-"}</td>
+        <td>${table10?.cdn_amd?.txval ?? "-"}</td>
+        <td>${table10?.cdn_amd?.camt ?? "-"}</td>
+        <td>${table10?.cdn_amd?.samt ?? "-"}</td>
+        <td>${table10?.cdn_amd?.iamt ?? "-"}</td>
+        <td>${table10?.cdn_amd?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td><strong>12</strong></td>
         <td>Reversal of ITC availed during previous financial year</td>
-        <td>${table10?.itc_rvsl?.txval || "-"}</td>
-        <td>${table10?.itc_rvsl?.camt || "-"}</td>
-        <td>${table10?.itc_rvsl?.samt || "-"}</td>
-        <td>${table10?.itc_rvsl?.iamt || "-"}</td>
-        <td>${table10?.itc_rvsl?.csamt || "-"}</td>
+        <td>${table10?.itc_rvsl?.txval ?? "-"}</td>
+        <td>${table10?.itc_rvsl?.camt ?? "-"}</td>
+        <td>${table10?.itc_rvsl?.samt ?? "-"}</td>
+        <td>${table10?.itc_rvsl?.iamt ?? "-"}</td>
+        <td>${table10?.itc_rvsl?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td><strong>13</strong></td>
         <td>ITC availed for the previous financial year</td>
-        <td>${table10?.rtc_availd?.txval || "-"}</td>
-        <td>${table10?.rtc_availd?.camt || "-"}</td>
-        <td>${table10?.rtc_availd?.samt || "-"}</td>
-        <td>${table10?.rtc_availd?.iamt || "-"}</td>
-        <td>${table10?.rtc_availd?.csamt || "-"}</td>
+        <td>${table10?.rtc_availd?.txval ?? "-"}</td>
+        <td>${table10?.rtc_availd?.camt ?? "-"}</td>
+        <td>${table10?.rtc_availd?.samt ?? "-"}</td>
+        <td>${table10?.rtc_availd?.iamt ?? "-"}</td>
+        <td>${table10?.rtc_availd?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td>14</td>
@@ -1239,28 +1239,28 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td rowspan="5"></td>
         <td colspan="2">Integrated Tax</td>
-        <td colspan="2">${table14?.iamt?.txpyble || "-"}</td>
-        <td colspan="2">${table14?.iamt?.txpaid || "-"}</td>
+        <td colspan="2">${table14?.iamt?.txpyble ?? "-"}</td>
+        <td colspan="2">${table14?.iamt?.txpaid ?? "-"}</td>
       </tr>
       <tr>
         <td colspan="2">Central Tax</td>
-        <td colspan="2">${table14?.camt?.txpyble || "-"}</td>
-        <td colspan="2">${table14?.camt?.txpaid || "-"}</td>
+        <td colspan="2">${table14?.camt?.txpyble ?? "-"}</td>
+        <td colspan="2">${table14?.camt?.txpaid ?? "-"}</td>
       </tr>
       <tr>
         <td colspan="2">State/UT Tax</td>
-        <td colspan="2">${table14?.samt?.txpyble || "-"}</td>
-        <td colspan="2">${table14?.samt?.txpaid || "-"}</td>
+        <td colspan="2">${table14?.samt?.txpyble ?? "-"}</td>
+        <td colspan="2">${table14?.samt?.txpaid ?? "-"}</td>
       </tr>
       <tr>
         <td colspan="2">Cess</td>
-        <td colspan="2">${table14?.csamt?.txpyble || "-"}</td>
-        <td colspan="2">${table14?.csamt?.txpaid || "-"}</td>
+        <td colspan="2">${table14?.csamt?.txpyble ?? "-"}</td>
+        <td colspan="2">${table14?.csamt?.txpaid ?? "-"}</td>
       </tr>
       <tr>
         <td colspan="2">Interest</td>
-        <td colspan="2">${table14?.intr?.txpyble || "-"}</td>
-        <td colspan="2">${table14?.intr?.txpaid || "-"}</td>
+        <td colspan="2">${table14?.intr?.txpyble ?? "-"}</td>
+        <td colspan="2">${table14?.intr?.txpaid ?? "-"}</td>
       </tr>
     </tbody>
   </table>
@@ -1304,10 +1304,10 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">A</td>
         <td>Total Refund claimed</td>
-        <td>${table15?.rfd_clmd?.camt || "-"}</td>
-        <td>${table15?.rfd_clmd?.samt || "-"}</td>
-        <td>${table15?.rfd_clmd?.iamt || "-"}</td>
-        <td>${table15?.rfd_clmd?.csamt || "-"}</td>
+        <td>${table15?.rfd_clmd?.camt ?? "-"}</td>
+        <td>${table15?.rfd_clmd?.samt ?? "-"}</td>
+        <td>${table15?.rfd_clmd?.iamt ?? "-"}</td>
+        <td>${table15?.rfd_clmd?.csamt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1315,10 +1315,10 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">B</td>
         <td>Total Refund sanctioned</td>
-        <td>${table15?.rfd_sanc?.camt || "-"}</td>
-        <td>${table15?.rfd_sanc?.samt || "-"}</td>
-        <td>${table15?.rfd_sanc?.iamt || "-"}</td>
-        <td>${table15?.rfd_sanc?.csamt || "-"}</td>
+        <td>${table15?.rfd_sanc?.camt ?? "-"}</td>
+        <td>${table15?.rfd_sanc?.samt ?? "-"}</td>
+        <td>${table15?.rfd_sanc?.iamt ?? "-"}</td>
+        <td>${table15?.rfd_sanc?.csamt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1326,10 +1326,10 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">C</td>
         <td>Total Refund Rejected</td>
-        <td>${table15?.rfd_rejt?.camt || "-"}</td>
-        <td>${table15?.rfd_rejt?.samt || "-"}</td>
-        <td>${table15?.rfd_rejt?.iamt || "-"}</td>
-        <td>${table15?.rfd_rejt?.csamt || "-"}</td>
+        <td>${table15?.rfd_rejt?.camt ?? "-"}</td>
+        <td>${table15?.rfd_rejt?.samt ?? "-"}</td>
+        <td>${table15?.rfd_rejt?.iamt ?? "-"}</td>
+        <td>${table15?.rfd_rejt?.csamt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1337,10 +1337,10 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">D</td>
         <td>Total Refund Pending</td>
-        <td>${table15?.rfd_pend?.camt || "-"}</td>
-        <td>${table15?.rfd_pend?.samt || "-"}</td>
-        <td>${table15?.rfd_pend?.iamt || "-"}</td>
-        <td>${table15?.rfd_pend?.csamt || "-"}</td>
+        <td>${table15?.rfd_pend?.camt ?? "-"}</td>
+        <td>${table15?.rfd_pend?.samt ?? "-"}</td>
+        <td>${table15?.rfd_pend?.iamt ?? "-"}</td>
+        <td>${table15?.rfd_pend?.csamt ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1348,35 +1348,35 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">E</td>
         <td>Total demand of taxes</td>
-        <td>${table15?.tax_dmnd?.camt || "-"}</td>
-        <td>${table15?.tax_dmnd?.samt || "-"}</td>
-        <td>${table15?.tax_dmnd?.iamt || "-"}</td>
-        <td>${table15?.tax_dmnd?.csamt || "-"}</td>
-        <td>${table15?.tax_dmnd?.intr || "-"}</td>
-        <td>${table15?.tax_dmnd?.pen || "-"}</td>
-        <td>${table15?.tax_dmnd?.fee || "-"}</td>
+        <td>${table15?.tax_dmnd?.camt ?? "-"}</td>
+        <td>${table15?.tax_dmnd?.samt ?? "-"}</td>
+        <td>${table15?.tax_dmnd?.iamt ?? "-"}</td>
+        <td>${table15?.tax_dmnd?.csamt ?? "-"}</td>
+        <td>${table15?.tax_dmnd?.intr ?? "-"}</td>
+        <td>${table15?.tax_dmnd?.pen ?? "-"}</td>
+        <td>${table15?.tax_dmnd?.fee ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">F</td>
         <td>Total taxes paid in respect of E above</td>
-        <td>${table15?.tax_paid?.camt || "-"}</td>
-        <td>${table15?.tax_paid?.samt || "-"}</td>
-        <td>${table15?.tax_paid?.iamt || "-"}</td>
-        <td>${table15?.tax_paid?.csamt || "-"}</td>
-        <td>${table15?.tax_paid?.intr || "-"}</td>
-        <td>${table15?.tax_paid?.pen || "-"}</td>
-        <td>${table15?.tax_paid?.fee || "-"}</td>
+        <td>${table15?.tax_paid?.camt ?? "-"}</td>
+        <td>${table15?.tax_paid?.samt ?? "-"}</td>
+        <td>${table15?.tax_paid?.iamt ?? "-"}</td>
+        <td>${table15?.tax_paid?.csamt ?? "-"}</td>
+        <td>${table15?.tax_paid?.intr ?? "-"}</td>
+        <td>${table15?.tax_paid?.pen ?? "-"}</td>
+        <td>${table15?.tax_paid?.fee ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">G</td>
         <td>Total demands pending out of E above</td>
-        <td>${table15?.dmnd_pend?.camt || "-"}</td>
-        <td>${table15?.dmnd_pend?.samt || "-"}</td>
-        <td>${table15?.dmnd_pend?.iamt || "-"}</td>
-        <td>${table15?.dmnd_pend?.csamt || "-"}</td>
-        <td>${table15?.dmnd_pend?.intr || "-"}</td>
-        <td>${table15?.dmnd_pend?.pen || "-"}</td>
-        <td>${table15?.dmnd_pend?.fee || "-"}</td>
+        <td>${table15?.dmnd_pend?.camt ?? "-"}</td>
+        <td>${table15?.dmnd_pend?.samt ?? "-"}</td>
+        <td>${table15?.dmnd_pend?.iamt ?? "-"}</td>
+        <td>${table15?.dmnd_pend?.csamt ?? "-"}</td>
+        <td>${table15?.dmnd_pend?.intr ?? "-"}</td>
+        <td>${table15?.dmnd_pend?.pen ?? "-"}</td>
+        <td>${table15?.dmnd_pend?.fee ?? "-"}</td>
       </tr>
       <tr>
         <th class="c-1">16</th>
@@ -1405,7 +1405,7 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">A</td>
         <td colspan="3">Supplies received from Composition taxpayers</td>
-        <td>${table16?.comp_supp?.txval || "-"}</td>
+        <td>${table16?.comp_supp?.txval ?? "-"}</td>
         <td class="n-a"></td>
         <td class="n-a"></td>
         <td class="n-a"></td>
@@ -1414,20 +1414,20 @@ export default function GSTR9({ tableData }) {
       <tr>
         <td class="c-1">B</td>
         <td colspan="3">Deemed supply under Section 143</td>
-        <td>${table16?.deemed_supp?.txval || "-"}</td>
-        <td>${table16?.deemed_supp?.camt || "-"}</td>
-        <td>${table16?.deemed_supp?.samt || "-"}</td>
-        <td>${table16?.deemed_supp?.iamt || "-"}</td>
-        <td>${table16?.deemed_supp?.csamt || "-"}</td>
+        <td>${table16?.deemed_supp?.txval ?? "-"}</td>
+        <td>${table16?.deemed_supp?.camt ?? "-"}</td>
+        <td>${table16?.deemed_supp?.samt ?? "-"}</td>
+        <td>${table16?.deemed_supp?.iamt ?? "-"}</td>
+        <td>${table16?.deemed_supp?.csamt ?? "-"}</td>
       </tr>
       <tr>
         <td class="c-1">C</td>
         <td colspan="3">Goods sent on approval basis but not returned</td>
-        <td>${table16?.not_returned?.txval || "-"}</td>
-        <td>${table16?.not_returned?.camt || "-"}</td>
-        <td>${table16?.not_returned?.samt || "-"}</td>
-        <td>${table16?.not_returned?.iamt || "-"}</td>
-        <td>${table16?.not_returned?.csamt || "-"}</td>
+        <td>${table16?.not_returned?.txval ?? "-"}</td>
+        <td>${table16?.not_returned?.camt ?? "-"}</td>
+        <td>${table16?.not_returned?.samt ?? "-"}</td>
+        <td>${table16?.not_returned?.iamt ?? "-"}</td>
+        <td>${table16?.not_returned?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <th class="c-1">17</th>
@@ -1457,15 +1457,15 @@ export default function GSTR9({ tableData }) {
         <td>8</td>
         <td>9</td>
       </tr>
-      <td>${table17?.items?.hsn_sc || "-"}</td>
-      <td>${table17?.items?.uqc || "-"}</td>
-      <td>${table17?.items?.qty || "-"}</td>
-      <td>${table17?.items?.txval || "-"}</td>
-      <td>${table17?.items?.rt || "-"}</td>
-      <td>${table17?.items?.camt || "-"}</td>
-      <td>${table17?.items?.samt || "-"}</td>
-      <td>${table17?.items?.iamt || "-"}</td>
-      <td>${table17?.items?.csamt || "-"}</td>
+      <td>${table17?.items?.hsn_sc ?? "-"}</td>
+      <td>${table17?.items?.uqc ?? "-"}</td>
+      <td>${table17?.items?.qty ?? "-"}</td>
+      <td>${table17?.items?.txval ?? "-"}</td>
+      <td>${table17?.items?.rt ?? "-"}</td>
+      <td>${table17?.items?.camt ?? "-"}</td>
+      <td>${table17?.items?.samt ?? "-"}</td>
+      <td>${table17?.items?.iamt ?? "-"}</td>
+      <td>${table17?.items?.csamt ?? "-"}</td>
       <tr class="c-row">
         <th class="c-1">18</th>
         <th style="text-align: center" colspan="8">
@@ -1495,15 +1495,15 @@ export default function GSTR9({ tableData }) {
         <td>9</td>
       </tr>
       <tr>
-        <td>${table18?.items?.hsn_sc || "-"}</td>
-        <td>${table18?.items?.uqc || "-"}</td>
-        <td>${table18?.items?.qty || "-"}</td>
-        <td>${table18?.items?.txval || "-"}</td>
-        <td>${table18?.items?.rt || "-"}</td>
-        <td>${table18?.items?.camt || "-"}</td>
-        <td>${table18?.items?.samt || "-"}</td>
-        <td>${table18?.items?.iamt || "-"}</td>
-        <td>${table18?.items?.csamt || "-"}</td>
+        <td>${table18?.items?.hsn_sc ?? "-"}</td>
+        <td>${table18?.items?.uqc ?? "-"}</td>
+        <td>${table18?.items?.qty ?? "-"}</td>
+        <td>${table18?.items?.txval ?? "-"}</td>
+        <td>${table18?.items?.rt ?? "-"}</td>
+        <td>${table18?.items?.camt ?? "-"}</td>
+        <td>${table18?.items?.samt ?? "-"}</td>
+        <td>${table18?.items?.iamt ?? "-"}</td>
+        <td>${table18?.items?.csamt ?? "-"}</td>
       </tr>
       <tr class="c-row">
         <th class="c-1">19</th>
@@ -1537,8 +1537,7 @@ export default function GSTR9({ tableData }) {
     </tbody>
   </table>
 </div>
-
-  `,
+`,
     {
       tableAutoSize: true,
       defaultStyles: {
