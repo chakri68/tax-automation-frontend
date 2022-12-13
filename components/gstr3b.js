@@ -8,7 +8,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 const StyledIframe = styled("iframe", {
   border: "none",
   width: "100%",
-  height: "100vh",
+  height: "100%",
 });
 
 function processData(json) {
@@ -546,9 +546,5 @@ export default function GSTR3B({ tableData }) {
       setIFrameSrc(dataUrl);
     });
   }, [tableData]);
-  return (
-    <div>
-      <StyledIframe ref={iframeContainer} src={iFrameSrc} />
-    </div>
-  );
+  return <StyledIframe ref={iframeContainer} src={iFrameSrc} />;
 }
