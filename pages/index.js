@@ -11,7 +11,6 @@ import {
   Segment,
 } from "semantic-ui-react";
 import styles from "../styles/Home.module.css";
-import "semantic-ui-css/semantic.min.css";
 import { useState, Component } from "react";
 import { withRouter } from "next/router";
 
