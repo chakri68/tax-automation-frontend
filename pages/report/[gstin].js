@@ -75,11 +75,11 @@ export default function GSTSummary() {
   }, [gstin]);
   return (
     <StyledSection>
-      <PDFSegment>
+      <PDFSegment raised>
         {GSTR1Data ? (
           <>
             <Header as="h3">GSTR-1</Header>
-            <DynamicGSTR1 tableData={GSTR1Data} gstin={gstin}/>
+            <DynamicGSTR1 tableData={GSTR1Data} gstin={gstin} />
           </>
         ) : (
           <Dimmer active>
@@ -87,7 +87,7 @@ export default function GSTSummary() {
           </Dimmer>
         )}
       </PDFSegment>
-      <PDFSegment>
+      <PDFSegment raised>
         {GSTR3BData ? (
           <>
             <Header as="h3">GSTR-3B</Header>
@@ -99,7 +99,7 @@ export default function GSTSummary() {
           </Dimmer>
         )}
       </PDFSegment>
-      <PDFSegment>
+      <PDFSegment raised>
         {GSTR9Data ? (
           <>
             <Header as="h3">GSTR-9</Header>
