@@ -15,6 +15,12 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 const { backendURL } = config;
 
 const StyledSection = styled("section", {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  alignContent: "center",
+  justifyContent: "space-around",
+  alignItems: "center",
   padding: "10px",
   marginTop: "20px",
 });
