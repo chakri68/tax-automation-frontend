@@ -28,8 +28,8 @@ const StyledSection = styled("section", {
 const PDFSegment = styled(Segment, {
   margin: "auto",
   width: "600px",
-  // aspectRatio: "1 / 1.414",
-  aspectRatio: "1",
+  aspectRatio: "1 / 1.414",
+  // aspectRatio: "1",
 });
 
 const DynamicGSTR9 = dynamic(() => import("../../components/gstr9"), {
@@ -59,7 +59,7 @@ async function getGSTR1Data(gstin, callback) {
   let res2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
   let data1 = await res1.json();
   let data2 = await res2.json();
-  let data = {...(data1.data),...(data2.data)};
+  let data = { ...data1.data, ...data2.data };
   callback(data);
 }
 
