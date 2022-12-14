@@ -31,7 +31,7 @@ export default withRouter(
       if (checkGSTIN(value)) this.setState({ error: false });
       else this.setState({ error: true });
     };
-    handleFormSubmit = async () => {
+    handleFormSubmit = () => {
       this.setState({ loading: true });
       if (checkGSTIN(this.state.gstin)) {
         this.setState({ error: false });
