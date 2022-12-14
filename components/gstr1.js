@@ -247,21 +247,6 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
         persons (other then the supplies covered in Table 5) - B2CS (Others)
       </th>
     </tr>
-  </table>
-
-  <br /><br /><br /><br /><br />
-
-  <table style="width: 100%" border="2" cellpadding="4">
-    <tr>
-      <th style="width: 30%">Desciption</th>
-      <th>No. of records</th>
-      <th>Document Type</th>
-      <th>Value (<span>&#8377;</span>)</th>
-      <th>Integrated Tax (<span>&#8377;</span>)</th>
-      <th>Central Tax (<span>&#8377;</span>)</th>
-      <th>State/UT Tax (<span>&#8377;</span>)</th>
-      <th>Cast Tax (<span>&#8377;</span>)</th>
-    </tr>
     <tr>
       <td>Total</td>
       <td>${checkRound(table7?.numberOfRecords) ?? "-"}</td>
@@ -480,21 +465,6 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
     <tr>
       <th colspan="8">9B - Credit/Debit Notes(Registered) - CDNR</th>
     </tr>
-  </table>
-
-  <br /><br /><br /><br /><br /><br /><br /><br />
-
-  <table style="width: 100%" border="2" cellpadding="4">
-    <tr>
-      <th style="width: 30%">Desciption</th>
-      <th>No. of records</th>
-      <th>Document Type</th>
-      <th>Value (<span>&#8377;</span>)</th>
-      <th>Integrated Tax (<span>&#8377;</span>)</th>
-      <th>Central Tax (<span>&#8377;</span>)</th>
-      <th>State/UT Tax (<span>&#8377;</span>)</th>
-      <th>Cast Tax (<span>&#8377;</span>)</th>
-    </tr>
     <tr>
       <td>Net Total (Debit notes - Credit notes)</td>
       <td>${checkRound(table9B_1?.numberOfRecords) ?? "-"}</td>
@@ -582,21 +552,6 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
     </tr>
     <tr>
       <td colspan="8">Unregistered Type</td>
-    </tr>
-  </table>
-
-  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-  <table style="width: 100%" border="2" cellpadding="4">
-    <tr>
-      <th style="width: 30%">Desciption</th>
-      <th>No. of records</th>
-      <th>Document Type</th>
-      <th>Value (<span>&#8377;</span>)</th>
-      <th>Integrated Tax (<span>&#8377;</span>)</th>
-      <th>Central Tax (<span>&#8377;</span>)</th>
-      <th>State/UT Tax (<span>&#8377;</span>)</th>
-      <th>Cast Tax (<span>&#8377;</span>)</th>
     </tr>
     <tr>
       <td>- B2CL</td>

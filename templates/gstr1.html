@@ -213,6 +213,7 @@
         persons (other then the supplies covered in Table 5) - B2CS (Others)
       </th>
     </tr>
+    {% comment %}
   </table>
 
   <br /><br /><br /><br /><br />
@@ -228,6 +229,7 @@
       <th>State/UT Tax (<span>&#8377;</span>)</th>
       <th>Cast Tax (<span>&#8377;</span>)</th>
     </tr>
+    {% endcomment %}
     <tr>
       <td>Total</td>
       <td>${checkRound(table7?.numberOfRecords) ?? "-"}</td>
@@ -444,6 +446,7 @@
     <tr>
       <th colspan="8">9B - Credit/Debit Notes(Registered) - CDNR</th>
     </tr>
+    {% comment %}
   </table>
 
   <br /><br /><br /><br /><br /><br /><br /><br />
@@ -459,6 +462,7 @@
       <th>State/UT Tax (<span>&#8377;</span>)</th>
       <th>Cast Tax (<span>&#8377;</span>)</th>
     </tr>
+    {% endcomment %}
     <tr>
       <td>Net Total (Debit notes - Credit notes)</td>
       <td>${checkRound(table9B_1?.numberOfRecords) ?? "-"}</td>
@@ -547,6 +551,7 @@
     <tr>
       <td colspan="8">Unregistered Type</td>
     </tr>
+    {% comment %}
   </table>
 
   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -562,6 +567,7 @@
       <th>State/UT Tax (<span>&#8377;</span>)</th>
       <th>Cast Tax (<span>&#8377;</span>)</th>
     </tr>
+    {% endcomment %}
     <tr>
       <td>- B2CL</td>
       <td></td>
