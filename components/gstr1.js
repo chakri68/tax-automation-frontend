@@ -867,5 +867,7 @@ export default function GSTR3B({ tableData, gstin }) {
       setIFrameSrc(dataUrl);
     });
   }, [tableData]);
-  return <StyledIframe ref={iframeContainer} src={iFrameSrc} />;
+  return (
+    <StyledIframe ref={iframeContainer} src={iFrameSrc + "#page=1&view=FitV"} />
+  );
 }
