@@ -8,7 +8,14 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { Card, Dimmer, Header, Loader, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  Dimmer,
+  Header,
+  Loader,
+  Segment,
+} from "semantic-ui-react";
 import { styled } from "@stitches/react";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -64,6 +71,10 @@ async function getGSTR1Data(gstin, callback) {
 }
 
 export default function GSTSummary() {
+  let [pdfMakeGSTR1, setPdfMakeGSTR1] = useState(null);
+  let [pdfMakeGSTR3b, setPdfMakeGSTR3b] = useState(null);
+  let [pdfMakeGSTR9, setPdfMakeGSTR9] = useState(null);
+
   let router = useRouter();
 
   const { gstin } = router.query;
@@ -82,10 +93,23 @@ export default function GSTSummary() {
   return (
     <StyledSection>
       <PDFSegment raised>
-        {GSTR1Data ? (
+        {GSTR1Data != null ? (
           <>
-            <Header as="h3">GSTR-1</Header>
-            <DynamicGSTR1 tableData={GSTR1Data} gstin={gstin} />
+            <Header as="h3" color="teal" textAlign="center">
+              GSTR-1
+            </Header>
+            <Button
+              fluid
+              disabled={pdfMakeGSTR1 == null}
+              onClick={() => pdfMakeGSTR1.open()}
+            >
+              Open In New Tab
+            </Button>
+            <DynamicGSTR1
+              tableData={GSTR1Data}
+              gstin={gstin}
+              setPdfMake={setPdfMakeGSTR1}
+            />
           </>
         ) : (
           <Dimmer active>
@@ -94,10 +118,22 @@ export default function GSTSummary() {
         )}
       </PDFSegment>
       <PDFSegment raised>
-        {GSTR3BData ? (
+        {GSTR3BData != null ? (
           <>
-            <Header as="h3">GSTR-3B</Header>
-            <DynamicGSTR3B tableData={GSTR3BData} />
+            <Header as="h3" color="teal" textAlign="center">
+              GSTR-3B
+            </Header>
+            <Button
+              fluid
+              disabled={pdfMakeGSTR3b == null}
+              onClick={() => pdfMakeGSTR3b.open()}
+            >
+              Open In New Tab
+            </Button>
+            <DynamicGSTR3B
+              tableData={GSTR3BData}
+              setPdfMake={setPdfMakeGSTR3b}
+            />
           </>
         ) : (
           <Dimmer active>
@@ -106,10 +142,19 @@ export default function GSTSummary() {
         )}
       </PDFSegment>
       <PDFSegment raised>
-        {GSTR9Data ? (
+        {GSTR9Data != null ? (
           <>
-            <Header as="h3">GSTR-9</Header>
-            <DynamicGSTR9 tableData={GSTR9Data} />
+            <Header as="h3" color="teal" textAlign="center">
+              GSTR-9
+            </Header>
+            <Button
+              fluid
+              disabled={pdfMakeGSTR9 == null}
+              onClick={() => pdfMakeGSTR9.open()}
+            >
+              Open In New Tab
+            </Button>
+            <DynamicGSTR9 tableData={GSTR9Data} setPdfMake={setPdfMakeGSTR9} />
           </>
         ) : (
           <Dimmer active>

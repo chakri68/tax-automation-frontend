@@ -2,7 +2,7 @@ import { styled } from "@stitches/react";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import htmlToPdfmake from "html-to-pdfmake";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const StyledIframe = styled("iframe", {
@@ -23,7 +23,7 @@ function processData(json) {
   return res;
 }
 
-export default function GSTR9({ tableData }) {
+const GSTR9 = React.memo(function GSTR9({ tableData, setPdfMake }) {
   const data = processData(tableData);
   console.log({ data });
   let {
@@ -1597,9 +1597,12 @@ export default function GSTR9({ tableData }) {
     const pdfDocGenerator = pdfMake.createPdf(docDefinition.current);
     pdfDocGenerator.getDataUrl((dataUrl) => {
       setIFrameSrc(dataUrl);
+      setPdfMake(pdfDocGenerator);
     });
-  }, [tableData]);
+  }, [setPdfMake, tableData]);
   return (
     <StyledIframe ref={iframeContainer} src={iFrameSrc + "#page=1&view=FitV"} />
   );
-}
+});
+
+export default GSTR9;
