@@ -32,6 +32,9 @@ const DynamicGSTR9 = dynamic(() => import("../../components/gstr9"), {
 const DynamicGSTR3B = dynamic(() => import("../../components/gstr3b"), {
   ssr: false,
 });
+const DynamicGSTR1 = dynamic(() => import("../../components/gstr1"), {
+  ssr: false,
+});
 
 async function getGSTR9Data(gstin, callback) {
   let res = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
@@ -45,22 +48,45 @@ async function getGSTR3BData(gstin, callback) {
   callback(data.data);
 }
 
+async function getGSTR1Data(gstin, callback) {
+  let res1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
+  let res2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
+  let data1 = await res1.json();
+  let data2 = await res2.json();
+  let data = {...(data1.data),...(data2.data)};
+  callback(data);
+}
+
 export default function GSTSummary() {
   let router = useRouter();
 
   const { gstin } = router.query;
-  console.log({ gstin });
 
+  let [GSTR1Data, setGSTR1Data] = useState(null);
+  let [GSTR12Data, setGSTR12Data] = useState(null);
   let [GSTR9Data, setGSTR9Data] = useState(null);
   let [GSTR3BData, setGSTR3BData] = useState(null);
   useEffect(() => {
     if (gstin) {
+      getGSTR1Data(gstin, setGSTR1Data);
       getGSTR9Data(gstin, setGSTR9Data);
       getGSTR3BData(gstin, setGSTR3BData);
     }
   }, [gstin]);
   return (
     <StyledSection>
+      <PDFSegment>
+        {GSTR1Data ? (
+          <>
+            <Header as="h3">GSTR-1</Header>
+            <DynamicGSTR1 tableData={GSTR1Data} gstin={gstin}/>
+          </>
+        ) : (
+          <Dimmer active>
+            <Loader />
+          </Dimmer>
+        )}
+      </PDFSegment>
       <PDFSegment>
         {GSTR3BData ? (
           <>
