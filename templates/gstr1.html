@@ -1,50 +1,4 @@
-import { styled } from "@stitches/react";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-import htmlToPdfmake from "html-to-pdfmake";
-import { useEffect, useRef, useState } from "react";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-const StyledIframe = styled("iframe", {
-  border: "none",
-  width: "100%",
-  height: "100%",
-});
-
-function checkRound(num) {
-  if (num == null || num == undefined) return num;
-  return parseFloat(num).toFixed(2);
-}
-
-export default function GSTR3B({ tableData, gstin }) {
-  let {
-    table4A,
-    table4B,
-    table4C,
-    table6A,
-    table6B,
-    table6C,
-    table7,
-    table8,
-    table9A_1,
-    table9A_2,
-    table9A_3,
-    table9A_4,
-    table9A_5,
-    table9A_6,
-    table9B_1,
-    table9B_2,
-    table9C_1,
-    table9C_2,
-    "table11(A)1": table11_A_1,
-    table11_B_2: table11_B_2,
-    table12,
-  } = tableData;
-  console.log({ tableData });
-
-  let [iFrameSrc, setIFrameSrc] = useState("");
-  var html = htmlToPdfmake(
-    `<div style="font-size: 9px; margin-bottom: 5px">
+<div style="font-size: 9px; margin-bottom: 5px">
   <p style="font-size: 20px; font-weight: bold; text-align: center">
     Form GSTR-1
   </p>
@@ -53,6 +7,18 @@ export default function GSTR3B({ tableData, gstin }) {
   <p style="text-align: center">
     Details of outward supplies of goods or services
   </p>
+  {% comment %}
+  <table style="width: 100%" border="2" cellpadding="4">
+    <tr>
+      <td style="width: 150px; font-weight: bold">Year</td>
+      <td style="width: 150px"></td>
+    </tr>
+    <tr>
+      <td style="width: 150px; font-weight: bold">Period</td>
+      <td style="width: 150px"></td>
+    </tr>
+  </table>
+  {% endcomment %}
 
   <table style="width: 100%" border="2" cellpadding="4">
     <tr>
@@ -279,10 +245,8 @@ export default function GSTR3B({ tableData, gstin }) {
     <tr>
       <td colspan="3">Total</td>
       <td>
-        ${
-          checkRound(table8?.nil_amt + table8?.expt_amt + table8?.ngsup_amt) ??
-          "-"
-        }
+        ${checkRound(table8?.nil_amt + table8?.expt_amt + table8?.ngsup_amt) ??
+        "-"}
       </td>
       <td class="n-a"></td>
       <td class="n-a"></td>
@@ -804,68 +768,3 @@ export default function GSTR3B({ tableData, gstin }) {
     Designaion/Status: <br />
   </p>
 </div>
-
-`,
-    {
-      tableAutoSize: true,
-      defaultStyles: {
-        b: { bold: true },
-        strong: { bold: true },
-        u: { decoration: "underline" },
-        s: { decoration: "lineThrough" },
-        em: { italics: true },
-        i: { italics: true },
-        h1: { fontSize: 24, bold: true, marginBottom: 5 },
-        h2: { fontSize: 22, bold: true, marginBottom: 5 },
-        h3: { fontSize: 20, bold: true, marginBottom: 5 },
-        h4: { fontSize: 18, bold: true, marginBottom: 5 },
-        h5: { fontSize: 16, bold: true, marginBottom: 5 },
-        h6: { fontSize: 14, bold: true, marginBottom: 5 },
-        a: { color: "blue", decoration: "underline" },
-        strike: { decoration: "lineThrough" },
-        p: { margin: [0, 3, 0, 3] },
-        ul: { marginBottom: 5 },
-        li: { marginLeft: 5 },
-        table: { marginBottom: 5 },
-        th: { bold: true, fillColor: "#EEEEEE" },
-      },
-    }
-  );
-
-  // https://aymkdn.github.io/html-to-pdfmake/index.html
-
-  let iframeContainer = useRef(null);
-
-  let docDefinition = useRef({
-    content: [html],
-    styles: {
-      "t-d": {
-        width: 10,
-      },
-      "t-v": {
-        width: 60,
-      },
-      "c-1": {
-        width: 25,
-        alignment: "center",
-      },
-      "c-2": {
-        width: "auto",
-      },
-      "c-row": {
-        fillColor: "#EEEEEE",
-      },
-      "n-a": {
-        fillColor: "#5A5A5A",
-      },
-    },
-  });
-
-  useEffect(() => {
-    const pdfDocGenerator = pdfMake.createPdf(docDefinition.current);
-    pdfDocGenerator.getDataUrl((dataUrl) => {
-      setIFrameSrc(dataUrl);
-    });
-  }, [tableData]);
-  return <StyledIframe ref={iframeContainer} src={iFrameSrc} />;
-}
