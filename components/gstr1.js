@@ -37,7 +37,7 @@ export default function GSTR3B({ tableData, gstin }) {
     table9C_1,
     table9C_2,
     "table11(A)1": table11_A_1,
-    table11_B_2: table11_B_2,
+    "table11(B)2": table11_B_2,
     table12,
   } = tableData;
   console.log({ tableData });
