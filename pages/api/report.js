@@ -69,6 +69,42 @@ export default async function handler(req, res) {
         samt:this.row1.samt-this.row2.samt,
         total:this.row1.total-this.row2.total
       }
+    },
+    table2:new function(){
+      this.row1=new function (){
+        const data=R9Data.table6?.itc_3b;
+        this.iamt=data.iamt
+        this.camt=data.camt
+        this.samt=data.samt
+        this.total=this.camt+this.iamt+this.samt
+      }
+      this.row2=new function (){
+        const data1=R9Data.table10?.rtc_availd;
+        const data2=R9Data.table10?.itc_rvsl;
+        this.iamt=data1.iamt||0-data2.iamt||0
+        this.camt=data1.camt||0-data2.camt||0
+        this.samt=data1.samt||0-data2.samt||0
+        this.total=this.camt+this.iamt+this.samt
+      }
+      this.row3={
+        iamt:this.row1.iamt-this.row2.iamt,
+        camt:this.row1.camt-this.row2.camt,
+        samt:this.row1.samt-this.row2.samt,
+        total:this.row1.total-this.row2.total
+      }
+      this.row4=new function (){
+        const data=R9Data.table6?.total_itc_availed;
+        this.iamt=data.iamt
+        this.camt=data.camt
+        this.samt=data.samt
+        this.total=this.camt+this.iamt+this.samt
+      }
+      this.row5={
+        iamt:this.row3.iamt-this.row4.iamt,
+        camt:this.row3.camt-this.row4.camt,
+        samt:this.row3.samt-this.row4.samt,
+        total:this.row3.total-this.row4.total
+      }
     }
   }
 
