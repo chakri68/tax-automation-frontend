@@ -16,7 +16,7 @@ function checkRound(num) {
   return parseFloat(num).toFixed(2);
 }
 
-const Report = React.memo(function Report({ tableData, setPdfMake }) {
+const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
   let [iFrameSrc, setIFrameSrc] = useState("");
 
   console.log({ reportData: tableData });
@@ -24,7 +24,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
   let { table1, table2, table3, table4, table5 } = tableData;
 
   var html = htmlToPdfmake(
-    `<<div style="font-size: 10px">
+    `<div style="font-size: 10px">
   <div style="text-align: center">
     <strong>GOVERNMENT OF UTTARPRADESH</strong>
     <strong>COMMERCIAL TAX DEPARTMENT</strong>
@@ -38,7 +38,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
     <tbody>
       <tr style="height: 21px">
         <td style="width: 50%">DIN</td>
-        <td style="width: 50%">{DIN}</td>
+        <td style="width: 50%"></td>
       </tr>
       <tr style="height: 21px">
         <td style="width: 50%">Office Details</td>
@@ -50,11 +50,15 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
           <p>Legal Name</p>
           <p>GSTIN</p>
         </td>
-        <td style="width: 50%"></td>
+        <td style="width: 50%">
+          <p>Details of Tax payer<br />Name</p>
+          <p>Legal Name</p>
+          <p>${gstin}</p>
+        </td>
       </tr>
       <tr style="height: 21px">
         <td style="width: 50%">Financial Year</td>
-        <td style="width: 50%"></td>
+        <td style="width: 50%">2016-17</td>
       </tr>
     </tbody>
   </table>
@@ -64,9 +68,10 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
   and other records available in this office, it is found that you have not
   declare your correct tax liability while filing the annual returns of GSTR-09,
   The summary of under declared tax is as shown: <br />
-  SGST Rs. {SGST_SUMMARY} <br />
-  CGST Rs. {CGST_SUMMARY} <br />
-  Total Rs. {total_SUMMARY}
+  SGST Rs. ${checkRound(table5?.row1?.samt) ?? "-"} <br />
+  CGST Rs. ${checkRound(table5?.row1?.camt) ?? "-"} <br />
+  IGST Rs. ${checkRound(table5?.row1?.iamt) ?? "-"} <br />
+  Total Rs. ${checkRound(table5?.row1?.total) ?? "-"} <br />
 
   <p>The details of the liability are as follows:</p>
 
