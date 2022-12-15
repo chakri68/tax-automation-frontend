@@ -166,10 +166,10 @@ export default async function handler(req, res) {
       this.total = this.camt + this.iamt + this.samt;
     })();
     this.row5 = {
-      iamt: this.row4.iamt * this.row2.iamt - this.row1.iamt,
-      camt: this.row4.camt * this.row2.camt - this.row1.camt,
-      samt: this.row4.samt * this.row2.samt - this.row1.samt,
-      total: this.row2.total / this.row1.total,
+      iamt: (this.row4.iamt * this.row2.iamt) / this.row1.iamt,
+      camt: (this.row4.camt * this.row2.camt) / this.row1.camt,
+      samt: (this.row4.samt * this.row2.samt) / this.row1.samt,
+      total: (this.row4.total * this.row2.total) / this.row1.total,
     };
     this.row6 = new (function () {
       const data1 = R9Data.table7?.rule42;
