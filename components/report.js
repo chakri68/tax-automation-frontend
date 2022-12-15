@@ -212,8 +212,8 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
           </tr>
           <tr>
             <td>3</td>
-            <td>Total ITC availed in GSTR 09</td>
-            <td>6O</td>
+            <td>Net ITC available in the current year</td>
+            <td>S.No. 1 (-) S.No. 2</td>
             <td>${checkRound(table2?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table2?.row3?.iamt) ?? "-"}</td>
@@ -221,8 +221,8 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
           </tr>
           <tr>
             <td>4</td>
-            <td>ITC avail in GSTR-3B in excess of GSTR-09</td>
-            <td>S.No. 3 (-) 6O</td>
+            <td>Total ITC availed in GSTR 09</td>
+            <td>6O</td>
             <td>${checkRound(table2?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row4?.camt) ?? "-"}</td>
             <td>${checkRound(table2?.row4?.iamt) ?? "-"}</td>
@@ -230,8 +230,8 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
           </tr>
           <tr>
             <td>5</td>
-            <td>Net ITC available in the current year</td>
-            <td>S.No. 1 (-) S.No. 2</td>
+            <td>ITC avail in GSTR-3B in excess of GSTR-09</td>
+            <td>S.No. 3 (-) 6O</td>
             <td>${checkRound(table2?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row5?.camt) ?? "-"}</td>
             <td>${checkRound(table2?.row5?.iamt) ?? "-"}</td>
