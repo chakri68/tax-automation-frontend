@@ -188,9 +188,9 @@ export default async function handler(req, res) {
   }
   const table5=new function(){
     this.row1=new function (){
-      this.iamt=0
-      this.camt=0
-      this.samt=0
+      this.iamt=table1.row3.iamt+table2.row5.iamt+table3.row7.iamt+table4.row4.iamt
+      this.camt=table1.row3.camt+table2.row5.camt+table3.row7.camt+table4.row4.camt
+      this.samt=table1.row3.samt+table2.row5.samt+table3.row7.samt+table4.row4.samt
       this.total=this.camt+this.iamt+this.samt
     }
   }
