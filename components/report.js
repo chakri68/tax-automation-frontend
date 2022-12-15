@@ -11,8 +11,17 @@ const StyledIframe = styled("iframe", {
   height: "100%",
 });
 
+function checkRound(num) {
+  if (num == null || num == undefined) return num;
+  return parseFloat(num).toFixed(2);
+}
+
 const Report = React.memo(function Report({ tableData, setPdfMake }) {
   let [iFrameSrc, setIFrameSrc] = useState("");
+
+  console.log({ reportData: tableData });
+
+  let { table1, table2 } = tableData;
 
   var html = htmlToPdfmake(
     `<div style="font-size: 10px">
@@ -108,9 +117,9 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
           <tr>
             <td style="text-align: center">1</td>
             <td>Tax on Outward supplies declared in GSTR-01 for the FY</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${checkRound(table1?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table1?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table1?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td style="text-align: center">2</td>
@@ -118,16 +127,16 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
               Less tax on Outward supplies arrived in GSTR-09 at Box 1A(1) +
               1A(2)
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${checkRound(table1?.row2?.samt) ?? "-"}</td>
+            <td>${checkRound(table1?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table1?.row2?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td style="text-align: center">3</td>
             <td>Difference (1 - 2)</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${checkRound(table1?.row3?.samt) ?? "-"}</td>
+            <td>${checkRound(table1?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table1?.row3?.total) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -173,9 +182,9 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>1</td>
             <td>Eligible ITC in GSTR-3B</td>
             <td>6A</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${checkRound(table2?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table2?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td>2</td>
@@ -183,33 +192,33 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
               ITC pertaining to previous year but availed in the current year
             </td>
             <td>(13 (-) 12) of previous GSTR-09</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${checkRound(table2?.row2?.samt) ?? "-"}</td>
+            <td>${checkRound(table2?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row2?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Net ITC available in the current year</td>
-            <td>S.No. 1 (-) S.No. 2</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Total ITC availed in GSTR 09</td>
+            <td>6O</td>
+            <td>${checkRound(table2?.row3?.samt) ?? "-"}</td>
+            <td>${checkRound(table2?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row3?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>Total ITC availed in GSTR 09</td>
-            <td>6O</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>ITC avail in GSTR-3B in excess of GSTR-09</td>
+            <td>S.No. 3 (-) 6O</td>
+            <td>${checkRound(table2?.row4?.samt) ?? "-"}</td>
+            <td>${checkRound(table2?.row4?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row4?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>ITC avail in GSTR-3B in excess of GSTR-09</td>
-            <td>S.No. 3 (-) 6O</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Net ITC available in the current year</td>
+            <td>S.No. 1 (-) S.No. 2</td>
+            <td>${checkRound(table2?.row5?.samt) ?? "-"}</td>
+            <td>${checkRound(table2?.row5?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row5?.total) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -273,7 +282,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
           <tr style="height: 21px">
             <td>2</td>
             <td>Exempt supplies</td>
-            <td>5C + 5O + 5E + 5F</td>
+            <td>5C + 5D + 5E + 5F</td>
             <td></td>
             <td></td>
             <td></td>

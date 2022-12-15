@@ -24,8 +24,7 @@ function processData(json) {
 }
 
 const GSTR9 = React.memo(function GSTR9({ tableData, setPdfMake }) {
-  const data = processData(tableData);
-  console.log({ data });
+  console.log({ R9Data: tableData });
   let {
     gstin,
     table4,
@@ -41,7 +40,7 @@ const GSTR9 = React.memo(function GSTR9({ tableData, setPdfMake }) {
     table16,
     table17,
     table18,
-  } = data;
+  } = tableData;
   let [iFrameSrc, setIFrameSrc] = useState("");
 
   var html = htmlToPdfmake(

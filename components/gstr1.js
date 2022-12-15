@@ -40,7 +40,7 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
     "table11(B)2": table11_B_2,
     table12,
   } = tableData;
-  console.log({ tableData });
+  console.log({ R1Data: tableData });
 
   let [iFrameSrc, setIFrameSrc] = useState("");
   var html = htmlToPdfmake(
@@ -741,6 +741,20 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
     <tr>
       <td colspan="8"><br /></td>
     </tr>
+
+    <tr>
+      <td colspan="8"></td>
+    </tr>
+    <tr class="c-row">
+      <td></td>
+      <td>${checkRound(table12?.numberOfRecords) ?? "-"}</td>
+      <td>Invoice</td>
+      <td>${checkRound(table12?.txval) ?? "-"}</td>
+      <td>${checkRound(table12?.iamt) ?? "-"}</td>
+      <td>${checkRound(table12?.camt) ?? "-"}</td>
+      <td>${checkRound(table12?.samt) ?? "-"}</td>
+      <td>${checkRound(table12?.csamt) ?? "-"}</td>
+    </tr>
   </table>
 
   <br />
@@ -759,7 +773,6 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
     Designaion/Status: <br />
   </p>
 </div>
-
 `,
     {
       tableAutoSize: true,

@@ -52,32 +52,32 @@ const DynamicReport = dynamic(() => import("../../components/report"), {
   ssr: false,
 });
 
-async function getGSTR9Data(gstin, callback) {
-  let res = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
-  let data = await res.json();
-  callback(data.data);
-}
+// async function getGSTR9Data(gstin, callback) {
+//   let res = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
+//   let data = await res.json();
+//   callback(data.data);
+// }
 
-async function getGSTR3BData(gstin, callback) {
-  let res = await fetch(`${backendURL}/api/v1/r3b?GSTIN=${gstin}`);
-  let data = await res.json();
-  callback(data.data);
-}
+// async function getGSTR3BData(gstin, callback) {
+//   let res = await fetch(`${backendURL}/api/v1/r3b?GSTIN=${gstin}`);
+//   let data = await res.json();
+//   callback(data.data);
+// }
 
 async function getReportData(gstin, callback) {
-  let res = await fetch(`${backendURL}/api/v1/report?GSTIN=${gstin}`);
+  let res = await fetch(`/api/report?gstin=${gstin}`);
   let data = await res.json();
   callback(data.data);
 }
 
-async function getGSTR1Data(gstin, callback) {
-  let res1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
-  let res2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
-  let data1 = await res1.json();
-  let data2 = await res2.json();
-  let data = { ...data1.data, ...data2.data };
-  callback(data);
-}
+// async function getGSTR1Data(gstin, callback) {
+//   let res1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
+//   let res2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
+//   let data1 = await res1.json();
+//   let data2 = await res2.json();
+//   let data = { ...data1.data, ...data2.data };
+//   callback(data);
+// }
 
 export default function GSTSummary() {
   let [pdfMakeGSTR1, setPdfMakeGSTR1] = useState(null);
@@ -92,15 +92,20 @@ export default function GSTSummary() {
   let [GSTR1Data, setGSTR1Data] = useState(null);
   let [GSTR9Data, setGSTR9Data] = useState(null);
   let [GSTR3BData, setGSTR3BData] = useState(null);
-  // let [reportData, setReportData] = useState(null);
-  let [reportData, setReportData] = useState({});
+  let [reportData, setReportData] = useState(null);
+  // let [reportData, setReportData] = useState({});
 
   useEffect(() => {
     if (gstin) {
-      getGSTR1Data(gstin, setGSTR1Data);
-      getGSTR9Data(gstin, setGSTR9Data);
-      getGSTR3BData(gstin, setGSTR3BData);
-      // getReportData(gstin, setReportData);
+      // getGSTR1Data(gstin, setGSTR1Data);
+      // getGSTR9Data(gstin, setGSTR9Data);
+      // getGSTR3BData(gstin, setGSTR3BData);
+      getReportData(gstin, (data) => {
+        setReportData(data.Report);
+        setGSTR1Data(data.R1Data);
+        setGSTR3BData(data.R3Data);
+        setGSTR9Data(data.R9Data);
+      });
     }
   }, [gstin]);
   return (

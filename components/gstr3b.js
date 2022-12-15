@@ -27,36 +27,35 @@ function jsonparse(json) {
 }
 
 const GSTR3B = React.memo(function GSTR3B({ tableData, setPdfMake }) {
-  const data = processData(tableData);
   let {
     Id,
     gstin,
     ret_period,
     fil_dt,
     qn,
-    sup_details,
-    sup_inter,
-    itc_elg,
-    inward_sup,
-    intr_ltfee,
-    tax_pmt,
+    sup_details: sup_detailsJSON,
+    sup_inter: sup_interJSON,
+    itc_elg: itc_elgJSON,
+    inward_sup: inward_supJSON,
+    intr_ltfee: intr_ltfeeJSON,
+    tax_pmt: tax_pmtJSON,
     EntryDate,
     FileURL,
     IsFiltered,
     FileId,
     CompiledTurnOver,
     MainJSON,
-  } = data;
+  } = tableData;
 
-  let intr_ltfeeJSON = jsonparse(intr_ltfee);
-  let sup_detailsJSON = jsonparse(sup_details);
-  let inward_supJSON = jsonparse(inward_sup);
-  let itc_elgJSON = jsonparse(itc_elg);
+  // let intr_ltfeeJSON = jsonparse(intr_ltfee);
+  // let sup_detailsJSON = jsonparse(sup_details);
+  // let inward_supJSON = jsonparse(inward_sup);
+  // let itc_elgJSON = jsonparse(itc_elg);
 
   // Null values
-  let tax_pmtJSON = jsonparse(tax_pmt);
-  let sup_interJSON = jsonparse(sup_inter);
-  console.log(data);
+  // let tax_pmtJSON = jsonparse(tax_pmt);
+  // let sup_interJSON = jsonparse(sup_inter);
+  console.log({ R3BData: tableData });
 
   let [iFrameSrc, setIFrameSrc] = useState("");
   var html = htmlToPdfmake(
