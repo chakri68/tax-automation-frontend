@@ -114,12 +114,12 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
             <th>Total</th>
           </tr>
           <tr style="text-align: center">
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
           </tr>
           <tr>
             <td style="text-align: center">1</td>
@@ -182,13 +182,13 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
             <th>Total</th>
           </tr>
           <tr style="text-align: center">
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
           </tr>
           <tr>
             <td>1</td>
@@ -279,13 +279,13 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
             <th>Total</th>
           </tr>
           <tr style="height: 21px; text-align: center">
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
           </tr>
           <tr style="height: 21px">
             <td>1</td>
@@ -398,12 +398,12 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
             <th>Total</th>
           </tr>
           <tr style="text-align: center">
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
           </tr>
           <tr>
             <td>1</td>
@@ -474,12 +474,12 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
         <th>Total</th>
       </tr>
       <tr style="text-align: center">
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
+        <td>A</td>
+        <td>B</td>
+        <td>C</td>
+        <td>D</td>
+        <td>E</td>
+        <td>F</td>
       </tr>
       <tr>
         <td style="text-align: center">1</td>
