@@ -203,21 +203,21 @@ export default async function handler(req, res) {
   })();
   const table4 = new (function () {
     this.row1 = new (function () {
-      this.iamt = 0;
-      this.camt = 0;
-      this.samt = 0;
+      this.iamt = parseInt(row1_iamt);
+      this.camt = parseInt(row1_camt);
+      this.samt = parseInt(row1_samt);
       this.total = this.camt + this.iamt + this.samt;
     })();
     this.row2 = new (function () {
-      this.iamt = 0;
-      this.camt = 0;
-      this.samt = 0;
+      this.iamt = parseInt(row2_iamt);
+      this.camt = parseInt(row2_camt);
+      this.samt = parseInt(row2_samt);
       this.total = this.camt + this.iamt + this.samt;
     })();
     this.row3 = new (function () {
-      this.iamt = 0;
-      this.camt = 0;
-      this.samt = 0;
+      this.iamt = parseInt(row3_iamt);
+      this.camt = parseInt(row3_camt);
+      this.samt = parseInt(row3_samt);
       this.total = this.camt + this.iamt + this.samt;
     })();
     this.row4 = {
