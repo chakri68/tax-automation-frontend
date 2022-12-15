@@ -48,7 +48,8 @@ export default async function handler(req, res) {
       key === "itc_elg" ||
       key === "intr_ltfee" ||
       key === "qn" ||
-      key === "sup_details"
+      key === "sup_details" ||
+      key === "inward_sup"
   );
 
   // R9 Data
