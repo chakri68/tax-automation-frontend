@@ -24,7 +24,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
   let { table1, table2, table3, table4, table5 } = tableData;
 
   var html = htmlToPdfmake(
-    `<div style="font-size: 10px">
+    `<<div style="font-size: 10px">
   <div style="text-align: center">
     <strong>GOVERNMENT OF UTTARPRADESH</strong>
     <strong>COMMERCIAL TAX DEPARTMENT</strong>
@@ -97,7 +97,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
         style="width: 100%"
         border="2"
         cellpadding="2"
-        data-pdfmake="{'widths':[25,'*', 80, 80, 80]}"
+        data-pdfmake="{'widths':[25,'*', 65, 65, 65, 65]}"
       >
         <tbody>
           <tr>
@@ -105,6 +105,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <th>Issue</th>
             <th>SGST</th>
             <th>CGST</th>
+            <th>IGST</th>
             <th>Total</th>
           </tr>
           <tr style="text-align: center">
@@ -113,12 +114,14 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>3</td>
             <td>4</td>
             <td>5</td>
+            <td>6</td>
           </tr>
           <tr>
             <td style="text-align: center">1</td>
             <td>Tax on Outward supplies declared in GSTR-01 for the FY</td>
             <td>${checkRound(table1?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table1?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table1?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table1?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -129,6 +132,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             </td>
             <td>${checkRound(table1?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table1?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table1?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table1?.row2?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -136,6 +140,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>Difference (1 - 2)</td>
             <td>${checkRound(table1?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table1?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table1?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table1?.row3?.total) ?? "-"}</td>
           </tr>
         </tbody>
@@ -158,7 +163,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
       <table
         style="width: 100%; vertical-align: middle"
         border="2"
-        data-pdfmake="{'widths':[25,'*', 80, 80, 80, 80]}"
+        data-pdfmake="{'widths':[25,'*', 50, 65, 65, 65, 65]}"
         cellpadding="4"
       >
         <tbody>
@@ -168,6 +173,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <th>Table No. in GSTR-09</th>
             <th>SGST</th>
             <th>CGST</th>
+            <th>IGST</th>
             <th>Total</th>
           </tr>
           <tr style="text-align: center">
@@ -177,6 +183,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>4</td>
             <td>5</td>
             <td>6</td>
+            <td>7</td>
           </tr>
           <tr>
             <td>1</td>
@@ -184,6 +191,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>6A</td>
             <td>${checkRound(table2?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table2?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -194,6 +202,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>(13 (-) 12) of previous GSTR-09</td>
             <td>${checkRound(table2?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table2?.row2?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -202,6 +211,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>6O</td>
             <td>${checkRound(table2?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table2?.row3?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -210,6 +220,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>S.No. 3 (-) 6O</td>
             <td>${checkRound(table2?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row4?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row4?.iamt) ?? "-"}</td>
             <td>${checkRound(table2?.row4?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -218,6 +229,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>S.No. 1 (-) S.No. 2</td>
             <td>${checkRound(table2?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table2?.row5?.camt) ?? "-"}</td>
+            <td>${checkRound(table2?.row5?.iamt) ?? "-"}</td>
             <td>${checkRound(table2?.row5?.total) ?? "-"}</td>
           </tr>
         </tbody>
@@ -256,7 +268,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <th>S.No.</th>
             <th>Issue</th>
             <th>Table No. in GSTR-09</th>
-            <th>Value of outward supply</th>
+            <th>IGST</th>
             <th>SGST</th>
             <th>CGST</th>
             <th>Total</th>
@@ -363,7 +375,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
         style="width: 100%"
         border="2"
         cellpadding="2"
-        data-pdfmake="{'widths':[25,'*', 70, 70, 70]}"
+        data-pdfmake="{'widths':[25,'*', 65, 65, 65, 65]}"
       >
         <tbody>
           <tr>
@@ -371,6 +383,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <th>Issue</th>
             <th>SGST</th>
             <th>CGST</th>
+            <th>IGST</th>
             <th>Total</th>
           </tr>
           <tr style="text-align: center">
@@ -379,12 +392,14 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>3</td>
             <td>4</td>
             <td>5</td>
+            <td>6</td>
           </tr>
           <tr>
             <td>1</td>
             <td>Supplier registration canceled before date of invoice</td>
             <td>${checkRound(table4?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table4?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table4?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table4?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -395,6 +410,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             </td>
             <td>${checkRound(table4?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table4?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table4?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table4?.row2?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -405,6 +421,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             </td>
             <td>${checkRound(table4?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table4?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table4?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table4?.row3?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -412,6 +429,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
             <td>Total</td>
             <td>${checkRound(table4?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table4?.row4?.camt) ?? "-"}</td>
+            <td>${checkRound(table4?.row4?.iamt) ?? "-"}</td>
             <td>${checkRound(table4?.row4?.total) ?? "-"}</td>
           </tr>
         </tbody>
@@ -433,7 +451,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
     style="width: 100%"
     border="2"
     cellpadding="2"
-    data-pdfmake="{'widths':[25,'*', 70, 70, 70]}"
+    data-pdfmake="{'widths':[25,'*', 65, 65, 65, 65]}"
   >
     <tbody>
       <tr>
@@ -441,6 +459,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
         <th>Issue</th>
         <th>SGST</th>
         <th>CGST</th>
+        <th>IGST</th>
         <th>Total</th>
       </tr>
       <tr style="text-align: center">
@@ -449,12 +468,14 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
         <td>3</td>
         <td>4</td>
         <td>5</td>
+        <td>6</td>
       </tr>
       <tr>
         <td style="text-align: center">1</td>
         <td>Total tax due in (1) + (2) above</td>
         <td>${checkRound(table5?.row1?.samt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.camt) ?? "-"}</td>
+        <td>${checkRound(table5?.row1?.iamt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.total) ?? "-"}</td>
       </tr>
     </tbody>
@@ -473,7 +494,6 @@ const Report = React.memo(function Report({ tableData, setPdfMake }) {
     also attached for filing your response along with your detailed reply.
   </p>
 </div>
-
 `,
     {
       tableAutoSize: true,
