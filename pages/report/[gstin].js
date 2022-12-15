@@ -67,7 +67,7 @@ const DynamicReport = dynamic(() => import("../../components/report"), {
 async function getReportData(gstin, postData, callback) {
   let res = await fetch(`/api/report?gstin=${gstin}`, {
     method: "POST",
-    body: postData,
+    body: JSON.stringify(postData),
   });
   let data = await res.json();
   callback(data.data);

@@ -17,6 +17,7 @@ function processData(json, matcher) {
 
 export default async function handler(req, res) {
   console.log({ req: req.body });
+
   let { gstin } = req.query;
   let {
     row1_samt,
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
     row1_iamt,
     row2_iamt,
     row3_iamt,
-  } = req.body;
+  } = JSON.parse(req.body);
   let response, data;
   // fetching all the data
 
@@ -256,7 +257,7 @@ export default async function handler(req, res) {
     table5,
   };
 
-  console.log({ R1Data, R3Data, R9Data });
+  // console.log({ R1Data, R3Data, R9Data });
 
   res
     .status(200)
