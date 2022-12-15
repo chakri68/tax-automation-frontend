@@ -64,8 +64,11 @@ const DynamicReport = dynamic(() => import("../../components/report"), {
 //   callback(data.data);
 // }
 
-async function getReportData(gstin, callback) {
-  let res = await fetch(`/api/report?gstin=${gstin}`);
+async function getReportData(gstin, postData, callback) {
+  let res = await fetch(`/api/report?gstin=${gstin}`, {
+    method: "POST",
+    body: postData,
+  });
   let data = await res.json();
   callback(data.data);
 }
@@ -100,7 +103,7 @@ export default function GSTSummary() {
       // getGSTR1Data(gstin, setGSTR1Data);
       // getGSTR9Data(gstin, setGSTR9Data);
       // getGSTR3BData(gstin, setGSTR3BData);
-      getReportData(gstin, (data) => {
+      getReportData(gstin, router.query, (data) => {
         setReportData(data.Report);
         setGSTR1Data(data.R1Data);
         setGSTR3BData(data.R3Data);
