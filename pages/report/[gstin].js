@@ -138,7 +138,7 @@ export default function GSTSummary() {
           </Dimmer>
         )}
       </PDFSegment>
-      <PDFSegment raised>
+      {/* <PDFSegment raised>
         {GSTR1Data != null ? (
           <>
             <Header as="h3" color="teal" textAlign="center">
@@ -207,7 +207,7 @@ export default function GSTSummary() {
             <Loader />
           </Dimmer>
         )}
-      </PDFSegment>
+      </PDFSegment> */}
     </StyledSection>
   );
 }
