@@ -273,9 +273,9 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
             <th>S.No.</th>
             <th>Issue</th>
             <th>Table No. in GSTR-09</th>
-            <th>IGST</th>
             <th>SGST</th>
             <th>CGST</th>
+            <th>IGST</th>
             <th>Total</th>
           </tr>
           <tr style="height: 21px; text-align: center">
@@ -291,18 +291,19 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
             <td>1</td>
             <td>Total supplies</td>
             <td>5N + 10 - 11</td>
-            <td>${checkRound(table3?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row1?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
             <td>2</td>
             <td>Exempt supplies</td>
             <td>5C + 5D + 5E + 5F</td>
-            <td>${checkRound(table3?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row2?.iamt) ?? "-"}</td>
+
             <td>${checkRound(table3?.row2?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
@@ -312,45 +313,50 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
               exempt supply (2/1 above)
             </td>
             <td></td>
-            <td>${checkRound(table3?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row3?.iamt) ?? "-"}</td>
+
             <td>${checkRound(table3?.row3?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
             <td>4</td>
             <td>Common input tax credit</td>
             <td>6) + 13 - 12</td>
-            <td>${checkRound(table3?.row4?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row4?.iamt) ?? "-"}</td>
+
             <td>${checkRound(table3?.row4?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
             <td>5</td>
             <td>ITC to be reversed</td>
             <td>(S.No.4 (x) S.No.2)/S.No.1</td>
-            <td>${checkRound(table3?.row5?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row5?.iamt) ?? "-"}</td>
+
             <td>${checkRound(table3?.row5?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21.5px">
             <td>6</td>
             <td>ITC reversed as per GSTR-09</td>
             <td>7C + 7D + 7F + 7G</td>
-            <td>${checkRound(table3?.row6?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row6?.iamt) ?? "-"}</td>
+
             <td>${checkRound(table3?.row6?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
             <td>7</td>
             <td>Difference/Excess ITC claimed</td>
             <td>S.No 5 (-) S.N0. 6</td>
-            <td>${checkRound(table3?.row7?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row7?.iamt) ?? "-"}</td>
+
             <td>${checkRound(table3?.row7?.total) ?? "-"}</td>
           </tr>
         </tbody>
