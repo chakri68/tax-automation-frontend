@@ -3,7 +3,56 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import htmlToPdfmake from "html-to-pdfmake";
 import React, { useEffect, useRef, useState } from "react";
+import mammoth from "mammoth";
+import PDFMerger from "pdf-merger-js/browser";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+const html2pdfmakeStyles = {
+  tableAutoSize: true,
+  defaultStyles: {
+    b: { bold: true },
+    strong: { bold: true },
+    u: { decoration: "underline" },
+    s: { decoration: "lineThrough" },
+    em: { italics: true },
+    i: { italics: true },
+    h1: { fontSize: 24, bold: true, marginBottom: 5 },
+    h2: { fontSize: 22, bold: true, marginBottom: 5 },
+    h3: { fontSize: 20, bold: true, marginBottom: 5 },
+    h4: { fontSize: 18, bold: true, marginBottom: 5 },
+    h5: { fontSize: 16, bold: true, marginBottom: 5 },
+    h6: { fontSize: 14, bold: true, marginBottom: 5 },
+    a: { color: "blue", decoration: "underline" },
+    strike: { decoration: "lineThrough" },
+    p: { margin: [0, 3, 0, 3] },
+    ul: { marginBottom: 5 },
+    li: { marginLeft: 5 },
+    table: { marginBottom: 5 },
+    th: { bold: true, fillColor: "#EEEEEE" },
+  },
+};
+
+const pdfMakeStyles = {
+  "t-d": {
+    width: 10,
+  },
+  "t-v": {
+    width: 60,
+  },
+  "c-1": {
+    width: 25,
+    alignment: "center",
+  },
+  "c-2": {
+    width: "auto",
+  },
+  "c-row": {
+    fillColor: "#EEEEEE",
+  },
+  "n-a": {
+    fillColor: "#5A5A5A",
+  },
+};
 
 const StyledIframe = styled("iframe", {
   border: "none",
@@ -16,10 +65,15 @@ function checkRound(num) {
   return parseFloat(num).toFixed(2);
 }
 
-const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
+const Report = React.memo(function Report({
+  tableData,
+  setPdfUrl,
+  gstin,
+  remarkFiles,
+}) {
   let [iFrameSrc, setIFrameSrc] = useState("");
 
-  console.log({ reportData: tableData });
+  console.log({ reportData: tableData, remarks: remarkFiles });
 
   let { table1, table2, table3, table4, table5 } = tableData;
 
@@ -506,30 +560,7 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
   </p>
 </div>
 `,
-    {
-      tableAutoSize: true,
-      defaultStyles: {
-        b: { bold: true },
-        strong: { bold: true },
-        u: { decoration: "underline" },
-        s: { decoration: "lineThrough" },
-        em: { italics: true },
-        i: { italics: true },
-        h1: { fontSize: 24, bold: true, marginBottom: 5 },
-        h2: { fontSize: 22, bold: true, marginBottom: 5 },
-        h3: { fontSize: 20, bold: true, marginBottom: 5 },
-        h4: { fontSize: 18, bold: true, marginBottom: 5 },
-        h5: { fontSize: 16, bold: true, marginBottom: 5 },
-        h6: { fontSize: 14, bold: true, marginBottom: 5 },
-        a: { color: "blue", decoration: "underline" },
-        strike: { decoration: "lineThrough" },
-        p: { margin: [0, 3, 0, 3] },
-        ul: { marginBottom: 5 },
-        li: { marginLeft: 5 },
-        table: { marginBottom: 5 },
-        th: { bold: true, fillColor: "#EEEEEE" },
-      },
-    }
+    html2pdfmakeStyles
   );
 
   // https://aymkdn.github.io/html-to-pdfmake/index.html
@@ -538,38 +569,66 @@ const Report = React.memo(function Report({ tableData, setPdfMake, gstin }) {
 
   let docDefinition = useRef({
     content: [html],
-    styles: {
-      "t-d": {
-        width: 10,
-      },
-      "t-v": {
-        width: 60,
-      },
-      "c-1": {
-        width: 25,
-        alignment: "center",
-      },
-      "c-2": {
-        width: "auto",
-      },
-      "c-row": {
-        fillColor: "#EEEEEE",
-      },
-      "n-a": {
-        fillColor: "#5A5A5A",
-      },
-    },
+    styles: pdfMakeStyles,
   });
+
+  async function handleMerging(pdfs) {
+    console.log({ pdfs });
+    const merger = new PDFMerger();
+    for (let i = 0; i < pdfs.length; i++) {
+      console.log({ pdf: pdfs[i] });
+      await merger.add(pdfs[i]);
+    }
+    const finalPDF = await merger.saveAsBlob();
+    const url = URL.createObjectURL(finalPDF);
+    console.log({ url });
+    setIFrameSrc(url);
+    setPdfUrl(url);
+  }
 
   useEffect(() => {
     const pdfDocGenerator = pdfMake.createPdf(docDefinition.current);
     pdfDocGenerator.getDataUrl((dataUrl) => {
       setIFrameSrc(dataUrl);
-      setPdfMake(pdfDocGenerator);
+      setPdfUrl(dataUrl);
     });
-  }, [setPdfMake, tableData]);
+    async function handleRemarks(pdfDocGenerator) {
+      let remarksPDFs = [];
+      pdfDocGenerator.getBlob(async (blob) => {
+        let ab = await blob.arrayBuffer();
+        remarksPDFs.push(ab);
+        await remarkFiles.forEach(async ({ file, arrayBuffer }) => {
+          console.log({ file, arrayBuffer });
+          if (file.type === "application/pdf") {
+            // pdf file
+            remarksPDFs.push(arrayBuffer);
+            if (remarksPDFs.length == remarkFiles.length + 1) {
+              await handleMerging(remarksPDFs);
+            }
+            return;
+          }
+          let { value } = await mammoth.convertToHtml({
+            arrayBuffer: arrayBuffer,
+          });
+          let pdfDocGen = pdfMake.createPdf({
+            content: [htmlToPdfmake(value, html2pdfmakeStyles)],
+            styles: pdfMakeStyles,
+          });
+          pdfDocGen.getBlob(async (blob) => {
+            console.log({ blob });
+            let ab = await blob.arrayBuffer();
+            remarksPDFs.push(ab);
+            if (remarksPDFs.length == remarkFiles.length + 1) {
+              await handleMerging(remarksPDFs);
+            }
+          });
+        });
+      });
+    }
+    handleRemarks(pdfDocGenerator);
+  }, [setPdfUrl, tableData, remarkFiles]);
   return (
-    <StyledIframe ref={iframeContainer} src={iFrameSrc + "#page=1&view=FitV"} />
+    <StyledIframe ref={iframeContainer} src={iFrameSrc + "#page=1&view=FitH"} />
   );
 });
 

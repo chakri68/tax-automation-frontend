@@ -1,6 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import Image, { Icon } from "semantic-ui-react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 // import styles from "../styles/Home.module.css";
 import config from "../../config";
 
@@ -14,12 +20,42 @@ import {
   Dimmer,
   Header,
   Loader,
+  Modal,
   Segment,
 } from "semantic-ui-react";
 import { styled } from "@stitches/react";
+import { useDropzone } from "react-dropzone";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const { backendURL } = config;
+
+const baseStyle = {
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "20px",
+  borderWidth: 2,
+  borderRadius: 2,
+  borderColor: "#eeeeee",
+  borderStyle: "dashed",
+  backgroundColor: "#fafafa",
+  color: "#bdbdbd",
+  outline: "none",
+  transition: "border .24s ease-in-out",
+};
+
+const focusedStyle = {
+  borderColor: "#2196f3",
+};
+
+const acceptStyle = {
+  borderColor: "#00e676",
+};
+
+const rejectStyle = {
+  borderColor: "#ff1744",
+};
 
 const StyledSection = styled("section", {
   display: "flex",
@@ -86,7 +122,70 @@ export default function GSTSummary() {
   let [pdfMakeGSTR1, setPdfMakeGSTR1] = useState(null);
   let [pdfMakeGSTR3b, setPdfMakeGSTR3b] = useState(null);
   let [pdfMakeGSTR9, setPdfMakeGSTR9] = useState(null);
-  let [pdfMakeReport, setPdfMakeReport] = useState(null);
+  let [pdfUrl, setPdfUrl] = useState(null);
+  let [open, setOpen] = React.useState(false);
+  let [files, setFiles] = useState([]);
+  let [fileReading, setFileReading] = useState(false);
+  let [bufferData, setBuffferData] = useState([]);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    // Do something with the files
+    setFiles(acceptedFiles);
+    console.log({ acceptedFiles });
+  }, []);
+  const {
+    getRootProps,
+    getInputProps,
+    isFocused,
+    isDragAccept,
+    isDragReject,
+    open: selectFiles,
+  } = useDropzone({
+    onDrop,
+    multiple: true,
+    noClick: true,
+    noKeyboard: true,
+    accept: {
+      "application/pdf": [],
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        [],
+    },
+  });
+
+  const dropboxStyles = useMemo(
+    () => ({
+      ...baseStyle,
+      ...(isFocused ? focusedStyle : {}),
+      ...(isDragAccept ? acceptStyle : {}),
+      ...(isDragReject ? rejectStyle : {}),
+    }),
+    [isFocused, isDragAccept, isDragReject]
+  );
+
+  async function handleFiles() {
+    let remarksData = [];
+    files.forEach((file, ind) => {
+      if (file.name == remarksData[ind]?.file?.name) return;
+      const reader = new FileReader();
+
+      reader.onabort = () =>
+        console.log(`${file.name} file reading was aborted`);
+      reader.onerror = () =>
+        console.log(`${file.name} file reading has failed`);
+      reader.onload = () => {
+        // Do whatever you want with the file contents
+        const binaryStr = reader.result;
+        console.log(binaryStr);
+        // file.bufferData = binaryStr;
+        remarksData.push({ file, arrayBuffer: binaryStr });
+        if (remarksData.length == files.length) {
+          console.log({ files, remarksData });
+          setBuffferData(remarksData);
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  }
 
   let router = useRouter();
 
@@ -114,22 +213,105 @@ export default function GSTSummary() {
   return (
     <StyledSection>
       <PDFSegment raised>
-        {reportData != null ? (
+        {reportData != null && fileReading != true ? (
           <>
             <Header as="h3" color="teal" textAlign="center">
               Generated Report
             </Header>
             <Button
               fluid
-              disabled={pdfMakeReport == null}
-              onClick={() => pdfMakeReport.open()}
+              disabled={pdfUrl == null}
+              onClick={() => window.open(pdfUrl)}
             >
               Open In New Tab
             </Button>
+            <Modal
+              onClose={() => setOpen(false)}
+              onOpen={() => setOpen(true)}
+              open={open}
+              trigger={
+                <Button
+                  style={{ margin: "3px 0px" }}
+                  fluid
+                  disabled={pdfUrl == null}
+                >
+                  Add Remarks
+                </Button>
+              }
+            >
+              <Modal.Header>Select a pdf/word document</Modal.Header>
+              <Modal.Content>
+                <Segment
+                  placeholder
+                  style={{
+                    width: "100%",
+                  }}
+                  {...getRootProps({ style: dropboxStyles })}
+                >
+                  <Header icon>
+                    <Icon name="file word outline" />
+                    {files.length > 0
+                      ? ""
+                      : "No docx documents are listed for this customer."}
+                  </Header>
+                  <Button
+                    primary
+                    content={
+                      files.length > 0 ? "Add document" : "Choose Document"
+                    }
+                    labelPosition="left"
+                    icon="file word outline"
+                    onClick={selectFiles}
+                  />
+                  <input {...getInputProps()} />
+                  {files.length > 0 ? (
+                    <p style={{ marginTop: "1.5rem" }}>
+                      Files Selected:{" "}
+                      <em>{files.map((file) => file.name).join(", ")}</em>
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                </Segment>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button
+                  color="black"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  content="Clear Files"
+                  labelPosition="right"
+                  icon="delete"
+                  onClick={() => {
+                    setFiles([]);
+                    setBuffferData([]);
+                  }}
+                  negative
+                />
+                <Button
+                  content="Done"
+                  labelPosition="right"
+                  icon="checkmark"
+                  onClick={async () => {
+                    setFileReading(true);
+                    await handleFiles();
+                    setFileReading(false);
+                    setOpen(false);
+                  }}
+                  positive
+                />
+              </Modal.Actions>
+            </Modal>
             <DynamicReport
               tableData={reportData}
               gstin={gstin}
-              setPdfMake={setPdfMakeReport}
+              setPdfUrl={setPdfUrl}
+              remarkFiles={bufferData}
             />
           </>
         ) : (
