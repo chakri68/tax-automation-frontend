@@ -16,10 +16,13 @@
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "html-to-pdfmake": "^2.4.9",
+    "mammoth": "^1.5.1",
     "next": "13.0.6",
+    "pdf-merger-js": "^4.2.0",
     "pdfmake": "^0.2.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-pdfmake": "^0.3.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4"
