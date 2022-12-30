@@ -588,9 +588,10 @@ const Report = React.memo(function Report({
 
   useEffect(() => {
     const pdfDocGenerator = pdfMake.createPdf(docDefinition.current);
-    pdfDocGenerator.getDataUrl((dataUrl) => {
-      setIFrameSrc(dataUrl);
-      setPdfUrl(dataUrl);
+    pdfDocGenerator.getBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      setIFrameSrc(url);
+      setPdfUrl(url);
     });
     async function handleRemarks(pdfDocGenerator) {
       let remarksPDFs = [];
