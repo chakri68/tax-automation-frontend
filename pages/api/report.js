@@ -249,12 +249,288 @@ export default async function handler(req, res) {
       this.total = this.camt + this.iamt + this.samt;
     })();
   })();
+  const table6 = new (function () {
+    this.row1 = new (function () {
+      const data = R9Data.table8?.itc_2a;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = R9Data.table6?.itc_3b;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row1.total<this.row2.total;
+  })();
+  const table7 = new (function () {
+    this.row1 = new (function () {
+      const data1 = R1Data.table4a;
+      const data2 = R1Data.table4b;
+      const data3 = R1Data.table6b;
+      const data4 = R1Data.table6c;
+      this.iamt =
+          data1?.iamt ||
+          0 + data2?.iamt ||
+          0 + data3?.iamt ||
+          0 + data4?.iamt ||
+          0;
+      this.camt =
+          data1?.camt ||
+          0 - data2?.camt ||
+          0 + data3?.camt ||
+          0 + data4?.camt ||
+          0;
+      this.samt =
+          data1?.samt ||
+          0 - data2?.samt ||
+          0 + data3?.samt ||
+          0 + data4?.samt ||
+          0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = R1Data.table7;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row3 = new (function () {
+      const data = R1Data.table11_A_1;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row4 = {
+      iamt: this.row1.iamt + this.row2.iamt + this.row3.iamt,
+      camt: this.row1.camt + this.row2.camt + this.row3.camt,
+      samt: this.row1.samt + this.row2.samt + this.row3.samt,
+      total: this.row1.total + this.row2.total + this.row3.total,
+    };
+    this.row5 = new (function () {
+      const data1 = R1Data.table9B_1;
+      const data2 = R1Data.table9B_2;
+      this.iamt = data1?.iamt || 0 + data2?.iamt || 0;
+      this.camt = data1?.camt || 0 + data2?.camt || 0;
+      this.samt = data1?.samt || 0 + data2?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row6 = new (function () {
+      const data = R1Data.table11_B_1;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row7 = {
+      iamt: this.row4.iamt - this.row5.iamt - this.row6.iamt,
+      camt: this.row4.camt - this.row5.camt - this.row6.camt,
+      samt: this.row4.samt - this.row5.samt - this.row6.samt,
+      total: this.row4.total - this.row5.total - this.row6.total,
+    };
+    this.row8 = new (function () {
+      const data = R3Data.sup_detailsJSON?.osup_det;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row7.total>this.row8.total;
+  })();
+  const table8 = new (function () {
+    this.row1 = new (function () {
+      const data1 = R1Data.table4a;
+      const data2 = R1Data.table4b;
+      const data3 = R1Data.table6b;
+      const data4 = R1Data.table6c;
+      this.iamt =
+          data1?.iamt ||
+          0 + data2?.iamt ||
+          0 + data3?.iamt ||
+          0 + data4?.iamt ||
+          0;
+      this.camt =
+          data1?.camt ||
+          0 - data2?.camt ||
+          0 + data3?.camt ||
+          0 + data4?.camt ||
+          0;
+      this.samt =
+          data1?.samt ||
+          0 - data2?.samt ||
+          0 + data3?.samt ||
+          0 + data4?.samt ||
+          0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = R1Data.table7;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row3 = new (function () {
+      const data = R1Data.table11_A_1;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row4 = {
+      iamt: this.row1.iamt + this.row2.iamt + this.row3.iamt,
+      camt: this.row1.camt + this.row2.camt + this.row3.camt,
+      samt: this.row1.samt + this.row2.samt + this.row3.samt,
+      total: this.row1.total + this.row2.total + this.row3.total,
+    };
+    this.row5 = new (function () {
+      const data1 = R1Data.table9B_1;
+      const data2 = R1Data.table9B_2;
+      this.iamt = data1?.iamt || 0 + data2?.iamt || 0;
+      this.camt = data1?.camt || 0 + data2?.camt || 0;
+      this.samt = data1?.samt || 0 + data2?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row6 = new (function () {
+      const data = R1Data.table11_B_1;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row7 = {
+      iamt: this.row4.iamt - this.row5.iamt - this.row6.iamt,
+      camt: this.row4.camt - this.row5.camt - this.row6.camt,
+      samt: this.row4.samt - this.row5.samt - this.row6.samt,
+      total: this.row4.total - this.row5.total - this.row6.total,
+    };
+    this.row8 = new (function () {
+      const data = R3Data.sup_detailsJSON?.osup_det;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row7.total>this.row8.total;
+  })();
+  const table9 = new (function () {
+    this.row1 = new (function () {
+      const data = R9Data.table8?.itc_inwd_supp;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = null;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row1.total>this.row2.total;
+  })();
+  const table10 = new (function () {
+    this.row1 = new (function () {
+      const data1 = R1Data.table9B_1;
+      const data2 = R1Data.table9B_2;
+      this.iamt = data1?.iamt || 0 + data2?.iamt || 0;
+      this.camt = data1?.camt || 0 + data2?.camt || 0;
+      this.samt = data1?.samt || 0 + data2?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = R9Data.table4?.sub_totalIL;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row1.total!==this.row2.total;
+  })();
+  const table11 = new (function () {
+    this.row1 = new (function () {
+      const data = R9Data.table5?.total_tover;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = null;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row1.total!==this.row2.total;
+  })();
+  const table12 = new (function () {
+    this.row1 = new (function () {
+      const data = null;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.row2 = new (function () {
+      const data = null;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+    this.flag = this.row1.total!==this.row2.total;
+  })();
+  const table13 = new (function () {
+    this.row1 = new (function () {
+      const data = R9Data.table8?.tot_itc_lapsed;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+  })();
+  const table14 = new (function () {
+    this.row1 = new (function () {
+      const data = R9Data.table6?.tran2;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+  })();
+  const table15 = new (function () {
+    this.row1 = new (function () {
+      const data = null;
+      this.iamt = data?.iamt || 0;
+      this.camt = data?.camt || 0;
+      this.samt = data?.samt || 0;
+      this.total = this.camt + this.iamt + this.samt;
+    })();
+  })();
+
   let Report = {
     table1,
     table2,
     table3,
     table4,
     table5,
+    table6,
+    table7,
+    table8,
+    table9,
+    table10,
+    table11,
+    table12,
+    table13,
+    table14,
+    table15
   };
 
   // console.log({ R1Data, R3Data, R9Data });
