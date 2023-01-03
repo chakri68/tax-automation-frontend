@@ -149,6 +149,7 @@ const Report = React.memo(function Report({
   SGST Rs. ${checkRound(table5?.row1?.samt) ?? "-"} <br />
   CGST Rs. ${checkRound(table5?.row1?.camt) ?? "-"} <br />
   IGST Rs. ${checkRound(table5?.row1?.iamt) ?? "-"} <br />
+  Cess Rs. ${checkRound(table5?.row1?.csamt) ?? "-"} <br />
   Total Rs. ${checkRound(table5?.row1?.total) ?? "-"} <br />
 
   <p>The details of the liability are as follows:</p>
