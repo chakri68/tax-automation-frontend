@@ -31,9 +31,9 @@ export default withRouter(
       gstin: "",
       error: true,
       table: {
-        row1: { samt: 0, camt: 0, iamt: 0 },
-        row2: { samt: 0, camt: 0, iamt: 0 },
-        row3: { samt: 0, camt: 0, iamt: 0 },
+        row1: { samt: 0, camt: 0, iamt: 0, csamt: 0 },
+        row2: { samt: 0, camt: 0, iamt: 0, csamt: 0 },
+        row3: { samt: 0, camt: 0, iamt: 0, csamt: 0 },
       },
     };
     handleOnGSTINChange = (e, { name, value }) => {
@@ -120,7 +120,8 @@ export default withRouter(
                   <th>Issue</th>
                   <th>SGST</th>
                   <th>CGST</th>
-                  <th>Total</th>
+                  <th>IGST</th>
+                  <th>Cess</th>
                 </tr>
                 <tr style={{ textAlign: "center" }}>
                   <td width="25">1</td>
@@ -128,6 +129,7 @@ export default withRouter(
                   <td>3</td>
                   <td>4</td>
                   <td>5</td>
+                  <td>6</td>
                 </tr>
                 <tr>
                   <td width="25">1</td>
@@ -154,6 +156,14 @@ export default withRouter(
                       onChange={this.handleOnTableChange}
                       type="number"
                       name="row1 iamt"
+                    />
+                  </td>
+                  <td>
+                    <Input
+                      value={table.row1.csamt}
+                      onChange={this.handleOnTableChange}
+                      type="number"
+                      name="row1 csamt"
                     />
                   </td>
                 </tr>
@@ -187,6 +197,14 @@ export default withRouter(
                       name="row2 iamt"
                     />
                   </td>
+                  <td>
+                    <Input
+                      value={table.row2.csamt}
+                      onChange={this.handleOnTableChange}
+                      type="number"
+                      name="row2 csamt"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td width="25">3</td>
@@ -216,6 +234,14 @@ export default withRouter(
                       onChange={this.handleOnTableChange}
                       type="number"
                       name="row3 iamt"
+                    />
+                  </td>
+                  <td>
+                    <Input
+                      value={table.row3.csamt}
+                      onChange={this.handleOnTableChange}
+                      type="number"
+                      name="row3 csamt"
                     />
                   </td>
                 </tr>
