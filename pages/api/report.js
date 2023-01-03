@@ -29,6 +29,9 @@ export default async function handler(req, res) {
     row1_iamt,
     row2_iamt,
     row3_iamt,
+    row1_csamt,
+    row2_csamt,
+    row3_csamt,
   } = JSON.parse(req.body);
   let response, data;
   // fetching all the data
@@ -66,19 +69,22 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = R9Data.table5?.total_tover;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row3 = {
       iamt: this.row1.iamt - this.row2.iamt,
       camt: this.row1.camt - this.row2.camt,
       samt: this.row1.samt - this.row2.samt,
+      csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
   })();
@@ -88,7 +94,8 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data1 = R9Data.table10?.rtc_availd;
@@ -96,12 +103,14 @@ export default async function handler(req, res) {
       this.iamt = data1?.iamt || 0 - data2?.iamt || 0;
       this.camt = data1?.camt || 0 - data2?.camt || 0;
       this.samt = data1?.samt || 0 - data2?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data1?.csamt || 0 - data2?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row3 = {
       iamt: this.row1.iamt - this.row2.iamt,
       camt: this.row1.camt - this.row2.camt,
       samt: this.row1.samt - this.row2.samt,
+      csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
     this.row4 = new (function () {
@@ -109,12 +118,14 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row5 = {
       iamt: this.row3.iamt - this.row4.iamt,
       camt: this.row3.camt - this.row4.camt,
       samt: this.row3.samt - this.row4.samt,
+      csamt: this.row3.csamt - this.row4.csamt,
       total: this.row3.total - this.row4.total,
     };
   })();
@@ -126,7 +137,8 @@ export default async function handler(req, res) {
       this.iamt = data1?.iamt || 0 + data2?.iamt || 0 - data3?.iamt || 0;
       this.camt = data1?.camt || 0 - data2?.camt || 0 - data3?.camt || 0;
       this.samt = data1?.samt || 0 - data2?.samt || 0 - data3?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data1?.csamt || 0 - data2?.csamt || 0 - data3?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data1 = R9Data.table5?.rchrg;
@@ -151,24 +163,33 @@ export default async function handler(req, res) {
         0 + data3?.samt ||
         0 + data4?.samt ||
         0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt =
+        data1?.csamt ||
+        0 - data2?.csamt ||
+        0 + data3?.csamt ||
+        0 + data4?.csamt ||
+        0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row3 = {
       iamt: this.row2.iamt / this.row1.iamt,
       camt: this.row2.camt / this.row1.camt,
       samt: this.row2.samt / this.row1.samt,
+      csamt: this.row2.csamt / this.row1.csamt,
       total: this.row2.total / this.row1.total,
     };
     this.row4 = new (function () {
       this.iamt = table2.row2.iamt + table2.row4.iamt;
       this.camt = table2.row2.camt + table2.row4.camt;
       this.samt = table2.row2.samt + table2.row4.samt;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = table2.row2.csamt + table2.row4.csamt;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row5 = {
       iamt: (this.row4.iamt * this.row2.iamt) / this.row1.iamt,
       camt: (this.row4.camt * this.row2.camt) / this.row1.camt,
       samt: (this.row4.samt * this.row2.samt) / this.row1.samt,
+      csamt: (this.row4.csamt * this.row2.csamt) / this.row1.csamt,
       total: (this.row4.total * this.row2.total) / this.row1.total,
     };
     this.row6 = new (function () {
@@ -194,12 +215,19 @@ export default async function handler(req, res) {
         0 + data3?.samt ||
         0 + data4?.samt ||
         0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt =
+        data1?.csamt ||
+        0 - data2?.csamt ||
+        0 + data3?.csamt ||
+        0 + data4?.csamt ||
+        0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row7 = {
       iamt: this.row5.iamt - this.row6.iamt,
       camt: this.row5.camt - this.row6.camt,
       samt: this.row5.samt - this.row6.samt,
+      csamt: this.row5.csamt - this.row6.csamt,
       total: this.row5.total - this.row6.total,
     };
   })();
@@ -208,24 +236,28 @@ export default async function handler(req, res) {
       this.iamt = parseInt(row1_iamt);
       this.camt = parseInt(row1_camt);
       this.samt = parseInt(row1_samt);
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = parseInt(row1_csamt);
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       this.iamt = parseInt(row2_iamt);
       this.camt = parseInt(row2_camt);
       this.samt = parseInt(row2_samt);
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = parseInt(row2_csamt);
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row3 = new (function () {
       this.iamt = parseInt(row3_iamt);
       this.camt = parseInt(row3_camt);
       this.samt = parseInt(row3_samt);
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = parseInt(row3_csamt);
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row4 = {
       iamt: this.row1.iamt + this.row2.iamt + this.row3.iamt,
       camt: this.row1.camt + this.row2.camt + this.row3.camt,
       samt: this.row1.samt + this.row2.samt + this.row3.samt,
+      csamt: this.row1.csamt + this.row2.csamt + this.row3.csamt,
       total: this.row1.total + this.row2.total + this.row3.total,
     };
   })();
@@ -246,7 +278,12 @@ export default async function handler(req, res) {
         table2.row5.samt +
         table3.row7.samt +
         table4.row4.samt;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt =
+        table1.row3.csamt +
+        table2.row5.csamt +
+        table3.row7.csamt +
+        table4.row4.csamt;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
   })();
   const table6 = new (function () {
@@ -255,16 +292,18 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = R9Data.table6?.itc_3b;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total<this.row2.total;
+    this.flag = this.row1.total < this.row2.total;
   })();
   const table7 = new (function () {
     this.row1 = new (function () {
@@ -273,43 +312,52 @@ export default async function handler(req, res) {
       const data3 = R1Data.table6b;
       const data4 = R1Data.table6c;
       this.iamt =
-          data1?.iamt ||
-          0 + data2?.iamt ||
-          0 + data3?.iamt ||
-          0 + data4?.iamt ||
-          0;
+        data1?.iamt ||
+        0 + data2?.iamt ||
+        0 + data3?.iamt ||
+        0 + data4?.iamt ||
+        0;
       this.camt =
-          data1?.camt ||
-          0 - data2?.camt ||
-          0 + data3?.camt ||
-          0 + data4?.camt ||
-          0;
+        data1?.camt ||
+        0 - data2?.camt ||
+        0 + data3?.camt ||
+        0 + data4?.camt ||
+        0;
       this.samt =
-          data1?.samt ||
-          0 - data2?.samt ||
-          0 + data3?.samt ||
-          0 + data4?.samt ||
-          0;
-      this.total = this.camt + this.iamt + this.samt;
+        data1?.samt ||
+        0 - data2?.samt ||
+        0 + data3?.samt ||
+        0 + data4?.samt ||
+        0;
+      this.csamt =
+        data1?.csamt ||
+        0 - data2?.csamt ||
+        0 + data3?.csamt ||
+        0 + data4?.csamt ||
+        0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = R1Data.table7;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row3 = new (function () {
       const data = R1Data.table11_A_1;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row4 = {
       iamt: this.row1.iamt + this.row2.iamt + this.row3.iamt,
       camt: this.row1.camt + this.row2.camt + this.row3.camt,
       samt: this.row1.samt + this.row2.samt + this.row3.samt,
+      csamt: this.row1.csamt + this.row2.csamt + this.row3.csamt,
       total: this.row1.total + this.row2.total + this.row3.total,
     };
     this.row5 = new (function () {
@@ -318,19 +366,22 @@ export default async function handler(req, res) {
       this.iamt = data1?.iamt || 0 + data2?.iamt || 0;
       this.camt = data1?.camt || 0 + data2?.camt || 0;
       this.samt = data1?.samt || 0 + data2?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data1?.csamt || 0 + data2?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row6 = new (function () {
       const data = R1Data.table11_B_1;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row7 = {
       iamt: this.row4.iamt - this.row5.iamt - this.row6.iamt,
       camt: this.row4.camt - this.row5.camt - this.row6.camt,
       samt: this.row4.samt - this.row5.samt - this.row6.samt,
+      csamt: this.row4.csamt - this.row5.csamt - this.row6.csamt,
       total: this.row4.total - this.row5.total - this.row6.total,
     };
     this.row8 = new (function () {
@@ -338,9 +389,10 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row7.total>this.row8.total;
+    this.flag = this.row7.total > this.row8.total;
   })();
   const table8 = new (function () {
     this.row1 = new (function () {
@@ -349,43 +401,52 @@ export default async function handler(req, res) {
       const data3 = R1Data.table6b;
       const data4 = R1Data.table6c;
       this.iamt =
-          data1?.iamt ||
-          0 + data2?.iamt ||
-          0 + data3?.iamt ||
-          0 + data4?.iamt ||
-          0;
+        data1?.iamt ||
+        0 + data2?.iamt ||
+        0 + data3?.iamt ||
+        0 + data4?.iamt ||
+        0;
       this.camt =
-          data1?.camt ||
-          0 - data2?.camt ||
-          0 + data3?.camt ||
-          0 + data4?.camt ||
-          0;
+        data1?.camt ||
+        0 - data2?.camt ||
+        0 + data3?.camt ||
+        0 + data4?.camt ||
+        0;
       this.samt =
-          data1?.samt ||
-          0 - data2?.samt ||
-          0 + data3?.samt ||
-          0 + data4?.samt ||
-          0;
-      this.total = this.camt + this.iamt + this.samt;
+        data1?.samt ||
+        0 - data2?.samt ||
+        0 + data3?.samt ||
+        0 + data4?.samt ||
+        0;
+      this.csamt =
+        data1?.csamt ||
+        0 - data2?.csamt ||
+        0 + data3?.csamt ||
+        0 + data4?.csamt ||
+        0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = R1Data.table7;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row3 = new (function () {
       const data = R1Data.table11_A_1;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row4 = {
       iamt: this.row1.iamt + this.row2.iamt + this.row3.iamt,
       camt: this.row1.camt + this.row2.camt + this.row3.camt,
       samt: this.row1.samt + this.row2.samt + this.row3.samt,
+      csamt: this.row1.csamt + this.row2.csamt + this.row3.csamt,
       total: this.row1.total + this.row2.total + this.row3.total,
     };
     this.row5 = new (function () {
@@ -394,19 +455,22 @@ export default async function handler(req, res) {
       this.iamt = data1?.iamt || 0 + data2?.iamt || 0;
       this.camt = data1?.camt || 0 + data2?.camt || 0;
       this.samt = data1?.samt || 0 + data2?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data1?.csamt || 0 + data2?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row6 = new (function () {
       const data = R1Data.table11_B_1;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row7 = {
       iamt: this.row4.iamt - this.row5.iamt - this.row6.iamt,
       camt: this.row4.camt - this.row5.camt - this.row6.camt,
       samt: this.row4.samt - this.row5.samt - this.row6.samt,
+      csamt: this.row4.csamt - this.row5.csamt - this.row6.csamt,
       total: this.row4.total - this.row5.total - this.row6.total,
     };
     this.row8 = new (function () {
@@ -414,9 +478,10 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row7.total>this.row8.total;
+    this.flag = this.row7.total > this.row8.total;
   })();
   const table9 = new (function () {
     this.row1 = new (function () {
@@ -424,16 +489,18 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = null;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total>this.row2.total;
+    this.flag = this.row1.total > this.row2.total;
   })();
   const table10 = new (function () {
     this.row1 = new (function () {
@@ -442,16 +509,18 @@ export default async function handler(req, res) {
       this.iamt = data1?.iamt || 0 + data2?.iamt || 0;
       this.camt = data1?.camt || 0 + data2?.camt || 0;
       this.samt = data1?.samt || 0 + data2?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data1?.csamt || 0 + data2?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = R9Data.table4?.sub_totalIL;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total!==this.row2.total;
+    this.flag = this.row1.total !== this.row2.total;
   })();
   const table11 = new (function () {
     this.row1 = new (function () {
@@ -459,16 +528,18 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = null;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total!==this.row2.total;
+    this.flag = this.row1.total !== this.row2.total;
   })();
   const table12 = new (function () {
     this.row1 = new (function () {
@@ -476,16 +547,18 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
     this.row2 = new (function () {
       const data = null;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total!==this.row2.total;
+    this.flag = this.row1.total !== this.row2.total;
   })();
   const table13 = new (function () {
     this.row1 = new (function () {
@@ -493,7 +566,8 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
   })();
   const table14 = new (function () {
@@ -502,7 +576,8 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
   })();
   const table15 = new (function () {
@@ -511,7 +586,8 @@ export default async function handler(req, res) {
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
-      this.total = this.camt + this.iamt + this.samt;
+      this.csamt = data?.csamt || 0;
+      this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
   })();
 
@@ -530,7 +606,7 @@ export default async function handler(req, res) {
     table12,
     table13,
     table14,
-    table15
+    table15,
   };
 
   // console.log({ R1Data, R3Data, R9Data });
