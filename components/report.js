@@ -94,7 +94,7 @@ const Report = React.memo(function Report({
   } = tableData;
 
   function getTableNum(num) {
-    let res = 5;
+    let res = 2;
     for (let i = 6; i <= num; i++) {
       if (tableData?.[`table${i}`]?.flag) res += 1;
     }
@@ -550,7 +550,9 @@ const Report = React.memo(function Report({
       table6?.flag
         ? `
     <li>
-      <strong> 6. Excess ITC claimed in GSTR-3B compared to GSTR-2A: </strong>
+      <strong>
+        ${getTableNum(6)}. Excess ITC claimed in GSTR-3B compared to GSTR-2A:
+      </strong>
       <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
