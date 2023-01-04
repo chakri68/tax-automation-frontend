@@ -443,16 +443,16 @@
       </table>
     </li>
 
-    ${ table6?.flag? `
+    ${ table6?.flag ? `
     <li>
       <strong>
         ${getTableNum(6)}. Excess ITC claimed in GSTR-3B compared to GSTR-2A:
       </strong>
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
+      </p> -->
       <table
         style="width: 100%"
         border="2"
@@ -516,16 +516,16 @@
         </tbody>
       </table>
     </li>
-    ` : ``} ${ table7?.flag? `
+    ` : `` } ${ table7?.flag ? `
     <li>
       <strong>
         ${getTableNum(7)}. Total Taxable/Outward Supply value in-
       </strong>
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
+      </p> -->
       <table
         style="width: 100%"
         border="2"
@@ -634,14 +634,14 @@
         </tbody>
       </table>
     </li>
-    ` : ``} ${ table8?.flag? `
+    ` : `` } ${ table8?.flag ? `
     <li>
       <strong>${getTableNum(8)}. Total Tax (IGST + CGST + SGST) in- </strong>
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
+      </p> -->
       <table
         style="width: 100%"
         border="2"
@@ -750,31 +750,37 @@
         </tbody>
       </table>
     </li>
-    ` : ``} ${ table9?.flag? `
+    ` : `` } ${ table9?.flag ? `
     <li>
       <strong
         >${getTableNum(9)}. ITC received in present year but utilized in next
         financial year</strong
       >
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
-      <table
+      </p> -->
+      <!-- <table
         style="width: 100%"
         border="2"
         cellpadding="2"
         data-pdfmake="{'widths':[25,'*', 65, 65, 65, 65, 65]}"
+      > -->
+      <table
+        style="width: 100%"
+        border="2"
+        cellpadding="2"
+        data-pdfmake="{'widths':[25,'*', 90]}"
       >
         <tbody>
           <tr>
             <th>S.No.</th>
             <th>Issue</th>
-            <th>SGST</th>
+            <!-- <th>SGST</th>
             <th>CGST</th>
             <th>IGST</th>
-            <th>Cess</th>
+            <th>Cess</th> -->
             <th>Total</th>
           </tr>
           <!-- <tr style="text-align: center">
@@ -791,10 +797,10 @@
               received during 2017-18 but availed during April to September,
               2018
             </td>
-            <td>${checkRound(table9?.row1?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table9?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table9?.row1?.iamt) ?? "-"}</td>
-            <td>${checkRound(table9?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table9?.row1?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table9?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -803,10 +809,10 @@
               [CHECK]ITC booked in current Financial Year to be claimed in
               subsequent Financial Years
             </td>
-            <td>${checkRound(table9?.row2?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table9?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table9?.row2?.iamt) ?? "-"}</td>
-            <td>${checkRound(table9?.row2?.csamt) ?? "-"}</td>
+            <td>${checkRound(table9?.row2?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table9?.row2?.total) ?? "-"}</td>
           </tr>
           <!-- <tr class="c-row">
@@ -821,16 +827,16 @@
         </tbody>
       </table>
     </li>
-    ` : ``} ${ table10?.flag? `
+    ` : `` } ${ table10?.flag ? `
     <li>
       <strong
         >${getTableNum(10)}. Credit Note taxable value mismatch case</strong
       >
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
+      </p> -->
       <table
         style="width: 100%"
         border="2"
@@ -890,34 +896,44 @@
         </tbody>
       </table>
     </li>
-    ` : ``} ${ table11?.flag? `
+    ` : `` } ${ table11?.flag ? `
     <li>
       <strong>${getTableNum(11)}. Total Turnover (including advances)</strong>
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
-      <table
+      </p> -->
+      <!-- <table
         style="width: 100%"
         border="2"
         data-pdfmake="{'widths':[25,'*',70, 55, 55, 55, 55]}"
+      > -->
+      <table
+        style="width: 100%"
+        border="2"
+        data-pdfmake="{'widths':[25,'*',90]}"
       >
         <tbody>
-          <tr>
+          <!-- <tr>
             <th rowspan="2" class="c-1">S. No.</th>
             <th rowspan="2">Issue</th>
             <th rowspan="2">Taxable Value</th>
             <th style="text-align: center" colspan="4">
               (Amount in all tables)
             </th>
-          </tr>
+          </tr> -->
           <tr>
+            <th class="c-1">S. No.</th>
+            <th>Issue</th>
+            <th>Amount</th>
+          </tr>
+          <!-- <tr>
             <th>Central Tax</th>
             <th>State Tax/ UT Tax</th>
             <th>Integrated Tax</th>
             <th>Cess</th>
-          </tr>
+          </tr> -->
           <!-- <tr>
         <td class="c-1"></td>
         <td>1</td>
@@ -931,19 +947,19 @@
             <td class="c-1">A</td>
             <td>[CHECK]GSTR-9 5(N)</td>
             <td>${checkRound(table11?.row1?.total) ?? "-"}</td>
-            <td>${checkRound(table11?.row1?.camt) ?? "-"}</td>
+            <!-- <td>${checkRound(table11?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table11?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table11?.row1?.iamt) ?? "-"}</td>
-            <td>${checkRound(table11?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table11?.row1?.csamt) ?? "-"}</td> -->
           </tr>
           <tr>
             <td class="c-1">B</td>
             <td>[CHECK]GSTR-9C 5(P)/7(A)</td>
             <td>${checkRound(table11?.row2?.total) ?? "-"}</td>
-            <td>${checkRound(table11?.row2?.camt) ?? "-"}</td>
+            <!-- <td>${checkRound(table11?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table11?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table11?.row2?.iamt) ?? "-"}</td>
-            <td>${checkRound(table11?.row2?.csamt) ?? "-"}</td>
+            <td>${checkRound(table11?.row2?.csamt) ?? "-"}</td> -->
           </tr>
           <!-- <tr class="c-row">
             <td class="c-1">C</td>
@@ -958,14 +974,14 @@
         </tbody>
       </table>
     </li>
-    ` : ``} ${ table12?.flag? `
+    ` : `` } ${ table12?.flag ? `
     <li>
       <strong>${getTableNum(12)}.Tax paid in financial year</strong>
-      <p>
+      <!-- <p>
         <em>[To be edited]</em> You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
         resulted in an underpayment of tax as follows:
-      </p>
+      </p> -->
       <table
         style="width: 100%"
         border="2"
@@ -1026,7 +1042,140 @@
         </tbody>
       </table>
     </li>
-    ` : ``} The above amount of ITC is proposed to be recovered
+    ` : `` } ${ table13 ? `
+    <li>
+      <strong>
+        ${getTableNum(13)}. Proof of reversal of ineligible ITC:
+      </strong>
+      <table
+        style="width: 100%"
+        border="2"
+        cellpadding="4"
+        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
+      >
+        <tbody>
+          <tr style="height: 21px">
+            <th>S.No.</th>
+            <th>Issue</th>
+            <th>SGST</th>
+            <th>CGST</th>
+            <th>IGST</th>
+            <th>Cess</th>
+            <th>Total</th>
+          </tr>
+          <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+          <tr style="height: 21px">
+            <td class="c-1">A</td>
+            <td>Total ITC to be lapsed in current financial year</td>
+            <td>${checkRound(table13?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.iamt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.total) ?? "-"}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    ` : `` } ${ table14 ? `
+    <li>
+      <strong>
+        ${getTableNum(14)}. Proof of Transition Credit through TRAN-2:
+      </strong>
+      <table
+        style="width: 100%"
+        border="2"
+        cellpadding="4"
+        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
+      >
+        <tbody>
+          <tr style="height: 21px">
+            <th>S.No.</th>
+            <th>Issue</th>
+            <th>SGST</th>
+            <th>CGST</th>
+            <th>IGST</th>
+            <th>Cess</th>
+            <th>Total</th>
+          </tr>
+          <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+          <tr style="height: 21px">
+            <td class="c-1">A</td>
+            <td>Transition Credit through TRAN-II</td>
+            <td class="n-a">${checkRound(table14?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table14?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table14?.row1?.iamt) ?? "-"}</td>
+            <td class="n-a">${checkRound(table14?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table14?.row1?.total) ?? "-"}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    ` : `` } ${ table15 ? `
+    <li>
+      <strong>
+        ${getTableNum(15)}. Proof of reversal of Un-Reconciled ITC required:
+      </strong>
+      <!-- <table
+        style="width: 100%"
+        border="2"
+        cellpadding="4"
+        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
+      > -->
+      <table
+        style="width: 100%"
+        border="2"
+        cellpadding="4"
+        data-pdfmake="{'widths':[25,'*', 80]}"
+      >
+        <tbody>
+          <tr style="height: 21px">
+            <th>S.No.</th>
+            <th>Issue</th>
+            <!-- <th>SGST</th>
+            <th>CGST</th>
+            <th>IGST</th>
+            <th>Cess</th> -->
+            <th>Amount</th>
+          </tr>
+          <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+          <tr style="height: 21px">
+            <td class="c-1">A</td>
+            <td>Un-reconciled ITC</td>
+            <!-- <td class="n-a">${checkRound(table15?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table15?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table15?.row1?.iamt) ?? "-"}</td>
+            <td class="n-a">${checkRound(table15?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table15?.row1?.total) ?? "-"}</td> -->
+            <td>${checkRound(table15?.row1?.total) ?? "-"}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    ` : `` }
   </ol>
 
   <p>
