@@ -391,7 +391,7 @@ export default async function handler(req, res) {
       total: this.row4.total - this.row5.total - this.row6.total,
     };
     this.row8 = new (function () {
-      const data = R3Data.sup_detailsJSON?.osup_det;
+      const data = R3Data.sup_details?.osup_det;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
@@ -480,7 +480,7 @@ export default async function handler(req, res) {
       total: this.row4.total - this.row5.total - this.row6.total,
     };
     this.row8 = new (function () {
-      const data = R3Data.sup_detailsJSON?.osup_det;
+      const data = R3Data.sup_details?.osup_det;
       this.iamt = data?.iamt || 0;
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
