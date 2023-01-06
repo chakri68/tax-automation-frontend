@@ -123,13 +123,13 @@ const Report = React.memo(function Report({
         <td style="width: 50%"></td>
       </tr>
       <tr style="height: 21px">
-        <td style="width: 50%">Office Details</td>
+        <td style="width: 50%">Office Designation</td>
         <td style="width: 50%">DEPUTY COMMISSIONER (ST)</td>
       </tr>
       <tr style="height: 21.5px">
         <td style="width: 50%">
           <p>Details of Tax payer<br />Name</p>
-          <p>Legal Name</p>
+          <p>Trade</p>
           <p>GSTIN</p>
         </td>
         <td style="width: 50%">
@@ -140,11 +140,11 @@ const Report = React.memo(function Report({
       </tr>
       <tr style="height: 21px">
         <td style="width: 50%">Financial Year</td>
-        <td style="width: 50%">2016-17</td>
+        <td style="width: 50%">2017-18</td>
       </tr>
     </tbody>
   </table>
-  You have filed an annual return in GSTR-09 for the financial year 2017-18 On
+  <!-- You have filed an annual return in GSTR-09 for the financial year 2017-18 On
   examination of the information furnished in this return under various heads
   and also the information furnished in TRAN-1, GSTR-01, GSTR-2A, GSTR-3B, EWB
   and other records available in this office, it is found that you have not
@@ -154,9 +154,9 @@ const Report = React.memo(function Report({
   CGST Rs. ${checkRound(table5?.row1?.camt) ?? "-"} <br />
   IGST Rs. ${checkRound(table5?.row1?.iamt) ?? "-"} <br />
   Cess Rs. ${checkRound(table5?.row1?.csamt) ?? "-"} <br />
-  Total Rs. ${checkRound(table5?.row1?.total) ?? "-"} <br />
+  Total Rs. ${checkRound(table5?.row1?.total) ?? "-"} <br /> -->
 
-  <p>The details of the liability are as follows:</p>
+  <p>The details of the discrepancies are as follows:</p>
 
   <ol style="list-style: none">
     <li>
@@ -556,7 +556,8 @@ const Report = React.memo(function Report({
         ? `
     <li>
       <strong>
-        ${getTableNum(6)}. Excess ITC claimed in GSTR-3B compared to GSTR-2A:
+        ${getTableNum(6)}. Excess ITC claimed in GSTR-3B compared to GSTR-2A
+        (Point 1):
       </strong>
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
@@ -567,7 +568,7 @@ const Report = React.memo(function Report({
         style="width: 100%"
         border="2"
         cellpadding="4"
-        data-pdfmake="{'widths':[25,'*', 70, 80, 70, 70, 70, 70]}"
+        data-pdfmake="{'widths':[25,'*', 55, 60, 60, 60, 60, 60]}"
       >
         <tbody>
           <tr style="height: 21px">
@@ -592,7 +593,7 @@ const Report = React.memo(function Report({
           </tr> -->
           <tr style="height: 21px">
             <td class="c-1">A</td>
-            <td>ITC as per GSTR-2A (Table 3 & 5 thereof)</td>
+            <td>ITC as per GSTR-2A</td>
             <td>8A</td>
             <td>${checkRound(table6?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table6?.row1?.camt) ?? "-"}</td>
@@ -633,7 +634,7 @@ const Report = React.memo(function Report({
         ? `
     <li>
       <strong>
-        ${getTableNum(7)}. Total Taxable/Outward Supply value in-
+        ${getTableNum(7)}. Total Taxable/Outward Supply value in (Point 2)-
       </strong>
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
@@ -654,7 +655,7 @@ const Report = React.memo(function Report({
             <th>CGST</th>
             <th>IGST</th>
             <th>Cess</th>
-            <th>Total</th>
+            <th>Taxable Value</th>
           </tr>
           <!-- <tr style="text-align: center">
             <td>A</td>
@@ -675,7 +676,7 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">B</td>
-            <td>B2C Supply (if any)</td>
+            <td>B2C Supply (if any) (GSTR1_7)</td>
             <td>${checkRound(table7?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.iamt) ?? "-"}</td>
@@ -684,7 +685,7 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">C</td>
-            <td>Advances Received (if any)</td>
+            <td>Advances Received (if any) (GSTR1_11A_1)</td>
             <td>${checkRound(table7?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.iamt) ?? "-"}</td>
@@ -702,7 +703,7 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">E</td>
-            <td>Credit/Debit Note (if any)</td>
+            <td>Credit/Debit Note (if any) (GSTR1_9B)</td>
             <td>${checkRound(table7?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.iamt) ?? "-"}</td>
@@ -711,7 +712,7 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">F</td>
-            <td>Advance adjustment if any</td>
+            <td>Advance adjustment if any (GSTR1_11B_1)</td>
             <td>${checkRound(table7?.row6?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.iamt) ?? "-"}</td>
@@ -729,7 +730,10 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">H</td>
-            <td>GSTR-3B</td>
+            <td>
+              Outward taxable supplies (other than zero rated, nil rated and
+              exempted) (GSTR3B_(3.1A))
+            </td>
             <td>${checkRound(table7?.row8?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.iamt) ?? "-"}</td>
@@ -754,7 +758,9 @@ const Report = React.memo(function Report({
       table8?.flag
         ? `
     <li>
-      <strong>${getTableNum(8)}. Total Tax (IGST + CGST + SGST) in- </strong>
+      <strong
+        >${getTableNum(8)}. Total Tax (IGST + CGST + SGST) in (Point 2)-
+      </strong>
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
@@ -849,7 +855,10 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">H</td>
-            <td>GSTR-3B</td>
+            <td>
+              Outward taxable supplies (other than zero rated, nil rated and
+              exempted)
+            </td>
             <td>${checkRound(table8?.row8?.samt) ?? "-"}</td>
             <td>${checkRound(table8?.row8?.camt) ?? "-"}</td>
             <td>${checkRound(table8?.row8?.iamt) ?? "-"}</td>
@@ -876,7 +885,7 @@ const Report = React.memo(function Report({
     <li>
       <strong
         >${getTableNum(9)}. ITC received in present year but utilized in next
-        financial year</strong
+        financial year (Point 7)</strong
       >
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
@@ -917,7 +926,7 @@ const Report = React.memo(function Report({
               ITC on inward supplies (other than imports and inward supplies
               liable to reverse charge but includes services received from SEZs)
               received during 2017-18 but availed during April to September,
-              2018
+              2018 (GSTR9_8C)
             </td>
             <!-- <td>${checkRound(table9?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row1?.camt) ?? "-"}</td>
@@ -929,7 +938,7 @@ const Report = React.memo(function Report({
             <td class="c-1">B</td>
             <td>
               ITC booked in current Financial Year to be claimed in subsequent
-              Financial Years
+              Financial Years (GSTR9C_12C)
             </td>
             <!-- <td>${checkRound(table9?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row2?.camt) ?? "-"}</td>
@@ -952,11 +961,66 @@ const Report = React.memo(function Report({
     `
         : ``
     } ${
+      table15
+        ? `
+    <li>
+      <strong>
+        ${getTableNum(15)}. Proof of reversal of Un-Reconciled ITC required
+        (Point 8):
+      </strong>
+      <!-- <table
+        style="width: 100%"
+        border="2"
+        cellpadding="4"
+        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
+      > -->
+      <table
+        style="width: 100%"
+        border="2"
+        cellpadding="4"
+        data-pdfmake="{'widths':[25,'*', 80]}"
+      >
+        <tbody>
+          <tr style="height: 21px">
+            <th>S.No.</th>
+            <th>Issue</th>
+            <!-- <th>SGST</th>
+            <th>CGST</th>
+            <th>IGST</th>
+            <th>Cess</th> -->
+            <th>Amount</th>
+          </tr>
+          <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+          <tr style="height: 21px">
+            <td class="c-1">A</td>
+            <td>Un-reconciled ITC (GSTR9C_12F)</td>
+            <!-- <td class="n-a">${checkRound(table15?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table15?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table15?.row1?.iamt) ?? "-"}</td>
+            <td class="n-a">${checkRound(table15?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table15?.row1?.total) ?? "-"}</td> -->
+            <td>${checkRound(table15?.row1?.total) ?? "-"}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    `
+        : ``
+    } ${
       table10?.flag
         ? `
     <li>
       <strong
-        >${getTableNum(10)}. Credit Note taxable value mismatch case</strong
+        >${getTableNum(10)}. Credit Note taxable value mismatch case (Point
+        10)</strong
       >
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
@@ -994,7 +1058,7 @@ const Report = React.memo(function Report({
       </tr> -->
           <tr>
             <td class="c-1">A</td>
-            <td>GSTR-9 9(B)</td>
+            <td>Credit/Debit Notes (GSTR-1 9(B))</td>
             <td>${checkRound(table10?.row1?.total) ?? "-"}</td>
             <td>${checkRound(table10?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table10?.row1?.samt) ?? "-"}</td>
@@ -1028,7 +1092,10 @@ const Report = React.memo(function Report({
       table11?.flag
         ? `
     <li>
-      <strong>${getTableNum(11)}. Total Turnover (including advances)</strong>
+      <strong
+        >${getTableNum(11)}. Total Turnover (including advances) (Point
+        11)</strong
+      >
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
@@ -1075,7 +1142,7 @@ const Report = React.memo(function Report({
       </tr> -->
           <tr>
             <td class="c-1">A</td>
-            <td>GSTR-9 5(N)</td>
+            <td>Total Turnover (including advances) (GSTR9_5N) (Point 11)</td>
             <td>${checkRound(table11?.row1?.total) ?? "-"}</td>
             <!-- <td>${checkRound(table11?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table11?.row1?.samt) ?? "-"}</td>
@@ -1084,7 +1151,7 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">B</td>
-            <td>GSTR-9C 5(P)/7(A)</td>
+            <td>Annual Turnover (GSTR9C_5P/7A) (Point 12)</td>
             <td>${checkRound(table11?.row2?.total) ?? "-"}</td>
             <!-- <td>${checkRound(table11?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table11?.row2?.samt) ?? "-"}</td>
@@ -1110,7 +1177,7 @@ const Report = React.memo(function Report({
       table12?.flag
         ? `
     <li>
-      <strong>${getTableNum(12)}.Tax paid in financial year</strong>
+      <strong>${getTableNum(12)}.Tax paid in financial year (Point 14)</strong>
       <!-- <p>
          You have claimed excess ITC in GSTR-3B as
         compared to the net ITC available in the annual return GSTR-2A which has
@@ -1147,7 +1214,10 @@ const Report = React.memo(function Report({
       </tr> -->
           <tr>
             <td class="c-1">A</td>
-            <td>GSTR-9 9</td>
+            <td>
+              Details of tax paid as declared in returns filed during the
+              fnancial year (GSTR9_9)
+            </td>
             <td>${checkRound(table12?.row1?.total) ?? "-"}</td>
             <td>${checkRound(table12?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table12?.row1?.samt) ?? "-"}</td>
@@ -1156,7 +1226,7 @@ const Report = React.memo(function Report({
           </tr>
           <tr>
             <td class="c-1">B</td>
-            <td>GSTR-9C 9(P)</td>
+            <td>Total amount to be paid as per tables above (GSTR9C_9P)</td>
             <td>${checkRound(table12?.row2?.total) ?? "-"}</td>
             <td>${checkRound(table12?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table12?.row2?.samt) ?? "-"}</td>
@@ -1179,57 +1249,12 @@ const Report = React.memo(function Report({
     `
         : ``
     } ${
-      table13
-        ? `
-    <li>
-      <strong>
-        ${getTableNum(13)}. Proof of reversal of ineligible ITC:
-      </strong>
-      <table
-        style="width: 100%"
-        border="2"
-        cellpadding="4"
-        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
-      >
-        <tbody>
-          <tr style="height: 21px">
-            <th>S.No.</th>
-            <th>Issue</th>
-            <th>SGST</th>
-            <th>CGST</th>
-            <th>IGST</th>
-            <th>Cess</th>
-            <th>Total</th>
-          </tr>
-          <!-- <tr style="height: 21px; text-align: center">
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
-            <td>E</td>
-            <td>F</td>
-            <td>G</td>
-          </tr> -->
-          <tr style="height: 21px">
-            <td class="c-1">A</td>
-            <td>Total ITC to be lapsed in current financial year</td>
-            <td>${checkRound(table13?.row1?.samt) ?? "-"}</td>
-            <td>${checkRound(table13?.row1?.camt) ?? "-"}</td>
-            <td>${checkRound(table13?.row1?.iamt) ?? "-"}</td>
-            <td>${checkRound(table13?.row1?.csamt) ?? "-"}</td>
-            <td>${checkRound(table13?.row1?.total) ?? "-"}</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
-    `
-        : ``
-    } ${
       table14
         ? `
     <li>
       <strong>
-        ${getTableNum(14)}. Proof of Transition Credit through TRAN-2:
+        ${getTableNum(14)}. Proof of Transition Credit through TRAN-2 (Point
+        15):
       </strong>
       <table
         style="width: 100%"
@@ -1258,11 +1283,11 @@ const Report = React.memo(function Report({
           </tr> -->
           <tr style="height: 21px">
             <td class="c-1">A</td>
-            <td>Transition Credit through TRAN-II</td>
-            <td class="n-a">${checkRound(table14?.row1?.samt) ?? "-"}</td>
+            <td>Transition Credit through TRAN-II (GSTR9_6L)</td>
+            <td class="n-a"></td>
             <td>${checkRound(table14?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table14?.row1?.iamt) ?? "-"}</td>
-            <td class="n-a">${checkRound(table14?.row1?.csamt) ?? "-"}</td>
+            <td class="n-a"></td>
             <td>${checkRound(table14?.row1?.total) ?? "-"}</td>
           </tr>
         </tbody>
@@ -1271,33 +1296,27 @@ const Report = React.memo(function Report({
     `
         : ``
     } ${
-      table15
+      table13
         ? `
     <li>
       <strong>
-        ${getTableNum(15)}. Proof of reversal of Un-Reconciled ITC required:
+        ${getTableNum(13)}. Proof of reversal of ineligible ITC (Point 17):
       </strong>
-      <!-- <table
-        style="width: 100%"
-        border="2"
-        cellpadding="4"
-        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
-      > -->
       <table
         style="width: 100%"
         border="2"
         cellpadding="4"
-        data-pdfmake="{'widths':[25,'*', 80]}"
+        data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70, 70]}"
       >
         <tbody>
           <tr style="height: 21px">
             <th>S.No.</th>
             <th>Issue</th>
-            <!-- <th>SGST</th>
+            <th>SGST</th>
             <th>CGST</th>
             <th>IGST</th>
-            <th>Cess</th> -->
-            <th>Amount</th>
+            <th>Cess</th>
+            <th>Total</th>
           </tr>
           <!-- <tr style="height: 21px; text-align: center">
             <td>A</td>
@@ -1310,13 +1329,12 @@ const Report = React.memo(function Report({
           </tr> -->
           <tr style="height: 21px">
             <td class="c-1">A</td>
-            <td>Un-reconciled ITC</td>
-            <!-- <td class="n-a">${checkRound(table15?.row1?.samt) ?? "-"}</td>
-            <td>${checkRound(table15?.row1?.camt) ?? "-"}</td>
-            <td>${checkRound(table15?.row1?.iamt) ?? "-"}</td>
-            <td class="n-a">${checkRound(table15?.row1?.csamt) ?? "-"}</td>
-            <td>${checkRound(table15?.row1?.total) ?? "-"}</td> -->
-            <td>${checkRound(table15?.row1?.total) ?? "-"}</td>
+            <td>Total ITC to be lapsed in current financial year (GSTR9_8K)</td>
+            <td>${checkRound(table13?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.iamt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table13?.row1?.total) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -1331,8 +1349,9 @@ const Report = React.memo(function Report({
 
     <br /><br />
 
-    The total tax payable on account of these deficiencies after giving credit
+    <!-- The total tax payable on account of these deficiencies after giving credit
     to the payments made in cash and ITC adjusted is arrived as follows:
+  </p> -->
   </p>
 
   <table
@@ -1362,20 +1381,29 @@ const Report = React.memo(function Report({
       </tr>
       <tr>
         <td style="text-align: center">1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- <tr>
+        <td style="text-align: center">1</td>
         <td>Total tax due in (1) + (2) above</td>
         <td>${checkRound(table5?.row1?.samt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.camt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.iamt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.csamt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.total) ?? "-"}</td>
-      </tr>
+      </tr> -->
     </tbody>
   </table>
   <strong>
     (The detailed workings of the above in tabular form are attached as
     Annexures)
   </strong>
-  <p>
+  <!-- <p>
     Therefore, it is proposed to assess the registered taxpayer for the net tax
     payable indicated above under Section 73 of the SGST/CGST Act. The
     registered taxpayer may therefore pay the tax, along with the interest in
@@ -1383,7 +1411,7 @@ const Report = React.memo(function Report({
     proposals in this notice, they may file their objections in DRC-06 within
     (15) days from the day of receipt of this notice. A draft standard format is
     also attached for filing your response along with your detailed reply.
-  </p>
+  </p> -->
 </div>
 `,
     html2pdfmakeStyles
