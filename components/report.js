@@ -62,7 +62,7 @@ const StyledIframe = styled("iframe", {
 
 function checkRound(num) {
   if (num == null || num == undefined) return num;
-  return parseFloat(num).toFixed(2);
+  return parseFloat(parseFloat(num).toFixed(2)).toLocaleString("en-IN");
 }
 
 const Report = React.memo(function Report({
