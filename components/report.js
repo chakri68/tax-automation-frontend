@@ -93,16 +93,13 @@ const Report = React.memo(function Report({
     table15,
   } = tableData;
 
-  function getTableNum(num) {
-    let res = 2;
-    for (let i = 6; i <= num; i++) {
-      if (i >= 13 && i <= 15) {
-        res += 1;
-        continue;
-      }
-      if (tableData?.[`table${i}`]?.flag) res += 1;
-    }
-    return res;
+  let tableNumData = useRef(null);
+
+  function getTableNum(num, override = false) {
+    if (num == 6) tableNumData.current = null;
+    if (tableNumData.current == null) tableNumData.current = 0;
+    tableNumData.current = tableNumData.current + 1;
+    return tableNumData.current;
   }
 
   var html = htmlToPdfmake(
