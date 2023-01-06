@@ -320,7 +320,7 @@ export default async function handler(req, res) {
       this.csamt = data?.csamt || 0;
       this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total < this.row2.total;
+    this.flag = this.row1.total.toFixed(2) < this.row2.total.toFixed(2);
   })();
   const table7 = new (function () {
     this.row1 = new (function () {
@@ -409,7 +409,7 @@ export default async function handler(req, res) {
       this.csamt = data?.csamt || 0;
       this.total = data?.txval || 0;
     })();
-    this.flag = this.row7.total > this.row8.total;
+    this.flag = this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
   })();
   const table8 = new (function () {
     this.row1 = new (function () {
@@ -498,7 +498,7 @@ export default async function handler(req, res) {
       this.csamt = data?.csamt || 0;
       this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row7.total > this.row8.total;
+    this.flag = this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
   })();
   const table9 = new (function () {
     this.row1 = new (function () {
@@ -517,7 +517,7 @@ export default async function handler(req, res) {
       // this.csamt = data?.csamt || 0;
       this.total = data?.itc_book_curr || 0;
     })();
-    this.flag = this.row1.total > this.row2.total;
+    this.flag = this.row1.total.toFixed(2) > this.row2.total.toFixed(2);
   })();
   const table10 = new (function () {
     this.row1 = new (function () {
@@ -539,7 +539,7 @@ export default async function handler(req, res) {
       // this.total = this.camt + this.iamt + this.samt + this.csamt;
       this.total = data?.txval || 0;
     })();
-    this.flag = this.row1.total !== this.row2.total;
+    this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table11 = new (function () {
     this.row1 = new (function () {
@@ -559,7 +559,7 @@ export default async function handler(req, res) {
       // this.csamt = data?.csamt || 0;
       this.total = data?.annul_turn_adj || 0;
     })();
-    this.flag = this.row1.total !== this.row2.total;
+    this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table12 = new (function () {
     this.row1 = new (function () {
@@ -578,7 +578,7 @@ export default async function handler(req, res) {
       this.csamt = data?.csamt || 0;
       this.total = this.camt + this.iamt + this.samt + this.csamt;
     })();
-    this.flag = this.row1.total !== this.row2.total;
+    this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table13 = new (function () {
     this.row1 = new (function () {
