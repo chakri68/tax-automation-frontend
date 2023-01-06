@@ -76,6 +76,7 @@ const Report = React.memo(function Report({
   console.log({ reportData: tableData, remarks: remarkFiles });
 
   let {
+    GSTINDetails,
     table1,
     table2,
     table3,
@@ -130,8 +131,8 @@ const Report = React.memo(function Report({
           <p>GSTIN</p>
         </td>
         <td style="width: 50%">
-          <p>Details of Tax payer<br />Name</p>
-          <p>Legal Name</p>
+          <p><br />${GSTINDetails.legal_name}</p>
+          <p>${GSTINDetails.trade_name}</p>
           <p>${gstin}</p>
         </td>
       </tr>

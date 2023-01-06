@@ -69,6 +69,17 @@ export default async function handler(req, res) {
   data = await response.json();
   let R9CData = data.data;
 
+  // GSTIN Details
+  response = await fetch(`${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`);
+  data = await response.json();
+  let gstin_det = data.data;
+  gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
+  let { bzdtls } = gstin_det.GSTINDetails;
+  let GSTINDetails = {
+    legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
+    trade_name: bzdtls.bzdtlsbz.trdnm,
+  };
+
   const table1 = new (function () {
     this.row1 = new (function () {
       const data = R1Data.table12;
@@ -601,6 +612,7 @@ export default async function handler(req, res) {
   })();
 
   let Report = {
+    GSTINDetails,
     table1,
     table2,
     table3,
