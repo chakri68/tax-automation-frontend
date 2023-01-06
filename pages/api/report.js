@@ -341,7 +341,7 @@ export default async function handler(req, res) {
         0 + data3?.csamt ||
         0 + data4?.csamt ||
         0;
-      this.total = this.camt + this.iamt + this.samt + this.csamt;
+      this.total = data1?.txval || 0;
     })();
     this.row2 = new (function () {
       const data = R1Data.table7;
@@ -396,7 +396,7 @@ export default async function handler(req, res) {
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
       this.csamt = data?.csamt || 0;
-      this.total = this.camt + this.iamt + this.samt + this.csamt;
+      this.total = data?.txval || 0;
     })();
     this.flag = this.row7.total > this.row8.total;
   })();
@@ -516,7 +516,8 @@ export default async function handler(req, res) {
       this.camt = data1?.camt || 0 + data2?.camt || 0;
       this.samt = data1?.samt || 0 + data2?.samt || 0;
       this.csamt = data1?.csamt || 0 + data2?.csamt || 0;
-      this.total = this.camt + this.iamt + this.samt + this.csamt;
+      // this.total = this.camt + this.iamt + this.samt + this.csamt;
+      this.total = data1?.txval || 0 + data2?.txval || 0;
     })();
     this.row2 = new (function () {
       const data = R9Data.table4?.sub_totalIL;
@@ -524,7 +525,8 @@ export default async function handler(req, res) {
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
       this.csamt = data?.csamt || 0;
-      this.total = this.camt + this.iamt + this.samt + this.csamt;
+      // this.total = this.camt + this.iamt + this.samt + this.csamt;
+      this.total = data?.txval || 0;
     })();
     this.flag = this.row1.total !== this.row2.total;
   })();
@@ -535,7 +537,8 @@ export default async function handler(req, res) {
       this.camt = data?.camt || 0;
       this.samt = data?.samt || 0;
       this.csamt = data?.csamt || 0;
-      this.total = this.camt + this.iamt + this.samt + this.csamt;
+      // this.total = this.camt + this.iamt + this.samt + this.csamt;
+      this.total = data?.txval || 0;
     })();
     this.row2 = new (function () {
       const data = R9CData.row5p;
