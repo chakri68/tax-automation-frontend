@@ -92,7 +92,7 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
       <th>Integrated Tax (<span>&#8377;</span>)</th>
       <th>Central Tax (<span>&#8377;</span>)</th>
       <th>State/UT Tax (<span>&#8377;</span>)</th>
-      <th>Cast Tax (<span>&#8377;</span>)</th>
+      <th>Cess (<span>&#8377;</span>)</th>
     </tr>
 
     <tr>
