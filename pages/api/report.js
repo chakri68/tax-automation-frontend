@@ -2,6 +2,7 @@ import config from "../../config";
 
 const { backendURL } = config;
 
+const dev = true;
 // Some util functions to parse the weird ass data from the database
 function processData(json, matcher) {
   let res = {};
@@ -343,7 +344,7 @@ export default async function handler(req, res) {
       csamt: this.row2.csamt - this.row1.csamt,
       total: this.row2.total - this.row1.total,
     };
-    this.flag = this.row1.total.toFixed(2) < this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total.toFixed(2) < this.row2.total.toFixed(2);
   })();
   const table7 = new (function () {
     this.row1 = new (function () {
@@ -443,7 +444,7 @@ export default async function handler(req, res) {
       csamt: this.row7.csamt - this.row8.csamt,
       total: this.row7.total - this.row8.total,
     };
-    this.flag = this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
+    this.flag = dev || this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
   })();
   const table8 = new (function () {
     this.row1 = new (function () {
@@ -543,7 +544,7 @@ export default async function handler(req, res) {
       csamt: this.row7.csamt - this.row8.csamt,
       total: this.row7.total - this.row8.total,
     };
-    this.flag = this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
+    this.flag = dev || this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
   })();
   const table9 = new (function () {
     this.row1 = new (function () {
@@ -569,7 +570,7 @@ export default async function handler(req, res) {
       // csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag = this.row1.total.toFixed(2) > this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total.toFixed(2) > this.row2.total.toFixed(2);
   })();
   const table10 = new (function () {
     this.row1 = new (function () {
@@ -598,7 +599,8 @@ export default async function handler(req, res) {
       csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
+    this.flag =
+      dev || this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table11 = new (function () {
     this.row1 = new (function () {
@@ -625,7 +627,8 @@ export default async function handler(req, res) {
       // csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
+    this.flag =
+      dev || this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table12 = new (function () {
     this.row1 = new (function () {
@@ -651,7 +654,8 @@ export default async function handler(req, res) {
       csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
+    this.flag =
+      dev || this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table13 = new (function () {
     this.row1 = new (function () {
