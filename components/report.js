@@ -448,7 +448,7 @@ const Report = React.memo(function Report({
           <tr style="height: 21px">
             <td class="c-1">7</td>
             <td>Difference/Excess ITC claimed</td>
-            <td>S.No 5 (-) S.N0. 6</td>
+            <td>S.No 5 (-) S.No. 6</td>
             <td>${checkRound(table3?.row7?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.iamt) ?? "-"}</td>
@@ -612,16 +612,16 @@ const Report = React.memo(function Report({
             <td>${checkRound(table6?.row2?.csamt) ?? "-"}</td>
             <td>${checkRound(table6?.row2?.total) ?? "-"}</td>
           </tr>
-          <!-- <tr class="c-row" style="height: 21px">
+          <tr class="c-row" style="height: 21px">
             <td class="c-1">C</td>
             <td>Difference/Excess ITC claimed</td>
-            <td>(A) - (B)</td>
+            <td>(B) - (A)</td>
             <td>${checkRound(table6?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table6?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table6?.row3?.iamt) ?? "-"}</td>
-<td>${checkRound(table6?.row3?.csamt) ?? "-"}</td>
+            <td>${checkRound(table6?.row3?.csamt) ?? "-"}</td>
             <td>${checkRound(table6?.row3?.total) ?? "-"}</td>
-          </tr> -->
+          </tr>
         </tbody>
       </table>
     </li>
@@ -738,15 +738,15 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row8?.csamt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.total) ?? "-"}</td>
           </tr>
-          <!-- <tr class="c-row">
+          <tr class="c-row">
             <td class="c-1">I</td>
-            <td>Difference</td>
-            <td>${checkRound(table7?.row1?.samt) ?? "-"}</td>
-            <td>${checkRound(table7?.row1?.camt) ?? "-"}</td>
-            <td>${checkRound(table7?.row1?.iamt) ?? "-"}</td>
-<td>${checkRound(table7?.row1?.csamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row1?.total) ?? "-"}</td>
-          </tr> -->
+            <td>Difference (G) - (H)</td>
+            <td>${checkRound(table7?.row9?.samt) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.camt) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.iamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.total) ?? "-"}</td>
+          </tr>
         </tbody>
       </table>
     </li>
@@ -863,15 +863,15 @@ const Report = React.memo(function Report({
             <td>${checkRound(table8?.row8?.csamt) ?? "-"}</td>
             <td>${checkRound(table8?.row8?.total) ?? "-"}</td>
           </tr>
-          <!-- <tr class="c-row">
+          <tr class="c-row">
             <td class="c-1">I</td>
             <td>Difference (G) - (H)</td>
-            <td>${checkRound(table8?.row1?.samt) ?? "-"}</td>
-            <td>${checkRound(table8?.row1?.camt) ?? "-"}</td>
-            <td>${checkRound(table8?.row1?.iamt) ?? "-"}</td>
-<td>${checkRound(table8?.row1?.csamt) ?? "-"}</td>
-            <td>${checkRound(table8?.row1?.total) ?? "-"}</td>
-          </tr> -->
+            <td>${checkRound(table8?.row9?.samt) ?? "-"}</td>
+            <td>${checkRound(table8?.row9?.camt) ?? "-"}</td>
+            <td>${checkRound(table8?.row9?.iamt) ?? "-"}</td>
+            <td>${checkRound(table8?.row9?.csamt) ?? "-"}</td>
+            <td>${checkRound(table8?.row9?.total) ?? "-"}</td>
+          </tr>
         </tbody>
       </table>
     </li>
@@ -944,15 +944,15 @@ const Report = React.memo(function Report({
             <td>${checkRound(table9?.row2?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table9?.row2?.total) ?? "-"}</td>
           </tr>
-          <!-- <tr class="c-row">
+          <tr class="c-row">
             <td class="c-1">C</td>
             <td>Difference (A) - (B)</td>
-            <td>${checkRound(table9?.row3?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table9?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table9?.row3?.iamt) ?? "-"}</td>
-<td>${checkRound(table9?.row3?.csamt) ?? "-"}</td>
+<td>${checkRound(table9?.row3?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table9?.row3?.total) ?? "-"}</td>
-          </tr> -->
+          </tr>
         </tbody>
       </table>
     </li>
@@ -1072,7 +1072,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table10?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table10?.row2?.csamt) ?? "-"}</td>
           </tr>
-          <!-- <tr class="c-row">
+          <tr class="c-row">
             <td class="c-1">C</td>
             <td>Difference (A) - (B)</td>
             <td>${checkRound(table10?.row3?.total) ?? "-"}</td>
@@ -1080,7 +1080,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table10?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table10?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table10?.row3?.csamt) ?? "-"}</td>
-          </tr> -->
+          </tr>
         </tbody>
       </table>
     </li>
@@ -1156,16 +1156,15 @@ const Report = React.memo(function Report({
             <td>${checkRound(table11?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table11?.row2?.csamt) ?? "-"}</td> -->
           </tr>
-          <!-- <tr class="c-row">
+          <tr class="c-row">
             <td class="c-1">C</td>
             <td>Difference (A) - (B)</td>
             <td>${checkRound(table11?.row3?.total) ?? "-"}</td>
-            <td>${checkRound(table11?.row3?.camt) ?? "-"}</td>
+            <!-- <td>${checkRound(table11?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table11?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table11?.row3?.iamt) ?? "-"}</td>
-<td>${checkRound(table11?.row3?.csamt) ?? "-"}</td>
-            
-          </tr> -->
+<td>${checkRound(table11?.row3?.csamt) ?? "-"}</td> -->
+          </tr>
         </tbody>
       </table>
     </li>
@@ -1231,16 +1230,15 @@ const Report = React.memo(function Report({
             <td>${checkRound(table12?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table12?.row2?.csamt) ?? "-"}</td>
           </tr>
-          <!-- <tr class="c-row">
+          <tr class="c-row">
             <td class="c-1">C</td>
             <td>Difference (A) - (B)</td>
             <td>${checkRound(table12?.row3?.total) ?? "-"}</td>
             <td>${checkRound(table12?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table12?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table12?.row3?.iamt) ?? "-"}</td>
-<td>${checkRound(table12?.row3?.csamt) ?? "-"}</td>
-            
-          </tr> -->
+            <td>${checkRound(table12?.row3?.csamt) ?? "-"}</td>
+          </tr>
         </tbody>
       </table>
     </li>
