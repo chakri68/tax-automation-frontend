@@ -336,6 +336,13 @@ export default async function handler(req, res) {
       this.csamt = Math.abs(data?.csamt || 0);
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
+    this.row3 = {
+      iamt: this.row2.iamt - this.row1.iamt,
+      camt: this.row2.camt - this.row1.camt,
+      samt: this.row2.samt - this.row1.samt,
+      csamt: this.row2.csamt - this.row1.csamt,
+      total: this.row2.total - this.row1.total,
+    };
     this.flag = this.row1.total.toFixed(2) < this.row2.total.toFixed(2);
   })();
   const table7 = new (function () {
@@ -429,6 +436,13 @@ export default async function handler(req, res) {
       this.csamt = Math.abs(data?.csamt || 0);
       this.total = Math.abs(data?.txval || 0);
     })();
+    this.row9 = {
+      iamt: this.row7.iamt - this.row8.iamt,
+      camt: this.row7.camt - this.row8.camt,
+      samt: this.row7.samt - this.row8.samt,
+      csamt: this.row7.csamt - this.row8.csamt,
+      total: this.row7.total - this.row8.total,
+    };
     this.flag = this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
   })();
   const table8 = new (function () {
@@ -522,6 +536,13 @@ export default async function handler(req, res) {
       this.csamt = Math.abs(data?.csamt || 0);
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
+    this.row9 = {
+      iamt: this.row7.iamt - this.row8.iamt,
+      camt: this.row7.camt - this.row8.camt,
+      samt: this.row7.samt - this.row8.samt,
+      csamt: this.row7.csamt - this.row8.csamt,
+      total: this.row7.total - this.row8.total,
+    };
     this.flag = this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
   })();
   const table9 = new (function () {
@@ -541,6 +562,13 @@ export default async function handler(req, res) {
       // this.csamt = Math.abs((data?.csamt || 0));
       this.total = Math.abs(data?.itc_book_curr || 0);
     })();
+    this.row3 = {
+      // iamt: this.row1.iamt - this.row2.iamt,
+      // camt: this.row1.camt - this.row2.camt,
+      // samt: this.row1.samt - this.row2.samt,
+      // csamt: this.row1.csamt - this.row2.csamt,
+      total: this.row1.total - this.row2.total,
+    };
     this.flag = this.row1.total.toFixed(2) > this.row2.total.toFixed(2);
   })();
   const table10 = new (function () {
@@ -563,6 +591,13 @@ export default async function handler(req, res) {
       // this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
       this.total = Math.abs(data?.txval || 0);
     })();
+    this.row3 = {
+      iamt: this.row1.iamt - this.row2.iamt,
+      camt: this.row1.camt - this.row2.camt,
+      samt: this.row1.samt - this.row2.samt,
+      csamt: this.row1.csamt - this.row2.csamt,
+      total: this.row1.total - this.row2.total,
+    };
     this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table11 = new (function () {
@@ -583,6 +618,13 @@ export default async function handler(req, res) {
       // this.csamt = Math.abs((data?.csamt || 0));
       this.total = Math.abs(data?.annul_turn_adj || 0);
     })();
+    this.row3 = {
+      // iamt: this.row1.iamt - this.row2.iamt,
+      // camt: this.row1.camt - this.row2.camt,
+      // samt: this.row1.samt - this.row2.samt,
+      // csamt: this.row1.csamt - this.row2.csamt,
+      total: this.row1.total - this.row2.total,
+    };
     this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table12 = new (function () {
@@ -602,6 +644,13 @@ export default async function handler(req, res) {
       this.csamt = Math.abs(data?.csamt || 0);
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
+    this.row3 = {
+      iamt: this.row1.iamt - this.row2.iamt,
+      camt: this.row1.camt - this.row2.camt,
+      samt: this.row1.samt - this.row2.samt,
+      csamt: this.row1.csamt - this.row2.csamt,
+      total: this.row1.total - this.row2.total,
+    };
     this.flag = this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
   })();
   const table13 = new (function () {
