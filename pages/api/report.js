@@ -687,6 +687,29 @@ export default async function handler(req, res) {
       this.total = Math.abs(data?.unrec_itc || 0);
     })();
   })();
+  const table16 = new (function () {
+    this.row1 = new (function () {
+      const data = R9CData.row5r;
+      this.total = Math.abs(data?.unrec_turnovr || 0);
+    })();
+    this.row2 = new (function () {
+      const data = R9CData.row7g;
+      this.total = Math.abs(data?.unrec_tax_turn || 0);
+    })();
+    this.row3 = new (function () {
+      const data = R9CData.row12f;
+      this.total = Math.abs(data?.unrec_itc || 0);
+    })();
+  })();
+  const table17 = new (function () {
+    this.row1 = new (function () {
+      const data = R9CData.row9r;
+      this.iamt = Math.abs(data?.iamt || 0);
+      this.camt = Math.abs(data?.camt || 0);
+      this.samt = Math.abs(data?.samt || 0);
+      this.csamt = Math.abs(data?.csamt || 0);
+    })();
+  })();
 
   let Report = {
     GSTINDetails,
@@ -705,6 +728,8 @@ export default async function handler(req, res) {
     table13,
     table14,
     table15,
+    table16,
+    table17,
   };
 
   // console.log({ R1Data, R3Data, R9Data });

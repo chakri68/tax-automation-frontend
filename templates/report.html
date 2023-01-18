@@ -443,6 +443,178 @@
       </table>
     </li>
 
+    <!-- <table
+      style="width: 100%"
+      border="2"
+      cellpadding="4"
+      data-pdfmake="{'widths':[25,'*', 100]}"
+    >
+      <tbody>
+        <tr>
+          <th>S.No.</th>
+          <th>Issue</th>
+          <th>Amount</th>
+        </tr>
+        <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+        <tr>
+          <td class="c-1">A</td>
+          <td>Unreconciled Turnover (GSTR9C_5R)</td>
+          <td>${checkRound(table16?.row1?.total) ?? "-"}</td>
+        </tr>
+        <tr>
+          <td class="c-1">B</td>
+          <td>Unreconciled Taxable Turnover (GSTR9C_7G)</td>
+          <td>${checkRound(table16?.row2?.total) ?? "-"}</td>
+        </tr>
+        <tr>
+          <td class="c-1">C</td>
+          <td>Unreconciled Turnover (GSTR9C_12F)</td>
+          <td>${checkRound(table16?.row3?.total) ?? "-"}</td>
+        </tr>
+      </tbody>
+    </table> -->
+    <br />
+    <br />
+    <strong> &#x2022; Unreconciled Turnover (GSTR9C_5R)</strong>
+    <br />
+    <table
+      style="width: 100%"
+      border="2"
+      cellpadding="4"
+      data-pdfmake="{'widths':[25,'*', 100]}"
+    >
+      <tbody>
+        <tr>
+          <th>S.No.</th>
+          <th>Issue</th>
+          <th>Amount</th>
+        </tr>
+        <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+        <tr>
+          <td class="c-1">A</td>
+          <td>Unreconciled Turnover (GSTR9C_5R)</td>
+          <td>${checkRound(table16?.row1?.total) ?? "-"}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+    <strong> &#x2022; Unreconciled Taxable Turnover (GSTR9C_7G)</strong>
+    <br />
+    <table
+      style="width: 100%"
+      border="2"
+      cellpadding="4"
+      data-pdfmake="{'widths':[25,'*', 100]}"
+    >
+      <tbody>
+        <tr>
+          <th>S.No.</th>
+          <th>Issue</th>
+          <th>Amount</th>
+        </tr>
+        <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+        <tr>
+          <td class="c-1">A</td>
+          <td>Unreconciled Taxable Turnover (GSTR9C_7G)</td>
+          <td>${checkRound(table16?.row2?.total) ?? "-"}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+    <strong> &#x2022; Unreconciled ITC (GSTR9C_12F)</strong>
+    <br />
+    <table
+      style="width: 100%"
+      border="2"
+      cellpadding="4"
+      data-pdfmake="{'widths':[25,'*', 100]}"
+    >
+      <tbody>
+        <tr>
+          <th>S.No.</th>
+          <th>Issue</th>
+          <th>Amount</th>
+        </tr>
+        <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+        <tr>
+          <td class="c-1">A</td>
+          <td>Unreconciled ITC (GSTR9C_12F)</td>
+          <td>${checkRound(table16?.row3?.total) ?? "-"}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+    <strong> &#x2022; Unreconciled payment of amount (GSTR9C_9R)</strong>
+    <br />
+
+    <table
+      style="width: 100%"
+      border="2"
+      cellpadding="4"
+      data-pdfmake="{'widths':[25,'*', 70, 70, 70, 70]}"
+    >
+      <tbody>
+        <tr>
+          <th>S.No.</th>
+          <th>Issue</th>
+          <th>SGST</th>
+          <th>CGST</th>
+          <th>IGST</th>
+          <th>Cess</th>
+        </tr>
+        <!-- <tr style="height: 21px; text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr> -->
+        <tr>
+          <td class="c-1">A</td>
+          <td>Unreconciled payment of amount (GSTR9C_9R)</td>
+          <td>${checkRound(table17?.row1?.samt) ?? "-"}</td>
+          <td>${checkRound(table17?.row1?.camt) ?? "-"}</td>
+          <td>${checkRound(table17?.row1?.iamt) ?? "-"}</td>
+          <td>${checkRound(table17?.row1?.csamt) ?? "-"}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+
     ${ table6?.flag ? `
     <li>
       <strong>
