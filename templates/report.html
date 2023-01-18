@@ -1219,13 +1219,13 @@
       <table
         style="width: 100%"
         border="2"
-        data-pdfmake="{'widths':[25,'*',70, 55, 55, 55, 55]}"
+        data-pdfmake="{'widths':[25,'*', 55, 55, 55, 55]}"
       >
         <tbody>
           <tr>
             <th rowspan="2" class="c-1">S. No.</th>
             <th rowspan="2">Issue</th>
-            <th rowspan="2">Taxable Value</th>
+            <!-- <th rowspan="2">Taxable Value</th> -->
             <th style="text-align: center" colspan="4">
               (Amount in all tables)
             </th>
@@ -1251,7 +1251,7 @@
               Details of tax paid as declared in returns filed during the
               fnancial year (GSTR9_9)
             </td>
-            <td>${checkRound(table12?.row1?.total) ?? "-"}</td>
+            <!-- <td>${checkRound(table12?.row1?.total) ?? "-"}</td> -->
             <td>${checkRound(table12?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table12?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table12?.row1?.iamt) ?? "-"}</td>
@@ -1260,7 +1260,7 @@
           <tr>
             <td class="c-1">B</td>
             <td>Total amount to be paid as per tables above (GSTR9C_9P)</td>
-            <td>${checkRound(table12?.row2?.total) ?? "-"}</td>
+            <!-- <td>${checkRound(table12?.row2?.total) ?? "-"}</td> -->
             <td>${checkRound(table12?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table12?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table12?.row2?.iamt) ?? "-"}</td>
@@ -1269,7 +1269,7 @@
           <tr class="c-row">
             <td class="c-1">C</td>
             <td>Difference (A) - (B)</td>
-            <td>${checkRound(table12?.row3?.total) ?? "-"}</td>
+            <!-- <td>${checkRound(table12?.row3?.total) ?? "-"}</td> -->
             <td>${checkRound(table12?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table12?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table12?.row3?.iamt) ?? "-"}</td>
