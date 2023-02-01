@@ -420,11 +420,12 @@ export default async function handler(req, res) {
       this.total = Math.abs(data1?.txval || 0);
     })();
     this.row2 = new (function () {
-      const data = R1Data.table7;
-      this.iamt = Math.abs(data?.iamt || 0);
-      this.camt = Math.abs(data?.camt || 0);
-      this.samt = Math.abs(data?.samt || 0);
-      this.csamt = Math.abs(data?.csamt || 0);
+      const data1 = R1Data.table7;
+      const data2 = R1Data.table5A_5B;
+      this.iamt = Math.abs((data1?.iamt || 0) + (data2?.iamt || 0));
+      this.camt = Math.abs((data1?.camt || 0) + (data2?.camt || 0));
+      this.samt = Math.abs((data1?.samt || 0) + (data2?.samt || 0));
+      this.csamt = Math.abs((data1?.csamt || 0) + (data2?.csamt || 0));
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row3 = new (function () {
@@ -454,7 +455,7 @@ export default async function handler(req, res) {
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row6 = new (function () {
-      const data = R1Data.table11B_2;
+      const data = R1Data.table11A_1;
       this.iamt = Math.abs(data?.iamt || 0);
       this.camt = Math.abs(data?.camt || 0);
       this.samt = Math.abs(data?.samt || 0);
@@ -471,7 +472,7 @@ export default async function handler(req, res) {
       total: Math.abs(this.row4.total - this.row5.total - this.row6.total),
     };
     this.row8 = new (function () {
-      const data = R3Data.sup_details?.osup_det;
+      const data = R3Data.total_sup_details?.osup_det;
       this.iamt = Math.abs(data?.iamt || 0);
       this.camt = Math.abs(data?.camt || 0);
       this.samt = Math.abs(data?.samt || 0);
@@ -500,19 +501,19 @@ export default async function handler(req, res) {
           (data4?.iamt || 0)
       );
       this.camt = Math.abs(
-        (data1?.camt || 0) -
+        (data1?.camt || 0) +
           (data2?.camt || 0) +
           (data3?.camt || 0) +
           (data4?.camt || 0)
       );
       this.samt = Math.abs(
-        (data1?.samt || 0) -
+        (data1?.samt || 0) +
           (data2?.samt || 0) +
           (data3?.samt || 0) +
           (data4?.samt || 0)
       );
       this.csamt = Math.abs(
-        (data1?.csamt || 0) -
+        (data1?.csamt || 0) +
           (data2?.csamt || 0) +
           (data3?.csamt || 0) +
           (data4?.csamt || 0)
@@ -520,11 +521,12 @@ export default async function handler(req, res) {
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row2 = new (function () {
-      const data = R1Data.table7;
-      this.iamt = Math.abs(data?.iamt || 0);
-      this.camt = Math.abs(data?.camt || 0);
-      this.samt = Math.abs(data?.samt || 0);
-      this.csamt = Math.abs(data?.csamt || 0);
+      const data1 = R1Data.table7;
+      const data2 = R1Data.table5A_5B;
+      this.iamt = Math.abs((data1?.iamt || 0) + (data2?.iamt || 0));
+      this.camt = Math.abs((data1?.camt || 0) + (data2?.camt || 0));
+      this.samt = Math.abs((data1?.samt || 0) + (data2?.samt || 0));
+      this.csamt = Math.abs((data1?.csamt || 0) + (data2?.csamt || 0));
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row3 = new (function () {
@@ -554,7 +556,7 @@ export default async function handler(req, res) {
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row6 = new (function () {
-      const data = R1Data.table11B_2;
+      const data = R1Data.table11A_1;
       this.iamt = Math.abs(data?.iamt || 0);
       this.camt = Math.abs(data?.camt || 0);
       this.samt = Math.abs(data?.samt || 0);
@@ -571,7 +573,7 @@ export default async function handler(req, res) {
       total: Math.abs(this.row4.total - this.row5.total - this.row6.total),
     };
     this.row8 = new (function () {
-      const data = R3Data.sup_details?.osup_det;
+      const data = R3Data.total_sup_details?.osup_det;
       this.iamt = Math.abs(data?.iamt || 0);
       this.camt = Math.abs(data?.camt || 0);
       this.samt = Math.abs(data?.samt || 0);
