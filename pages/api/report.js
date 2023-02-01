@@ -759,6 +759,25 @@ export default async function handler(req, res) {
       this.csamt = Math.abs(data?.csamt || 0);
     })();
   })();
+  const table18 = new (function () {
+    this.description = "Refund Claimed";
+    this.row1 = new (function () {
+      const data = R9Data?.table15?.rfd_clmd;
+      this.iamt = Math.abs(data?.iamt || 0);
+      this.camt = Math.abs(data?.camt || 0);
+      this.samt = Math.abs(data?.samt || 0);
+      this.csamt = Math.abs(data?.csamt || 0);
+      this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
+    })();
+    this.row2 = new (function () {
+      const data = R9Data?.table15?.rfd_sanc;
+      this.iamt = Math.abs(data?.iamt || 0);
+      this.camt = Math.abs(data?.camt || 0);
+      this.samt = Math.abs(data?.samt || 0);
+      this.csamt = Math.abs(data?.csamt || 0);
+      this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
+    })();
+  })();
 
   let Report = {
     GSTINDetails,
