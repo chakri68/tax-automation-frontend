@@ -798,6 +798,7 @@ export default async function handler(req, res) {
     table15,
     table16,
     table17,
+    table18,
   };
 
   // console.log({ R1Data, R3Data, R9Data });
