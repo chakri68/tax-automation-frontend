@@ -389,10 +389,10 @@ export default async function handler(req, res) {
   })();
   const table7 = new (function () {
     this.row1 = new (function () {
-      const data1 = R1Data.table4a;
-      const data2 = R1Data.table4b;
-      const data3 = R1Data.table6b;
-      const data4 = R1Data.table6c;
+      const data1 = R1Data.table4A;
+      const data2 = R1Data.table4B;
+      const data3 = R1Data.table6B;
+      const data4 = R1Data.table6C;
       this.iamt = Math.abs(
         (data1?.iamt || 0) +
           (data2?.iamt || 0) +
@@ -489,10 +489,10 @@ export default async function handler(req, res) {
   })();
   const table8 = new (function () {
     this.row1 = new (function () {
-      const data1 = R1Data.table4a;
-      const data2 = R1Data.table4b;
-      const data3 = R1Data.table6b;
-      const data4 = R1Data.table6c;
+      const data1 = R1Data.table4A;
+      const data2 = R1Data.table4B;
+      const data3 = R1Data.table6B;
+      const data4 = R1Data.table6C;
       this.iamt = Math.abs(
         (data1?.iamt || 0) +
           (data2?.iamt || 0) +
