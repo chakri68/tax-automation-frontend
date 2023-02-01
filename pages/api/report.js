@@ -710,6 +710,14 @@ export default async function handler(req, res) {
   })();
   const table14 = new (function () {
     this.row1 = new (function () {
+      const data = R9Data.table6?.tran1;
+      this.iamt = Math.abs(data?.iamt || 0);
+      this.camt = Math.abs(data?.camt || 0);
+      this.samt = Math.abs(data?.samt || 0);
+      this.csamt = Math.abs(data?.csamt || 0);
+      this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
+    })();
+    this.row2 = new (function () {
       const data = R9Data.table6?.tran2;
       this.iamt = Math.abs(data?.iamt || 0);
       this.camt = Math.abs(data?.camt || 0);
