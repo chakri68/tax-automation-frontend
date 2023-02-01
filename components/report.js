@@ -94,6 +94,7 @@ const Report = React.memo(function Report({
     table15,
     table16,
     table17,
+    table18,
   } = tableData;
 
   let tableNumData = useRef(null);
