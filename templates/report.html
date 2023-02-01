@@ -51,7 +51,7 @@
   <p>The details of the discrepancies are as follows:</p>
 
   <ol style="list-style: none">
-    <li>
+    <!-- <li>
       <strong>
         1. Net tax under declaration due to non-reconciliation of turnover in
         other returns and E-way bill information
@@ -130,10 +130,10 @@
           </tr>
         </tbody>
       </table>
-    </li>
+    </li>-->
     <li>
-      <strong>2. Excess claim of ITC: </strong>
-      <ul style="list-style: none">
+      <strong>1. Excess claim of ITC: </strong>
+      <!-- <ul style="list-style: none">
         <li>
           <strong
             >&#x2022; Excess ITC claimed in GSTR-3B compared to GSTR-09:</strong
@@ -225,7 +225,7 @@
             <td>${checkRound(table2?.row5?.total) ?? "-"}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
       <ul style="list-style: none">
         <li>
           <strong>
@@ -253,13 +253,14 @@
         style="width: 100%"
         border="2"
         cellpadding="4"
-        data-pdfmake="{'widths':[25,'*', 55, 55, 55, 55, 55, 55]}"
+        data-pdfmake="{'widths':[25,'*', 55, 55, 55, 55, 55, 55, 55]}"
       >
         <tbody>
           <tr style="height: 21px">
             <th>S.No.</th>
             <th>Issue</th>
             <th>Table No. in GSTR-09</th>
+            <th>Taxable Value</th>
             <th>SGST</th>
             <th>CGST</th>
             <th>IGST</th>
@@ -275,11 +276,13 @@
             <td>F</td>
             <td>G</td>
             <td>H</td>
+            <td>I</td>
           </tr>
           <tr style="height: 21px">
             <td class="c-1">1</td>
             <td>Total supplies</td>
             <td>5N + 10 - 11</td>
+            <td>${checkRound(table3?.row1?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row1?.iamt) ?? "-"}</td>
@@ -290,6 +293,7 @@
             <td class="c-1">2</td>
             <td>Exempt supplies</td>
             <td>5C + 5D + 5E + 5F</td>
+            <td>${checkRound(table3?.row2?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row2?.iamt) ?? "-"}</td>
@@ -303,6 +307,7 @@
               exempt supply (2/1 above)
             </td>
             <td></td>
+            <td>${checkRound(table3?.row3?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.iamt) ?? "-"}</td>
@@ -313,6 +318,7 @@
             <td class="c-1">4</td>
             <td>Common input tax credit</td>
             <td>6O + 13 - 12</td>
+            <td>${checkRound(table3?.row4?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.iamt) ?? "-"}</td>
@@ -323,6 +329,7 @@
             <td class="c-1">5</td>
             <td>ITC to be reversed</td>
             <td>(S.No.4 (x) S.No.2)/S.No.1</td>
+            <td>${checkRound(table3?.row5?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.iamt) ?? "-"}</td>
@@ -333,6 +340,7 @@
             <td class="c-1">6</td>
             <td>ITC reversed as per GSTR-09</td>
             <td>7C + 7D + 7F + 7G</td>
+            <td>${checkRound(table3?.row6?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.iamt) ?? "-"}</td>
@@ -343,6 +351,7 @@
             <td class="c-1">7</td>
             <td>Difference/Excess ITC claimed</td>
             <td>S.No 5 (-) S.No. 6</td>
+            <td>${checkRound(table3?.row7?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row7?.iamt) ?? "-"}</td>
@@ -352,7 +361,7 @@
         </tbody>
       </table>
       Therefore, the excess ITC claimed is proposed to be recovered.
-      <ul style="list-style: none">
+      <!-- <ul style="list-style: none">
         <li>
           <strong>
             &#x2022; ITC claimed from canceled dealers return defaulters and tax
@@ -440,7 +449,7 @@
             <td>${checkRound(table4?.row4?.total) ?? "-"}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </li>
 
     <!-- <table
@@ -541,7 +550,7 @@
         </tr>
       </tbody>
     </table>
-    <br />
+    <!-- <br />
     <br />
     <strong> &#x2022; Unreconciled ITC (GSTR9C_12F)</strong>
     <br />
@@ -557,7 +566,7 @@
           <th>Issue</th>
           <th>Amount</th>
         </tr>
-        <!-- <tr style="height: 21px; text-align: center">
+        <tr style="height: 21px; text-align: center">
             <td>A</td>
             <td>B</td>
             <td>C</td>
@@ -565,14 +574,14 @@
             <td>E</td>
             <td>F</td>
             <td>G</td>
-          </tr> -->
+          </tr>
         <tr>
           <td class="c-1">A</td>
           <td>Unreconciled ITC (GSTR9C_12F)</td>
           <td>${checkRound(table16?.row3?.total) ?? "-"}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
     <br />
     <br />
     <strong> &#x2022; Unreconciled payment of amount (GSTR9C_9R)</strong>
@@ -703,16 +712,16 @@
         style="width: 100%"
         border="2"
         cellpadding="2"
-        data-pdfmake="{'widths':[25,'*', 65, 65, 65, 65, 65]}"
+        data-pdfmake="{'widths':[25,'*', 80]}"
       >
         <tbody>
           <tr>
             <th>S.No.</th>
             <th>Issue</th>
-            <th>SGST</th>
+            <!-- <th>SGST</th>
             <th>CGST</th>
             <th>IGST</th>
-            <th>Cess</th>
+            <th>Cess</th> -->
             <th>Taxable Value</th>
           </tr>
           <!-- <tr style="text-align: center">
@@ -726,64 +735,64 @@
           <tr>
             <td class="c-1">A</td>
             <td>B2B Supply</td>
-            <td>${checkRound(table7?.row1?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row1?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row1?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row1?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">B</td>
-            <td>B2C Supply (if any) (GSTR1_7)</td>
-            <td>${checkRound(table7?.row2?.samt) ?? "-"}</td>
+            <td>B2C Supply (if any) (GSTR1_7 + GSTR1_5A_5B)</td>
+            <!-- <td>${checkRound(table7?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row2?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row2?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row2?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">C</td>
             <td>Advances Received (if any) (GSTR1_11A_1)</td>
-            <td>${checkRound(table7?.row3?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row3?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row3?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row3?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row3?.total) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">D</td>
             <td>Sub Total (A) + (B) + (C)</td>
-            <td>${checkRound(table7?.row4?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row4?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row4?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row4?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row4?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row4?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">E</td>
             <td>Credit/Debit Note (if any) (GSTR1_9B)</td>
-            <td>${checkRound(table7?.row5?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row5?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row5?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row5?.total) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">F</td>
             <td>Advance adjustment if any (GSTR1_11B_1)</td>
-            <td>${checkRound(table7?.row6?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row6?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row6?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row6?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row6?.total) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">G</td>
             <td>Subtotal (D) - [(E) + (F)]</td>
-            <td>${checkRound(table7?.row7?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row7?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row7?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row7?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row7?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row7?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row7?.total) ?? "-"}</td>
           </tr>
           <tr>
@@ -792,19 +801,19 @@
               Outward taxable supplies (other than zero rated, nil rated and
               exempted) (GSTR3B_(3.1A))
             </td>
-            <td>${checkRound(table7?.row8?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row8?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row8?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row8?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row8?.total) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">I</td>
             <td>Difference (G) - (H)</td>
-            <td>${checkRound(table7?.row9?.samt) ?? "-"}</td>
+            <!-- <td>${checkRound(table7?.row9?.samt) ?? "-"}</td>
             <td>${checkRound(table7?.row9?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row9?.iamt) ?? "-"}</td>
-            <td>${checkRound(table7?.row9?.csamt) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.csamt) ?? "-"}</td> -->
             <td>${checkRound(table7?.row9?.total) ?? "-"}</td>
           </tr>
         </tbody>
@@ -975,8 +984,8 @@
             <td>
               ITC on inward supplies (other than imports and inward supplies
               liable to reverse charge but includes services received from SEZs)
-              received during 2017-18 but availed during April to September,
-              2018 (GSTR9_8C)
+              received during the financial year but availed upto specified
+              period (GSTR9_8C)
             </td>
             <!-- <td>${checkRound(table9?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row1?.camt) ?? "-"}</td>
@@ -1248,8 +1257,8 @@
           <tr>
             <td class="c-1">A</td>
             <td>
-              Details of tax paid as declared in returns filed during the
-              fnancial year (GSTR9_9)
+              Details of tax payable as declared in returns filed during the
+              financial year (GSTR9_9)
             </td>
             <!-- <td>${checkRound(table12?.row1?.total) ?? "-"}</td> -->
             <td>${checkRound(table12?.row1?.camt) ?? "-"}</td>
@@ -1311,12 +1320,21 @@
           </tr> -->
           <tr style="height: 21px">
             <td class="c-1">A</td>
-            <td>Transition Credit through TRAN-II (GSTR9_6L)</td>
+            <td>Transition Credit through TRAN-I (GSTR9_6K)</td>
             <td class="n-a"></td>
             <td>${checkRound(table14?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table14?.row1?.iamt) ?? "-"}</td>
             <td class="n-a"></td>
             <td>${checkRound(table14?.row1?.total) ?? "-"}</td>
+          </tr>
+          <tr style="height: 21px">
+            <td class="c-1">B</td>
+            <td>Transition Credit through TRAN-II (GSTR9_6L)</td>
+            <td class="n-a"></td>
+            <td>${checkRound(table14?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table14?.row2?.iamt) ?? "-"}</td>
+            <td class="n-a"></td>
+            <td>${checkRound(table14?.row2?.total) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -1366,14 +1384,14 @@
     ` : `` }
   </ol>
 
-  <p>
+  <!-- <p>
     <strong>Summary:</strong>
 
     <br /><br />
 
-    <!-- The total tax payable on account of these deficiencies after giving credit
+    The total tax payable on account of these deficiencies after giving credit
     to the payments made in cash and ITC adjusted is arrived as follows:
-  </p> -->
+  </p>
   </p>
 
   <table
@@ -1410,7 +1428,7 @@
         <td></td>
         <td></td>
       </tr>
-      <!-- <tr>
+      <tr>
         <td style="text-align: center">1</td>
         <td>Total tax due in (1) + (2) above</td>
         <td>${checkRound(table5?.row1?.samt) ?? "-"}</td>
@@ -1418,9 +1436,60 @@
         <td>${checkRound(table5?.row1?.iamt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.csamt) ?? "-"}</td>
         <td>${checkRound(table5?.row1?.total) ?? "-"}</td>
-      </tr> -->
+      </tr>
     </tbody>
-  </table>
+  </table> -->
+  <ul style="list-style: none">
+    <li>
+      <strong> &#x2022; Refund Claimed </strong>
+      <table
+        style="width: 100%"
+        border="2"
+        cellpadding="2"
+        data-pdfmake="{'widths':[25,'*', 65, 65, 65, 65, 65]}"
+      >
+        <tbody>
+          <tr>
+            <th>S.No.</th>
+            <th>Issue</th>
+            <th>SGST</th>
+            <th>CGST</th>
+            <th>IGST</th>
+            <th>Cess</th>
+            <th>Total</th>
+          </tr>
+          <tr style="text-align: center">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">1</td>
+            <td>Refunds Claimed (As per 15A of GSTR9_15A)</td>
+            <td>${checkRound(table18?.row1?.samt) ?? "-"}</td>
+            <td>${checkRound(table18?.row1?.camt) ?? "-"}</td>
+            <td>${checkRound(table18?.row1?.iamt) ?? "-"}</td>
+            <td>${checkRound(table18?.row1?.csamt) ?? "-"}</td>
+            <td>${checkRound(table18?.row1?.total) ?? "-"}</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">2</td>
+            <td>Refunds Sanctioned (As per 15B of GSTR9_15B)</td>
+            <td>${checkRound(table18?.row2?.samt) ?? "-"}</td>
+            <td>${checkRound(table18?.row2?.camt) ?? "-"}</td>
+            <td>${checkRound(table18?.row2?.iamt) ?? "-"}</td>
+            <td>${checkRound(table18?.row2?.csamt) ?? "-"}</td>
+            <td>${checkRound(table18?.row2?.total) ?? "-"}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+
   <strong>
     (The detailed workings of the above in tabular form are attached as
     Annexures)
