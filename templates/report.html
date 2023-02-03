@@ -739,7 +739,7 @@
             <td>${checkRound(table7?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row1?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row1?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row1?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">B</td>
@@ -748,7 +748,7 @@
             <td>${checkRound(table7?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row2?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row2?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">C</td>
@@ -757,7 +757,7 @@
             <td>${checkRound(table7?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row3?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row3?.txval) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">D</td>
@@ -766,7 +766,7 @@
             <td>${checkRound(table7?.row4?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row4?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row4?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row4?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row4?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">E</td>
@@ -775,7 +775,7 @@
             <td>${checkRound(table7?.row5?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row5?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row5?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">F</td>
@@ -784,7 +784,7 @@
             <td>${checkRound(table7?.row6?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row6?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row6?.txval) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">G</td>
@@ -793,7 +793,7 @@
             <td>${checkRound(table7?.row7?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row7?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row7?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row7?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row7?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">H</td>
@@ -805,7 +805,7 @@
             <td>${checkRound(table7?.row8?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row8?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row8?.txval) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">I</td>
@@ -814,7 +814,7 @@
             <td>${checkRound(table7?.row9?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row9?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row9?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row9?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.txval) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -984,8 +984,8 @@
             <td>
               ITC on inward supplies (other than imports and inward supplies
               liable to reverse charge but includes services received from SEZs)
-              received during the financial year but availed upto specified
-              period (GSTR9_8C)
+              received during the financial year but availed in the next
+              financial year upto specified period (GSTR9_8C)
             </td>
             <!-- <td>${checkRound(table9?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row1?.camt) ?? "-"}</td>
@@ -1290,8 +1290,8 @@
     ` : `` } ${ table14 ? `
     <li>
       <strong>
-        ${getTableNum(14)}. Proof of Transition Credit through TRAN-2 (Point
-        15):
+        ${getTableNum(14)}. Proof of Transition Credit through TRAN-1/TRAN-2
+        (Point 15):
       </strong>
       <table
         style="width: 100%"
