@@ -215,20 +215,8 @@ export default async function handler(req, res) {
       // this.csamt = null;
       // this.total = null;
     })();
-    this.row3 = {
-      txval: Math.abs(this.row2.txval / this.row1.txval),
-      iamt: Math.abs(this.row2.iamt / this.row1.iamt),
-      camt: Math.abs(this.row2.camt / this.row1.camt),
-      samt: Math.abs(this.row2.samt / this.row1.samt),
-      csamt: Math.abs(this.row2.csamt / this.row1.csamt),
-      total: Math.abs(this.row2.total / this.row1.total),
-      // iamt: null,
-      // camt: null,
-      // samt: null,
-      // csamt: null,
-      // total: null,
-    };
-    this.row4 = new (function () {
+    this.ratio = Math.abs(this.row2.txval / this.row1.txval);
+    this.row3 = new (function () {
       this.txval = null;
       this.iamt = Math.abs(table2.row2.iamt + table2.row4.iamt);
       this.camt = Math.abs(table2.row2.camt + table2.row4.camt);
@@ -236,23 +224,21 @@ export default async function handler(req, res) {
       this.csamt = Math.abs(table2.row2.csamt + table2.row4.csamt);
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
-    this.row5 = {
+    this.row4 = {
       // txval: null,
       // iamt: null,
       // camt: null,
       // samt: null,
       // csamt: null,
       // total: null,
-      txval: Math.abs((this.row4.txval * this.row2.txval) / this.row1.txval),
-      iamt: Math.abs((this.row4.iamt * this.row2.iamt) / this.row1.iamt),
-      camt: Math.abs((this.row4.camt * this.row2.camt) / this.row1.camt),
-      samt: Math.abs((this.row4.samt * this.row2.samt) / this.row1.samt),
-      csamt: Math.abs(
-        Math.abs((this.row4.csamt * this.row2.csamt) / this.row1.csamt)
-      ),
-      total: Math.abs((this.row4.total * this.row2.total) / this.row1.total),
+      txval: Math.abs(this.ratio * this.row3.txval),
+      iamt: Math.abs(this.ratio * this.row3.iamt),
+      camt: Math.abs(this.ratio * this.row3.camt),
+      samt: Math.abs(this.ratio * this.row3.samt),
+      csamt: Math.abs(this.ratio * this.row3.csamt),
+      total: Math.abs(this.iamt + this.camt + this.samt + this.csamt),
     };
-    this.row6 = new (function () {
+    this.row5 = new (function () {
       const data1 = R9Data.table7?.rule42;
       const data2 = R9Data.table7?.rule43;
       const data3 = R9Data.table7?.revsl_tran1;
@@ -290,14 +276,14 @@ export default async function handler(req, res) {
       );
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
-    this.row7 = {
+    this.row6 = {
       // txval: null,
-      txval: Math.abs((this.row5.txval || 0) - (this.row6.txval || 0)),
-      iamt: Math.abs((this.row5.iamt || 0) - (this.row6.iamt || 0)),
-      camt: Math.abs((this.row5.camt || 0) - (this.row6.camt || 0)),
-      samt: Math.abs((this.row5.samt || 0) - (this.row6.samt || 0)),
-      csamt: Math.abs((this.row5.csamt || 0) - (this.row6.csamt || 0)),
-      total: Math.abs((this.row5.total || 0) - (this.row6.total || 0)),
+      txval: Math.abs((this.row4.txval || 0) - (this.row5.txval || 0)),
+      iamt: Math.abs((this.row4.iamt || 0) - (this.row5.iamt || 0)),
+      camt: Math.abs((this.row4.camt || 0) - (this.row5.camt || 0)),
+      samt: Math.abs((this.row4.samt || 0) - (this.row5.samt || 0)),
+      csamt: Math.abs((this.row4.csamt || 0) - (this.row5.csamt || 0)),
+      total: Math.abs((this.row4.total || 0) - (this.row5.total || 0)),
     };
   })();
   const table4 = new (function () {
@@ -337,25 +323,25 @@ export default async function handler(req, res) {
       this.iamt = Math.abs(
         table1.row3.iamt +
           table2.row5.iamt +
-          table3.row7.iamt +
+          table3.row6.iamt +
           table4.row4.iamt
       );
       this.camt = Math.abs(
         table1.row3.camt +
           table2.row5.camt +
-          table3.row7.camt +
+          table3.row6.camt +
           table4.row4.camt
       );
       this.samt = Math.abs(
         table1.row3.samt +
           table2.row5.samt +
-          table3.row7.samt +
+          table3.row6.samt +
           table4.row4.samt
       );
       this.csamt = Math.abs(
         table1.row3.csamt +
           table2.row5.csamt +
-          table3.row7.csamt +
+          table3.row6.csamt +
           table4.row4.csamt
       );
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
@@ -689,11 +675,11 @@ export default async function handler(req, res) {
   })();
   const table12 = new (function () {
     this.row1 = new (function () {
-      const data = null;
-      this.iamt = Math.abs(data?.iamt || 0);
-      this.camt = Math.abs(data?.camt || 0);
-      this.samt = Math.abs(data?.samt || 0);
-      this.csamt = Math.abs(data?.csamt || 0);
+      const data = R9Data.table9;
+      this.iamt = Math.abs(data?.iamt?.txpyble || 0);
+      this.camt = Math.abs(data?.camt?.txpyble || 0);
+      this.samt = Math.abs(data?.samt?.txpyble || 0);
+      this.csamt = Math.abs(data?.csamt?.txpyble || 0);
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row2 = new (function () {
