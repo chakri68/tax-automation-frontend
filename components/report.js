@@ -409,7 +409,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table3?.row2?.csamt) ?? "-"}</td>
             <td>${checkRound(table3?.row2?.total) ?? "-"}</td>
           </tr>
-          <tr style="height: 21px">
+          <!-- <tr style="height: 21px">
             <td class="c-1">3</td>
             <td>
               Proportion of common ITC which has to be reversed to the extent of
@@ -422,11 +422,22 @@ const Report = React.memo(function Report({
             <td>${checkRound(table3?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.csamt) ?? "-"}</td>
             <td>${checkRound(table3?.row3?.total) ?? "-"}</td>
+          </tr> -->
+          <tr style="height: 21px">
+            <td class="c-1">3</td>
+            <td>Common input tax credit</td>
+            <td>6O + 13 - 12</td>
+            <td>${checkRound(table3?.row3?.txval) ?? "-"}</td>
+            <td>${checkRound(table3?.row3?.samt) ?? "-"}</td>
+            <td>${checkRound(table3?.row3?.camt) ?? "-"}</td>
+            <td>${checkRound(table3?.row3?.iamt) ?? "-"}</td>
+            <td>${checkRound(table3?.row3?.csamt) ?? "-"}</td>
+            <td>${checkRound(table3?.row3?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
             <td class="c-1">4</td>
-            <td>Common input tax credit</td>
-            <td>6O + 13 - 12</td>
+            <td>ITC to be reversed</td>
+            <td>(S.No.4 (x) S.No.2)/S.No.1</td>
             <td>${checkRound(table3?.row4?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.camt) ?? "-"}</td>
@@ -434,10 +445,10 @@ const Report = React.memo(function Report({
             <td>${checkRound(table3?.row4?.csamt) ?? "-"}</td>
             <td>${checkRound(table3?.row4?.total) ?? "-"}</td>
           </tr>
-          <tr style="height: 21px">
+          <tr style="height: 21.5px">
             <td class="c-1">5</td>
-            <td>ITC to be reversed</td>
-            <td>(S.No.4 (x) S.No.2)/S.No.1</td>
+            <td>ITC reversed as per GSTR-09</td>
+            <td>7C + 7D + 7F + 7G</td>
             <td>${checkRound(table3?.row5?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.camt) ?? "-"}</td>
@@ -445,27 +456,16 @@ const Report = React.memo(function Report({
             <td>${checkRound(table3?.row5?.csamt) ?? "-"}</td>
             <td>${checkRound(table3?.row5?.total) ?? "-"}</td>
           </tr>
-          <tr style="height: 21.5px">
+          <tr style="height: 21px">
             <td class="c-1">6</td>
-            <td>ITC reversed as per GSTR-09</td>
-            <td>7C + 7D + 7F + 7G</td>
+            <td>Difference/Excess ITC claimed</td>
+            <td>S.No 5 (-) S.No. 6</td>
             <td>${checkRound(table3?.row6?.txval) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.samt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.camt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.iamt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.csamt) ?? "-"}</td>
             <td>${checkRound(table3?.row6?.total) ?? "-"}</td>
-          </tr>
-          <tr style="height: 21px">
-            <td class="c-1">7</td>
-            <td>Difference/Excess ITC claimed</td>
-            <td>S.No 5 (-) S.No. 6</td>
-            <td>${checkRound(table3?.row7?.txval) ?? "-"}</td>
-            <td>${checkRound(table3?.row7?.samt) ?? "-"}</td>
-            <td>${checkRound(table3?.row7?.camt) ?? "-"}</td>
-            <td>${checkRound(table3?.row7?.iamt) ?? "-"}</td>
-            <td>${checkRound(table3?.row7?.csamt) ?? "-"}</td>
-            <td>${checkRound(table3?.row7?.total) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -854,7 +854,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row1?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row1?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row1?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row1?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row1?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">B</td>
@@ -863,7 +863,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row2?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row2?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row2?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row2?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">C</td>
@@ -872,7 +872,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row3?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row3?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row3?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row3?.txval) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">D</td>
@@ -881,7 +881,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row4?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row4?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row4?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row4?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row4?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">E</td>
@@ -890,7 +890,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row5?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row5?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row5?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row5?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">F</td>
@@ -899,7 +899,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row6?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row6?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row6?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row6?.txval) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">G</td>
@@ -908,7 +908,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row7?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row7?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row7?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row7?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row7?.txval) ?? "-"}</td>
           </tr>
           <tr>
             <td class="c-1">H</td>
@@ -920,7 +920,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row8?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row8?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row8?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row8?.txval) ?? "-"}</td>
           </tr>
           <tr class="c-row">
             <td class="c-1">I</td>
@@ -929,7 +929,7 @@ const Report = React.memo(function Report({
             <td>${checkRound(table7?.row9?.camt) ?? "-"}</td>
             <td>${checkRound(table7?.row9?.iamt) ?? "-"}</td>
             <td>${checkRound(table7?.row9?.csamt) ?? "-"}</td> -->
-            <td>${checkRound(table7?.row9?.total) ?? "-"}</td>
+            <td>${checkRound(table7?.row9?.txval) ?? "-"}</td>
           </tr>
         </tbody>
       </table>
@@ -1107,8 +1107,8 @@ const Report = React.memo(function Report({
             <td>
               ITC on inward supplies (other than imports and inward supplies
               liable to reverse charge but includes services received from SEZs)
-              received during the financial year but availed upto specified
-              period (GSTR9_8C)
+              received during the financial year but availed in the next
+              financial year upto specified period (GSTR9_8C)
             </td>
             <!-- <td>${checkRound(table9?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table9?.row1?.camt) ?? "-"}</td>
@@ -1433,8 +1433,8 @@ const Report = React.memo(function Report({
         ? `
     <li>
       <strong>
-        ${getTableNum(14)}. Proof of Transition Credit through TRAN-2 (Point
-        15):
+        ${getTableNum(14)}. Proof of Transition Credit through TRAN-1/TRAN-2
+        (Point 15):
       </strong>
       <table
         style="width: 100%"
