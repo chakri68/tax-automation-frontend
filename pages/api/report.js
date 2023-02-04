@@ -248,7 +248,9 @@ export default async function handler(req, res) {
       camt: Math.abs(this.ratio * this.row3.camt),
       samt: Math.abs(this.ratio * this.row3.samt),
       csamt: Math.abs(this.ratio * this.row3.csamt),
-      total: Math.abs(this.iamt + this.camt + this.samt + this.csamt),
+      get total() {
+        return Math.abs(this.iamt + this.camt + this.samt + this.csamt);
+      },
     };
     this.row5 = new (function () {
       const data1 = R9Data.table7?.rule42;
