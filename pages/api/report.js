@@ -241,39 +241,12 @@ export default async function handler(req, res) {
     this.row5 = new (function () {
       const data1 = R9Data.table7?.rule42;
       const data2 = R9Data.table7?.rule43;
-      const data3 = R9Data.table7?.revsl_tran1;
-      const data4 = R9Data.table7?.revsl_tran2;
       // this.txval = null;
-      this.txval = Math.abs(
-        (data1?.txval || 0) +
-          (data2?.txval || 0) +
-          (data3?.txval || 0) +
-          (data4?.txval || 0)
-      );
-      this.iamt = Math.abs(
-        (data1?.iamt || 0) +
-          (data2?.iamt || 0) +
-          (data3?.iamt || 0) +
-          (data4?.iamt || 0)
-      );
-      this.camt = Math.abs(
-        (data1?.camt || 0) +
-          (data2?.camt || 0) +
-          (data3?.camt || 0) +
-          (data4?.camt || 0)
-      );
-      this.samt = Math.abs(
-        (data1?.samt || 0) +
-          (data2?.samt || 0) +
-          (data3?.samt || 0) +
-          (data4?.samt || 0)
-      );
-      this.csamt = Math.abs(
-        (data1?.csamt || 0) +
-          (data2?.csamt || 0) +
-          (data3?.csamt || 0) +
-          (data4?.csamt || 0)
-      );
+      this.txval = Math.abs((data1?.txval || 0) + (data2?.txval || 0));
+      this.iamt = Math.abs((data1?.iamt || 0) + (data2?.iamt || 0));
+      this.camt = Math.abs((data1?.camt || 0) + (data2?.camt || 0));
+      this.samt = Math.abs((data1?.samt || 0) + (data2?.samt || 0));
+      this.csamt = Math.abs((data1?.csamt || 0) + (data2?.csamt || 0));
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row6 = {
