@@ -217,11 +217,23 @@ export default async function handler(req, res) {
     })();
     this.ratio = Math.abs(this.row2.txval / this.row1.txval);
     this.row3 = new (function () {
+      const data1 = R9Data.table6?.total_itc_availed;
+      const data2 = R9Data.table10?.itc_availd;
+      const data3 = R9Data.table10?.itc_rvsl;
+      console.log({ data1, data2, data3 });
       this.txval = null;
-      this.iamt = Math.abs(table2.row2.iamt + table2.row4.iamt);
-      this.camt = Math.abs(table2.row2.camt + table2.row4.camt);
-      this.samt = Math.abs(table2.row2.samt + table2.row4.samt);
-      this.csamt = Math.abs(table2.row2.csamt + table2.row4.csamt);
+      this.iamt = Math.abs(
+        (data1?.iamt || 0) + (data2?.iamt || 0) - (data3?.iamt || 0)
+      );
+      this.camt = Math.abs(
+        (data1?.camt || 0) + (data2?.camt || 0) - (data3?.camt || 0)
+      );
+      this.samt = Math.abs(
+        (data1?.samt || 0) + (data2?.samt || 0) - (data3?.samt || 0)
+      );
+      this.csamt = Math.abs(
+        (data1?.csamt || 0) + (data2?.csamt || 0) - (data3?.csamt || 0)
+      );
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row4 = {
