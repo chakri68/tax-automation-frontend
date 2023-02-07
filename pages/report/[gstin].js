@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image, { Icon } from "semantic-ui-react";
+import Navbar from '../../components/Navbar';
 import React, {
   useCallback,
   useEffect,
@@ -211,6 +212,8 @@ export default function GSTSummary() {
     }
   }, [gstin]);
   return (
+    <>
+    <Navbar />
     <StyledSection>
       <PDFSegment raised>
         {reportData != null && fileReading != true ? (
@@ -391,5 +394,6 @@ export default function GSTSummary() {
         )}
       </PDFSegment> */}
     </StyledSection>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import {
   Grid,
   Header,
   Input,
+  Dropdown,
   Segment,
 } from "semantic-ui-react";
 import styles from "../styles/Home.module.css";
@@ -19,27 +20,23 @@ const StyledTable = styled("table", {
   width: "600px",
 });
 
-function checkGSTIN(gstin) {
-  let matcher = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/;
-  return matcher.test(gstin);
+function getGSTIN(){
+  const GSTINs = ["09AAACM2931R1Z1"];
+  let DropListGSTINs = [];
+  GSTINs.forEach((item) => {
+      DropListGSTINs.push({ value: item, text: item, key: item })
+  })
+  return DropListGSTINs;
 }
 
 export default withRouter(
   class Home extends Component {
     state = {
-      loading: false,
-      gstin: "",
-      error: true,
       table: {
         row1: { samt: 0, camt: 0, iamt: 0, csamt: 0 },
         row2: { samt: 0, camt: 0, iamt: 0, csamt: 0 },
         row3: { samt: 0, camt: 0, iamt: 0, csamt: 0 },
       },
-    };
-    handleOnGSTINChange = (e, { name, value }) => {
-      this.setState({ [name]: value });
-      if (checkGSTIN(value)) this.setState({ error: false });
-      else this.setState({ error: true });
     };
     handleOnTableChange = (e, { name, value }) => {
       let n = name.split(" ");
@@ -47,26 +44,20 @@ export default withRouter(
       res[n[0]][n[1]] = value;
       this.setState({ table: res });
     };
-    handleFormSubmit = () => {
-      this.setState({ loading: true });
-      if (checkGSTIN(this.state.gstin)) {
-        this.setState({ error: false });
-        this.props.router.push(
-          `/report/${this.state.gstin}?${Object.keys(this.state.table)
-            .map((row) =>
-              Object.keys(this.state.table[row])
-                .map((amt) => `${row}_${amt}=${this.state.table[row][amt]}&`)
-                .join("")
-            )
-            .join("")}`
+    handleGSTINSelection = (e, {value}) => {
+      this.props.router.push(
+            `/report/${value}?${Object.keys(this.state.table)
+                .map((row) =>
+                    Object.keys(this.state.table[row])
+                        .map((amt) => `${row}_${amt}=${this.state.table[row][amt]}&`)
+                        .join("")
+                )
+                .join("")}`
         );
-      } else {
-        this.setState({ error: true });
-      }
-      this.setState({ loading: false });
+        this.setState({ loading: false });
     };
     render() {
-      let { loading, gstin, error, table } = this.state;
+      let { loading, table } = this.state;
       return (
         <Grid
           relaxed
@@ -80,36 +71,15 @@ export default withRouter(
               <Header as="h2" color="teal" textAlign="center">
                 Get tax discrepancies
               </Header>
-              <Form
-                size="large"
-                onSubmit={this.handleFormSubmit}
+              <Dropdown
+                placeholder='Enter GSTIN'
+                fluid
+                search
+                selection
                 loading={loading}
-                error={error}
-              >
-                <Form.Field
-                  className="no-auto-fill-color"
-                  required
-                  fluid
-                  control={Input}
-                  icon="user"
-                  iconPosition="left"
-                  value={gstin}
-                  name="gstin"
-                  onChange={this.handleOnGSTINChange}
-                  placeholder="GSTIN Number"
-                  error={
-                    error
-                      ? {
-                          content: "Please enter a valid GSTIN Number",
-                          pointing: "below",
-                        }
-                      : undefined
-                  }
-                />
-                <Button color="teal" fluid size="large">
-                  Get Tax Details
-                </Button>
-              </Form>
+                onChange={this.handleGSTINSelection}
+                options={getGSTIN()}
+              />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
