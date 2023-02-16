@@ -2,7 +2,7 @@ import config from "../../config";
 
 const { backendURL } = config;
 
-const dev = true;
+const dev = false;
 // Some util functions to parse the weird ass data from the database
 function processData(json, matcher) {
   let res = {};
@@ -265,12 +265,12 @@ export default async function handler(req, res) {
     })();
     this.row6 = {
       // txval: null,
-      txval: Math.abs((this.row4.txval || 0) - (this.row5.txval || 0)),
-      iamt: Math.abs((this.row4.iamt || 0) - (this.row5.iamt || 0)),
-      camt: Math.abs((this.row4.camt || 0) - (this.row5.camt || 0)),
-      samt: Math.abs((this.row4.samt || 0) - (this.row5.samt || 0)),
-      csamt: Math.abs((this.row4.csamt || 0) - (this.row5.csamt || 0)),
-      total: Math.abs((this.row4.total || 0) - (this.row5.total || 0)),
+      txval: (this.row4.txval || 0) - (this.row5.txval || 0),
+      iamt: (this.row4.iamt || 0) - (this.row5.iamt || 0),
+      camt: (this.row4.camt || 0) - (this.row5.camt || 0),
+      samt: (this.row4.samt || 0) - (this.row5.samt || 0),
+      csamt: (this.row4.csamt || 0) - (this.row5.csamt || 0),
+      total: (this.row4.total || 0) - (this.row5.total || 0),
     };
   })();
   const table4 = new (function () {
