@@ -20,12 +20,12 @@ const StyledTable = styled("table", {
   width: "600px",
 });
 
-function getGSTIN(){
-  const GSTINs = ["09AAACM2931R1Z1"];
+function getGSTIN() {
+  const GSTINs = ["09AANCA3351L1ZC"];
   let DropListGSTINs = [];
   GSTINs.forEach((item) => {
-      DropListGSTINs.push({ value: item, text: item, key: item })
-  })
+    DropListGSTINs.push({ value: item, text: item, key: item });
+  });
   return DropListGSTINs;
 }
 
@@ -44,17 +44,17 @@ export default withRouter(
       res[n[0]][n[1]] = value;
       this.setState({ table: res });
     };
-    handleGSTINSelection = (e, {value}) => {
+    handleGSTINSelection = (e, { value }) => {
       this.props.router.push(
-            `/report/${value}?${Object.keys(this.state.table)
-                .map((row) =>
-                    Object.keys(this.state.table[row])
-                        .map((amt) => `${row}_${amt}=${this.state.table[row][amt]}&`)
-                        .join("")
-                )
-                .join("")}`
-        );
-        this.setState({ loading: false });
+        `/report/${value}?${Object.keys(this.state.table)
+          .map((row) =>
+            Object.keys(this.state.table[row])
+              .map((amt) => `${row}_${amt}=${this.state.table[row][amt]}&`)
+              .join("")
+          )
+          .join("")}`
+      );
+      this.setState({ loading: false });
     };
     render() {
       let { loading, table } = this.state;
@@ -72,7 +72,7 @@ export default withRouter(
                 Get tax discrepancies
               </Header>
               <Dropdown
-                placeholder='Enter GSTIN'
+                placeholder="Enter GSTIN"
                 fluid
                 search
                 selection
