@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image, { Icon } from "semantic-ui-react";
-import Navbar from '../../components/Navbar';
+import Navbar from "../../components/Navbar";
 import React, {
   useCallback,
   useEffect,
@@ -213,117 +213,117 @@ export default function GSTSummary() {
   }, [gstin]);
   return (
     <>
-    <Navbar />
-    <StyledSection>
-      <PDFSegment raised>
-        {reportData != null && fileReading != true ? (
-          <>
-            <Header as="h3" color="teal" textAlign="center">
-              Generated Report
-            </Header>
-            <Button
-              fluid
-              disabled={pdfUrl == null}
-              onClick={() => window.open(pdfUrl)}
-            >
-              Open In New Tab
-            </Button>
-            <Modal
-              onClose={() => setOpen(false)}
-              onOpen={() => setOpen(true)}
-              open={open}
-              trigger={
-                <Button
-                  style={{ margin: "3px 0px" }}
-                  fluid
-                  disabled={pdfUrl == null}
-                >
-                  Add Remarks
-                </Button>
-              }
-            >
-              <Modal.Header>Select a pdf/word document</Modal.Header>
-              <Modal.Content>
-                <Segment
-                  placeholder
-                  style={{
-                    width: "100%",
-                  }}
-                  {...getRootProps({ style: dropboxStyles })}
-                >
-                  <Header icon>
-                    <Icon name="file word outline" />
-                    {files.length > 0
-                      ? ""
-                      : "No docx documents are listed for this customer."}
-                  </Header>
+      <Navbar />
+      <StyledSection>
+        <PDFSegment raised>
+          {reportData != null && fileReading != true ? (
+            <>
+              <Header as="h3" color="teal" textAlign="center">
+                Generated Report
+              </Header>
+              <Button
+                fluid
+                disabled={pdfUrl == null}
+                onClick={() => window.open(pdfUrl)}
+              >
+                Open In New Tab
+              </Button>
+              <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+                trigger={
                   <Button
-                    primary
-                    content={
-                      files.length > 0 ? "Add document" : "Choose Document"
-                    }
-                    labelPosition="left"
-                    icon="file word outline"
-                    onClick={selectFiles}
+                    style={{ margin: "3px 0px" }}
+                    fluid
+                    disabled={pdfUrl == null}
+                  >
+                    Add Remarks
+                  </Button>
+                }
+              >
+                <Modal.Header>Select a pdf/word document</Modal.Header>
+                <Modal.Content>
+                  <Segment
+                    placeholder
+                    style={{
+                      width: "100%",
+                    }}
+                    {...getRootProps({ style: dropboxStyles })}
+                  >
+                    <Header icon>
+                      <Icon name="file word outline" />
+                      {files.length > 0
+                        ? ""
+                        : "No docx documents are listed for this customer."}
+                    </Header>
+                    <Button
+                      primary
+                      content={
+                        files.length > 0 ? "Add document" : "Choose Document"
+                      }
+                      labelPosition="left"
+                      icon="file word outline"
+                      onClick={selectFiles}
+                    />
+                    <input {...getInputProps()} />
+                    {files.length > 0 ? (
+                      <p style={{ marginTop: "1.5rem" }}>
+                        Files Selected:{" "}
+                        <em>{files.map((file) => file.name).join(", ")}</em>
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </Segment>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    color="black"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    content="Clear Files"
+                    labelPosition="right"
+                    icon="delete"
+                    onClick={() => {
+                      setFiles([]);
+                      setBuffferData([]);
+                    }}
+                    negative
                   />
-                  <input {...getInputProps()} />
-                  {files.length > 0 ? (
-                    <p style={{ marginTop: "1.5rem" }}>
-                      Files Selected:{" "}
-                      <em>{files.map((file) => file.name).join(", ")}</em>
-                    </p>
-                  ) : (
-                    ""
-                  )}
-                </Segment>
-              </Modal.Content>
-              <Modal.Actions>
-                <Button
-                  color="black"
-                  onClick={() => {
-                    setOpen(false);
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  content="Clear Files"
-                  labelPosition="right"
-                  icon="delete"
-                  onClick={() => {
-                    setFiles([]);
-                    setBuffferData([]);
-                  }}
-                  negative
-                />
-                <Button
-                  content="Done"
-                  labelPosition="right"
-                  icon="checkmark"
-                  onClick={async () => {
-                    setFileReading(true);
-                    await handleFiles();
-                    setFileReading(false);
-                    setOpen(false);
-                  }}
-                  positive
-                />
-              </Modal.Actions>
-            </Modal>
-            <DynamicReport
-              tableData={reportData}
-              gstin={gstin}
-              setPdfUrl={setPdfUrl}
-              remarkFiles={bufferData}
-            />
-          </>
-        ) : (
-          <Dimmer active>
-            <Loader />
-          </Dimmer>
-        )}
-      </PDFSegment>
-      {/* <PDFSegment raised>
+                  <Button
+                    content="Done"
+                    labelPosition="right"
+                    icon="checkmark"
+                    onClick={async () => {
+                      setFileReading(true);
+                      await handleFiles();
+                      setFileReading(false);
+                      setOpen(false);
+                    }}
+                    positive
+                  />
+                </Modal.Actions>
+              </Modal>
+              <DynamicReport
+                tableData={reportData}
+                gstin={gstin}
+                setPdfUrl={setPdfUrl}
+                remarkFiles={bufferData}
+              />
+            </>
+          ) : (
+            <Dimmer active>
+              <Loader />
+            </Dimmer>
+          )}
+        </PDFSegment>
+        {/* <PDFSegment raised>
         {GSTR1Data != null ? (
           <>
             <Header as="h3" color="teal" textAlign="center">
@@ -393,7 +393,7 @@ export default function GSTSummary() {
           </Dimmer>
         )}
       </PDFSegment> */}
-    </StyledSection>
+      </StyledSection>
     </>
   );
 }
