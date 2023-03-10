@@ -17,23 +17,24 @@ function processData(json, matcher) {
 }
 
 export default async function handler(req, res) {
-  console.log({ req: req.body });
+  // console.log({ req: req.body });
 
   let { gstin } = req.query;
-  let {
-    row1_samt,
-    row2_samt,
-    row3_samt,
-    row1_camt,
-    row2_camt,
-    row3_camt,
-    row1_iamt,
-    row2_iamt,
-    row3_iamt,
-    row1_csamt,
-    row2_csamt,
-    row3_csamt,
-  } = JSON.parse(req.body);
+
+  // let {
+  //   row1_samt,
+  //   row2_samt,
+  //   row3_samt,
+  //   row1_camt,
+  //   row2_camt,
+  //   row3_camt,
+  //   row1_iamt,
+  //   row2_iamt,
+  //   row3_iamt,
+  //   row1_csamt,
+  //   row2_csamt,
+  //   row3_csamt,
+  // } = JSON.parse(req.body);
   let response, data;
   // fetching all the data
 
@@ -273,63 +274,55 @@ export default async function handler(req, res) {
       total: (this.row4.total || 0) - (this.row5.total || 0),
     };
   })();
-  const table4 = new (function () {
-    this.row1 = new (function () {
-      this.iamt = Math.abs(parseInt(row1_iamt));
-      this.camt = Math.abs(parseInt(row1_camt));
-      this.samt = Math.abs(parseInt(row1_samt));
-      this.csamt = Math.abs(parseInt(row1_csamt));
-      this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-    })();
-    this.row2 = new (function () {
-      this.iamt = Math.abs(parseInt(row2_iamt));
-      this.camt = Math.abs(parseInt(row2_camt));
-      this.samt = Math.abs(parseInt(row2_samt));
-      this.csamt = Math.abs(parseInt(row2_csamt));
-      this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-    })();
-    this.row3 = new (function () {
-      this.iamt = Math.abs(parseInt(row3_iamt));
-      this.camt = Math.abs(parseInt(row3_camt));
-      this.samt = Math.abs(parseInt(row3_samt));
-      this.csamt = Math.abs(parseInt(row3_csamt));
-      this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-    })();
-    this.row4 = {
-      iamt: Math.abs(this.row1.iamt + this.row2.iamt + this.row3.iamt),
-      camt: Math.abs(this.row1.camt + this.row2.camt + this.row3.camt),
-      samt: Math.abs(this.row1.samt + this.row2.samt + this.row3.samt),
-      csamt: Math.abs(
-        Math.abs(this.row1.csamt + this.row2.csamt + this.row3.csamt)
-      ),
-      total: Math.abs(this.row1.total + this.row2.total + this.row3.total),
-    };
-  })();
+  // const table4 = new (function () {
+  //   this.row1 = new (function () {
+  //     this.iamt = Math.abs(parseInt(row1_iamt));
+  //     this.camt = Math.abs(parseInt(row1_camt));
+  //     this.samt = Math.abs(parseInt(row1_samt));
+  //     this.csamt = Math.abs(parseInt(row1_csamt));
+  //     this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
+  //   })();
+  //   this.row2 = new (function () {
+  //     this.iamt = Math.abs(parseInt(row2_iamt));
+  //     this.camt = Math.abs(parseInt(row2_camt));
+  //     this.samt = Math.abs(parseInt(row2_samt));
+  //     this.csamt = Math.abs(parseInt(row2_csamt));
+  //     this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
+  //   })();
+  //   this.row3 = new (function () {
+  //     this.iamt = Math.abs(parseInt(row3_iamt));
+  //     this.camt = Math.abs(parseInt(row3_camt));
+  //     this.samt = Math.abs(parseInt(row3_samt));
+  //     this.csamt = Math.abs(parseInt(row3_csamt));
+  //     this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
+  //   })();
+  //   this.row4 = {
+  //     iamt: Math.abs(this.row1.iamt + this.row2.iamt + this.row3.iamt),
+  //     camt: Math.abs(this.row1.camt + this.row2.camt + this.row3.camt),
+  //     samt: Math.abs(this.row1.samt + this.row2.samt + this.row3.samt),
+  //     csamt: Math.abs(
+  //       Math.abs(this.row1.csamt + this.row2.csamt + this.row3.csamt)
+  //     ),
+  //     total: Math.abs(this.row1.total + this.row2.total + this.row3.total),
+  //   };
+  // })();
   const table5 = new (function () {
     this.row1 = new (function () {
       this.iamt = Math.abs(
-        table1.row3.iamt +
-          table2.row5.iamt +
-          table3.row6.iamt +
-          table4.row4.iamt
+        table1.row3.iamt + table2.row5.iamt + table3.row6.iamt
+        // + table4.row4.iamt
       );
       this.camt = Math.abs(
-        table1.row3.camt +
-          table2.row5.camt +
-          table3.row6.camt +
-          table4.row4.camt
+        table1.row3.camt + table2.row5.camt + table3.row6.camt
+        // + table4.row4.camt
       );
       this.samt = Math.abs(
-        table1.row3.samt +
-          table2.row5.samt +
-          table3.row6.samt +
-          table4.row4.samt
+        table1.row3.samt + table2.row5.samt + table3.row6.samt
+        // + table4.row4.samt
       );
       this.csamt = Math.abs(
-        table1.row3.csamt +
-          table2.row5.csamt +
-          table3.row6.csamt +
-          table4.row4.csamt
+        table1.row3.csamt + table2.row5.csamt + table3.row6.csamt
+        // + table4.row4.csamt
       );
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
@@ -773,7 +766,7 @@ export default async function handler(req, res) {
     table1,
     table2,
     table3,
-    table4,
+    // table4,
     table5,
     table6,
     table7,
