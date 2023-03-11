@@ -1,13 +1,6 @@
-import Head from "next/head";
-import Image, { Icon } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 import Navbar from "../../components/Navbar.js";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 // import styles from "../styles/Home.module.css";
 import config from "../../config";
 
@@ -17,7 +10,6 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import {
   Button,
-  Card,
   Dimmer,
   Header,
   Loader,

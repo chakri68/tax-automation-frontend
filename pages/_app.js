@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
-import AppProvider from "../contexts/appContext.js";
 import { useState } from "react";
 import AppContext from "../contexts/appContext.js";
 

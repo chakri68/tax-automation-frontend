@@ -1,20 +1,14 @@
-import Head from "next/head";
-import Image from "next/image";
 import Navbar from "../components/Navbar.js";
 import {
   Button,
   Card,
-  Checkbox,
   Form,
   Grid,
   Header,
-  Input,
   Dropdown,
-  Segment,
   Table,
 } from "semantic-ui-react";
-import styles from "../styles/Home.module.css";
-import { useState, Component } from "react";
+import { Component } from "react";
 import { withRouter } from "next/router";
 import AppContext from "../contexts/appContext.js";
 
