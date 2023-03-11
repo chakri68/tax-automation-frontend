@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image, { Icon } from "semantic-ui-react";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar.js";
 import React, {
   useCallback,
   useEffect,
