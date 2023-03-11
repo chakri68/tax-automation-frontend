@@ -36,18 +36,36 @@ export default async function handler(req, res) {
   //   row3_csamt,
   // } = JSON.parse(req.body);
   let response, data;
+  // [R1, R12, R3b, R9, R9C, gstin-details]
   // fetching all the data
 
+  // All data at once
+
+  console.log("STARTING THE FETCH");
+
+  let urls = [
+    `${backendURL}/api/v1/r1?GSTIN=${gstin}`,
+    `${backendURL}/api/v1/r12?GSTIN=${gstin}`,
+    `${backendURL}/api/v1/r3b?GSTIN=${gstin}`,
+    `${backendURL}/api/v1/r9?GSTIN=${gstin}`,
+    `${backendURL}/api/v1/r9c?GSTIN=${gstin}`,
+    `${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`,
+  ];
+
+  let reqs = urls.map((url) => fetch(url));
+  let responses = await Promise.all(reqs);
+  let json = responses.map((response) => response.json());
+  let allData = await Promise.all(json);
+
+  // console.log(allData[allData.length - 1]);
+
   // R1 Data
-  let response1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
-  let response2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
-  let data1 = await response1.json();
-  let data2 = await response2.json();
+  let data1 = allData[0];
+  let data2 = allData[1];
   let R1Data = { ...data1.data, ...data2.data };
 
   // R3 Data
-  response = await fetch(`${backendURL}/api/v1/r3b?GSTIN=${gstin}`);
-  data = await response.json();
+  data = allData[2];
   let R3Data = processData(
     data.data,
     (key) =>
@@ -59,21 +77,18 @@ export default async function handler(req, res) {
   );
 
   // R9 Data
-  response = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
-  data = await response.json();
+  data = allData[3];
   let R9Data = processData(
     data.data,
     (key) => key.startsWith("table") || key === "tax_pay"
   );
 
   // R9C Data
-  response = await fetch(`${backendURL}/api/v1/r9c?GSTIN=${gstin}`);
-  data = await response.json();
+  data = allData[4];
   let R9CData = data.data;
 
   // GSTIN Details
-  response = await fetch(`${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`);
-  data = await response.json();
+  data = allData[4];
   let gstin_det = data.data;
   gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
   let { bzdtls } = gstin_det.GSTINDetails;
@@ -81,6 +96,50 @@ export default async function handler(req, res) {
     legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
     trade_name: bzdtls.bzdtlsbz.trdnm,
   };
+  console.log("FETCHING DONE");
+  // // R1 Data
+  // let response1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
+  // let response2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
+  // let data1 = await response1.json();
+  // let data2 = await response2.json();
+  // let R1Data = { ...data1.data, ...data2.data };
+
+  // // R3 Data
+  // response = await fetch(`${backendURL}/api/v1/r3b?GSTIN=${gstin}`);
+  // data = await response.json();
+  // let R3Data = processData(
+  //   data.data,
+  //   (key) =>
+  //     key === "itc_elg" ||
+  //     key === "intr_ltfee" ||
+  //     key === "qn" ||
+  //     key === "sup_details" ||
+  //     key === "inward_sup"
+  // );
+
+  // // R9 Data
+  // response = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
+  // data = await response.json();
+  // let R9Data = processData(
+  //   data.data,
+  //   (key) => key.startsWith("table") || key === "tax_pay"
+  // );
+
+  // // R9C Data
+  // response = await fetch(`${backendURL}/api/v1/r9c?GSTIN=${gstin}`);
+  // data = await response.json();
+  // let R9CData = data.data;
+
+  // // GSTIN Details
+  // response = await fetch(`${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`);
+  // data = await response.json();
+  // let gstin_det = data.data;
+  // gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
+  // let { bzdtls } = gstin_det.GSTINDetails;
+  // let GSTINDetails = {
+  //   legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
+  //   trade_name: bzdtls.bzdtlsbz.trdnm,
+  // };
 
   const table1 = new (function () {
     this.row1 = new (function () {
@@ -351,7 +410,7 @@ export default async function handler(req, res) {
       csamt: this.row2.csamt - this.row1.csamt,
       total: this.row2.total - this.row1.total,
     };
-    this.flag = dev || this.row1.total.toFixed(2) < this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total < this.row2.total;
   })();
   const table7 = new (function () {
     this.row1 = new (function () {
@@ -466,7 +525,7 @@ export default async function handler(req, res) {
       csamt: this.row7.csamt - this.row8.csamt,
       total: this.row7.total - this.row8.total,
     };
-    this.flag = dev || this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
+    this.flag = dev || this.row7.total > this.row8.total;
   })();
   const table8 = new (function () {
     this.row1 = new (function () {
@@ -567,7 +626,7 @@ export default async function handler(req, res) {
       csamt: this.row7.csamt - this.row8.csamt,
       total: this.row7.total - this.row8.total,
     };
-    this.flag = dev || this.row7.total.toFixed(2) > this.row8.total.toFixed(2);
+    this.flag = dev || this.row7.total > this.row8.total;
   })();
   const table9 = new (function () {
     this.row1 = new (function () {
@@ -591,9 +650,9 @@ export default async function handler(req, res) {
       // camt: this.row1.camt - this.row2.camt,
       // samt: this.row1.samt - this.row2.samt,
       // csamt: this.row1.csamt - this.row2.csamt,
-      total: this.row1.total - this.row2.total,
+      total: Math.abs(this.row1.total - this.row2.total),
     };
-    this.flag = dev || this.row1.total.toFixed(2) > this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total != this.row2.total;
   })();
   const table10 = new (function () {
     this.row1 = new (function () {
@@ -622,8 +681,7 @@ export default async function handler(req, res) {
       csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag =
-      dev || this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total !== this.row2.total;
   })();
   const table11 = new (function () {
     this.row1 = new (function () {
@@ -650,8 +708,7 @@ export default async function handler(req, res) {
       // csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag =
-      dev || this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total !== this.row2.total;
   })();
   const table12 = new (function () {
     this.row1 = new (function () {
@@ -677,8 +734,7 @@ export default async function handler(req, res) {
       csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
-    this.flag =
-      dev || this.row1.total.toFixed(2) !== this.row2.total.toFixed(2);
+    this.flag = dev || this.row1.total !== this.row2.total;
   })();
   const table13 = new (function () {
     this.row1 = new (function () {
@@ -784,6 +840,8 @@ export default async function handler(req, res) {
   };
 
   // console.log({ R1Data, R3Data, R9Data });
+
+  console.log("DONEE");
 
   res
     .status(200)
