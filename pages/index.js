@@ -43,10 +43,12 @@ export default withRouter(
       this.props.router.push(`/report/${this.state.selectedGSTIN}`);
       this.setState({ loading: false });
     };
-    getScodeData = async (scode) => {
-      const response = await fetch(`/api/scode?scode=${scode}`);
+    getScodeData = async () => {
+      const response = await fetch(`/api/scode`, {
+        method: "POST",
+        body: JSON.stringify({ token: this.context.authState.token }),
+      });
       const data = await response.json();
-      console.log({ data });
       if (!data.success) return null;
       let DropListGSTINs = [];
       data.data.gstins.forEach((gstin_details) => {
@@ -67,9 +69,7 @@ export default withRouter(
     scodeFormSubmit = async (e, callback) => {
       e.preventDefault();
       this.setState({ loading: true });
-      let { GSTINList: list, empDetails } = await this.getScodeData(
-        e.nativeEvent.target[0].value
-      );
+      let { GSTINList: list, empDetails } = await this.getScodeData();
       this.setState({
         // GSTINList: list,
         // empDetails: empDetails,
@@ -108,10 +108,6 @@ export default withRouter(
                           )
                         }
                       >
-                        <Form.Field>
-                          <label>Enter Sector Code</label>
-                          <input placeholder="Sector Code" />
-                        </Form.Field>
                         <Button type="submit" loading={this.state.loading}>
                           Get GSTINS for <i>{value.appData.scode}</i>
                         </Button>
