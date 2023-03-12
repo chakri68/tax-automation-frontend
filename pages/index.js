@@ -89,7 +89,7 @@ export default withRouter(
                       <Form
                         onSubmit={(e) =>
                           this.scodeFormSubmit(e, (newData) =>
-                            value.updates.update(newData)
+                            value.update(newData)
                           )
                         }
                       >

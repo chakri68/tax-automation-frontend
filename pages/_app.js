@@ -4,10 +4,12 @@ import { useState } from "react";
 import AppContext from "../contexts/appContext.js";
 
 function MyApp({ Component, pageProps }) {
-  let [appData, setAppData] = useState({ GSTINList: [], empDetails: null });
-  console.log("RERENDER", appData);
+  let [appData, setAppData] = useState({
+    GSTINList: [],
+    empDetails: null,
+    scode: null,
+  });
   function updateGSTINList(list) {
-    console.log("LIST AT _APP", list);
     setAppData({ ...appData, GSTINList: list });
   }
   function updateEmpDetails(empDetails) {
@@ -17,14 +19,16 @@ function MyApp({ Component, pageProps }) {
     setAppData({ ...appData, ...value });
   }
   return (
-    <AppContext.Provider
-      value={{
-        appData,
-        updates: { updateGSTINList, updateEmpDetails, update },
-      }}
-    >
-      <Component {...pageProps} />
-    </AppContext.Provider>
+      <AppContext.Provider
+        value={{
+          appData,
+          updateGSTINList,
+          updateEmpDetails,
+          update,
+        }}
+      >
+        <Component {...pageProps} />
+      </AppContext.Provider>
   );
 }
 
