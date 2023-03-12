@@ -85,6 +85,14 @@ export default withRouter(
           <AppContext.Consumer>
             {(value) => (
               <>
+                {value.appData.empDetails ? (
+                  <div className="office">
+                    Office: {value.appData.empDetails.sector},{" "}
+                    {value.appData.empDetails.DESIG}
+                  </div>
+                ) : (
+                  ""
+                )}
                 <Grid
                   relaxed
                   textAlign="center"
@@ -109,7 +117,13 @@ export default withRouter(
                         }
                       >
                         <Button type="submit" loading={this.state.loading}>
-                          Get GSTINS for <i>{value.appData.scode}</i>
+                          {value.appData.GSTINList.length == 0 ? (
+                            <>
+                              Get GSTINS for <i>{value.appData.scode}</i>
+                            </>
+                          ) : (
+                            <>Refresh Data</>
+                          )}
                         </Button>
                       </Form>
                     </Grid.Column>
@@ -162,14 +176,20 @@ export default withRouter(
                               <Table.HeaderCell textAlign="center">
                                 S. No.
                               </Table.HeaderCell>
-                              <Table.HeaderCell textAlign="left">
-                                Legal Name
-                              </Table.HeaderCell>
                               <Table.HeaderCell textAlign="center">
                                 GSTIN Number
                               </Table.HeaderCell>
                               <Table.HeaderCell textAlign="center">
-                                Generate Button
+                                Trade Name
+                              </Table.HeaderCell>
+                              <Table.HeaderCell textAlign="center">
+                                Legal Name
+                              </Table.HeaderCell>
+                              <Table.HeaderCell textAlign="center">
+                                Generate Notice
+                              </Table.HeaderCell>
+                              <Table.HeaderCell textAlign="center">
+                                Action Required
                               </Table.HeaderCell>
                             </Table.Row>
                           </Table.Header>
@@ -181,13 +201,14 @@ export default withRouter(
                                     <Table.Cell textAlign="center">
                                       {ind + 1}
                                     </Table.Cell>
-                                    <Table.Cell textAlign="left">
-                                      {value?.legal_name ||
-                                        value?.trade_name ||
-                                        "-"}
-                                    </Table.Cell>
                                     <Table.Cell textAlign="center">
                                       {text}
+                                    </Table.Cell>
+                                    <Table.Cell textAlign="left">
+                                      {value?.trade_name || "-"}
+                                    </Table.Cell>
+                                    <Table.Cell textAlign="left">
+                                      {value?.legal_name || "-"}
                                     </Table.Cell>
                                     <Table.Cell textAlign="center">
                                       <Button
@@ -197,6 +218,9 @@ export default withRouter(
                                       >
                                         Generate Report
                                       </Button>
+                                    </Table.Cell>
+                                    <Table.Cell textAlign="center">
+                                      Hello World!
                                     </Table.Cell>
                                   </Table.Row>
                                 );
