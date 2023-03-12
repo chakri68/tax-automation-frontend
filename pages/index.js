@@ -11,14 +11,29 @@ import {
 import { Component } from "react";
 import { withRouter } from "next/router";
 import AppContext from "../contexts/appContext.js";
+import { AuthContext } from "../contexts/authContext.js";
 
 export default withRouter(
   class Home extends Component {
     state = {
       loading: false,
-      scode: "",
       selectedGSTIN: null,
     };
+    static contextType = AuthContext;
+    componentDidUpdate() {
+      if (!this.context?.isAuthenticated()) {
+        this.props.router.push(
+          `/error?message=Unauthenticated%20User&callback=/`
+        );
+      }
+    }
+    componentDidMount() {
+      if (!this.context?.isAuthenticated()) {
+        this.props.router.push(
+          `/error?message=Unauthenticated%20User&callback=/`
+        );
+      }
+    }
     handleGSTINSelection = (gstin = null) => {
       if (gstin) {
         this.props.router.push(`/report/${gstin}`);
@@ -98,7 +113,7 @@ export default withRouter(
                           <input placeholder="Sector Code" />
                         </Form.Field>
                         <Button type="submit" loading={this.state.loading}>
-                          Get GSTINS
+                          Get GSTINS for <i>{value.appData.scode}</i>
                         </Button>
                       </Form>
                     </Grid.Column>

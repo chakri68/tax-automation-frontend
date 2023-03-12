@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
 import { useState } from "react";
 import AppContext from "../contexts/appContext.js";
+import AuthProvider from "../contexts/authContext";
 
 function MyApp({ Component, pageProps }) {
   let [appData, setAppData] = useState({
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
     setAppData({ ...appData, ...value });
   }
   return (
+    <AuthProvider>
       <AppContext.Provider
         value={{
           appData,
@@ -29,6 +31,7 @@ function MyApp({ Component, pageProps }) {
       >
         <Component {...pageProps} />
       </AppContext.Provider>
+    </AuthProvider>
   );
 }
 
