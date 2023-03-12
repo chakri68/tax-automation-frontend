@@ -39,20 +39,20 @@ export async function getServerSideProps(context) {
     let token = jwt.sign({ S, P, RU }, process.env.JWT_KEY, {
       expiresIn: 30 * 60,
     });
-    // let md5Hash = MD5(
-    //   `${S}|${formatDate(new Date())}|${process.env.PIN}`
-    // ).toString();
-    // if (md5Hash === P) {
-    return {
-      props: {
-        error: false,
-        data: { S, P, RU, token },
-        message: "VERIFICATION SUCCESSFUL",
-      },
-    };
-    // } else {
-    //   throw new Error("INVALID QUERY");
-    // }
+    let md5Hash = MD5(
+      `${S}|${formatDate(new Date())}|${process.env.PIN}`
+    ).toString();
+    if (md5Hash === P) {
+      return {
+        props: {
+          error: false,
+          data: { S, P, RU, token },
+          message: "VERIFICATION SUCCESSFUL",
+        },
+      };
+    } else {
+      throw new Error("INVALID QUERY");
+    }
   } catch (e) {
     return {
       redirect: {
