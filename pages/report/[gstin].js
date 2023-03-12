@@ -1,6 +1,12 @@
 import { Icon } from "semantic-ui-react";
 import Navbar from "../../components/Navbar.js";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 // import styles from "../styles/Home.module.css";
 import config from "../../config";
 
@@ -18,6 +24,7 @@ import {
 } from "semantic-ui-react";
 import { styled } from "@stitches/react";
 import { useDropzone } from "react-dropzone";
+import { AuthContext } from "../../contexts/authContext.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const { backendURL } = config;
@@ -190,19 +197,29 @@ export default function GSTSummary() {
   let [reportData, setReportData] = useState(null);
   // let [reportData, setReportData] = useState({});
 
+  const authContext = useContext(AuthContext);
+
   useEffect(() => {
     if (gstin) {
       // getGSTR1Data(gstin, setGSTR1Data);
       // getGSTR9Data(gstin, setGSTR9Data);
       // getGSTR3BData(gstin, setGSTR3BData);
-      getReportData(gstin, router.query, (data) => {
-        setReportData(data.Report);
-        setGSTR1Data(data.R1Data);
-        setGSTR3BData(data.R3Data);
-        setGSTR9Data(data.R9Data);
-      });
+      if (!authContext?.isAuthenticated()) {
+        router.push("/error?message=Not%20Authenticated");
+        return;
+      }
+      getReportData(
+        gstin,
+        { gstin, token: authContext.authState.token },
+        (data) => {
+          setReportData(data.Report);
+          setGSTR1Data(data.R1Data);
+          setGSTR3BData(data.R3Data);
+          setGSTR9Data(data.R9Data);
+        }
+      );
     }
-  }, [gstin]);
+  }, [authContext, gstin]);
   return (
     <>
       <Navbar />

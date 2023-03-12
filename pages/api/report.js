@@ -17,9 +17,14 @@ function processData(json, matcher) {
 }
 
 export default async function handler(req, res) {
-  // console.log({ req: req.body });
-
-  let { gstin } = req.query;
+  let { token, gstin } = JSON.parse(req.body);
+  if (!token) {
+    res
+      .status(400)
+      .json({ success: false, data: null, message: "TOKEN NOT PROVIDED" });
+    return;
+  }
+  let decodedJWT = jwt.verify(token, process.env.JWT_KEY);
 
   // let {
   //   row1_samt,
