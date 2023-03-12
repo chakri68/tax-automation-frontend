@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { useRouter } from "next/router.js";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/authContext";
-import AppContext from "../contexts/appContext";
+import { AppContext } from "../contexts/appContext";
 
 export default function Login(props) {
   let authContext = useContext(AuthContext);

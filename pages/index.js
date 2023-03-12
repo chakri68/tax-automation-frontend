@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { Component } from "react";
 import { withRouter } from "next/router";
-import AppContext from "../contexts/appContext.js";
+import { AppContext } from "../contexts/appContext.js";
 import { AuthContext } from "../contexts/authContext.js";
 
 export default withRouter(
