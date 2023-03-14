@@ -5,14 +5,18 @@ export const AuthContext = React.createContext();
 export default function AuthProvider({ children }) {
   const [authState, setAuthState] = useState({ token: "" });
 
+  let [initLoad, setInitLoad] = useState(true);
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
       setAuthState({ token });
     }
+    setInitLoad(false);
   }, []);
 
   function setUserAuthInfo(token) {
+    // TODO: Ask for a re-login if the token is expired
     localStorage.setItem("token", token);
     setAuthState({ token });
   }
@@ -25,6 +29,7 @@ export default function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         authState,
+        initLoad,
         setAuthToken: (token) => setUserAuthInfo(token),
         isAuthenticated,
       }}
