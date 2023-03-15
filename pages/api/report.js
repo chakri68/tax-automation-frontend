@@ -1,4 +1,5 @@
 import config from "../../config";
+import jwt from "jsonwebtoken";
 
 const { backendURL } = config;
 
@@ -50,7 +51,6 @@ export default async function handler(req, res) {
 
   let urls = [
     `${backendURL}/api/v1/r1?GSTIN=${gstin}`,
-    `${backendURL}/api/v1/r12?GSTIN=${gstin}`,
     `${backendURL}/api/v1/r3b?GSTIN=${gstin}`,
     `${backendURL}/api/v1/r9?GSTIN=${gstin}`,
     `${backendURL}/api/v1/r9c?GSTIN=${gstin}`,
@@ -58,6 +58,10 @@ export default async function handler(req, res) {
   ];
 
   let reqs = urls.map((url) => fetch(url));
+  // let reqs = urls.map((url) => fetch(url, {
+  //   method: "POST",
+  //   body: JSON.stringify({ token }),
+  // }));
   let responses = await Promise.all(reqs);
   let json = responses.map((response) => response.json());
   let allData = await Promise.all(json);
@@ -66,11 +70,10 @@ export default async function handler(req, res) {
 
   // R1 Data
   let data1 = allData[0];
-  let data2 = allData[1];
-  let R1Data = { ...data1.data, ...data2.data };
+  let R1Data = { ...data1.data };
 
   // R3 Data
-  data = allData[2];
+  data = allData[1];
   let R3Data = processData(
     data.data,
     (key) =>
@@ -82,14 +85,14 @@ export default async function handler(req, res) {
   );
 
   // R9 Data
-  data = allData[3];
+  data = allData[2];
   let R9Data = processData(
     data.data,
     (key) => key.startsWith("table") || key === "tax_pay"
   );
 
   // R9C Data
-  data = allData[4];
+  data = allData[3];
   let R9CData = data.data;
 
   // GSTIN Details
