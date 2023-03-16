@@ -903,7 +903,8 @@ export default async function handler(req, res) {
 
   console.log("DONEE");
 
-  res
-    .status(200)
-    .json({ success: true, data: { R1Data, R3Data, R9Data, R9CData, Report } });
+  res.status(200).json({
+    success: true,
+    data: { R1Data, R3Data, R9Data, R9CData, Report, warnings },
+  });
 }
