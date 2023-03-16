@@ -11,10 +11,6 @@ import { AuthContext } from "../contexts/authContext.js";
 
 export default withRouter(
   class Home extends Component {
-    // constructor(props) {
-    //   super(props);
-    //   this.GSTINReviewForm = React.createRef();
-    // }
     state = {
       loading: false,
       selectedGSTIN: {
@@ -49,8 +45,6 @@ export default withRouter(
         }),
       });
       let data = await res.json();
-      // TODO: Handle Errors
-      // console.log({ postReply: data });
       let reqInd = appContextVal.appData.GSTINList.findIndex(
         (x) => x.id == this.state.selectedGSTIN.id
       );
@@ -84,7 +78,6 @@ export default withRouter(
           legal_name: bzdtls?.bzdtlsbz?.lgnmbzpan,
           trade_name: bzdtls?.bzdtlsbz?.trdnm,
         };
-        // {"id":20566307,"GSTIN":"09BMJPS1018N1ZL","div_scode":"UP001"}
         DropListGSTINs.push({
           ...GSTINDetails,
           id: gstin_details.id,
@@ -100,8 +93,6 @@ export default withRouter(
       this.setState({ loading: true });
       let { GSTINList: list, empDetails } = await this.getScodeData();
       this.setState({
-        // GSTINList: list,
-        // empDetails: empDetails,
         loading: false,
       });
       callback({ GSTINList: list, empDetails });
@@ -123,17 +114,7 @@ export default withRouter(
                   ) : (
                     ""
                   )}
-                  <Grid
-                    relaxed
-                    textAlign="center"
-                    // style={{
-                    //   position: "absolute",
-                    //   left: "50%",
-                    //   top: "50%",
-                    //   transform: "translate(-50%, -50%)",
-                    // }}
-                    verticalAlign="middle"
-                  >
+                  <Grid relaxed textAlign="center" verticalAlign="middle">
                     <Grid.Row columns={1}>
                       <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as="h2" color="teal" textAlign="center">

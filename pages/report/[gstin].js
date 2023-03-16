@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { Icon, Message } from "semantic-ui-react";
 import Navbar from "../../components/Navbar.js";
-// import styles from "../styles/Home.module.css";
 import config from "../../config";
 
 import { styled } from "@stitches/react";
@@ -74,7 +73,6 @@ const PDFSegment = styled(Segment, {
   margin: "auto",
   width: "600px",
   aspectRatio: "1 / 1.414",
-  // aspectRatio: "1",
 });
 
 const DynamicGSTR9 = dynamic(() => import("../../components/gstr9"), {
@@ -90,18 +88,6 @@ const DynamicReport = dynamic(() => import("../../components/report"), {
   ssr: false,
 });
 
-// async function getGSTR9Data(gstin, callback) {
-//   let res = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
-//   let data = await res.json();
-//   callback(data.data);
-// }
-
-// async function getGSTR3BData(gstin, callback) {
-//   let res = await fetch(`${backendURL}/api/v1/r3b?GSTIN=${gstin}`);
-//   let data = await res.json();
-//   callback(data.data);
-// }
-
 async function getReportData(gstin, postData, callback) {
   let res = await fetch(`/api/report?gstin=${gstin}`, {
     method: "POST",
@@ -114,15 +100,6 @@ async function getReportData(gstin, postData, callback) {
   }
   callback(data.data);
 }
-
-// async function getGSTR1Data(gstin, callback) {
-//   let res1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
-//   let res2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
-//   let data1 = await res1.json();
-//   let data2 = await res2.json();
-//   let data = { ...data1.data, ...data2.data };
-//   callback(data);
-// }
 
 export default function GSTSummary() {
   let [pdfMakeGSTR1, setPdfMakeGSTR1] = useState(null);
@@ -137,7 +114,6 @@ export default function GSTSummary() {
   let [warningModalOpen, setWarningModalOpen] = useState(true);
 
   const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
     setFiles(acceptedFiles);
   }, []);
   const {
@@ -180,10 +156,8 @@ export default function GSTSummary() {
       reader.onerror = () =>
         console.log(`${file.name} file reading has failed`);
       reader.onload = () => {
-        // Do whatever you want with the file contents
         const binaryStr = reader.result;
         console.log(binaryStr);
-        // file.bufferData = binaryStr;
         remarksData.push({ file, arrayBuffer: binaryStr });
         if (remarksData.length == files.length) {
           setBuffferData(remarksData);
@@ -202,15 +176,11 @@ export default function GSTSummary() {
   let [GSTR3BData, setGSTR3BData] = useState(null);
   let [reportData, setReportData] = useState(null);
   let [warnings, setWarnings] = useState([]);
-  // let [reportData, setReportData] = useState({});
 
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     if (gstin) {
-      // getGSTR1Data(gstin, setGSTR1Data);
-      // getGSTR9Data(gstin, setGSTR9Data);
-      // getGSTR3BData(gstin, setGSTR3BData);
       getReportData(
         gstin,
         { gstin, token: authContext.authState.token },

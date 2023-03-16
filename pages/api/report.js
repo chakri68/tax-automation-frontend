@@ -4,7 +4,6 @@ import config from "../../config";
 const { backendURL } = config;
 
 const dev = false;
-// Some util functions to parse the weird ass data from the database
 function processData(json, matcher) {
   let res = {};
   if (!json) {
@@ -30,23 +29,7 @@ export default async function handler(req, res) {
   }
   let decodedJWT = jwt.verify(token, process.env.JWT_KEY);
 
-  // let {
-  //   row1_samt,
-  //   row2_samt,
-  //   row3_samt,
-  //   row1_camt,
-  //   row2_camt,
-  //   row3_camt,
-  //   row1_iamt,
-  //   row2_iamt,
-  //   row3_iamt,
-  //   row1_csamt,
-  //   row2_csamt,
-  //   row3_csamt,
-  // } = JSON.parse(req.body);
-  let response, data;
-  // [R1, R12, R3b, R9, R9C, gstin-details]
-  // fetching all the data
+  let data;
 
   const warnings = [];
 
@@ -54,8 +37,6 @@ export default async function handler(req, res) {
     warnings.push(errorTable);
     return {};
   }
-
-  // All data at once
 
   try {
     let urls = [
@@ -67,10 +48,6 @@ export default async function handler(req, res) {
     ];
 
     let reqs = urls.map((url) => fetch(url));
-    // let reqs = urls.map((url) => fetch(url, {
-    //   method: "POST",
-    //   body: JSON.stringify({ token }),
-    // }));
     let responses = await Promise.all(reqs);
     let json = responses.map((response) => response.json());
     var allData = await Promise.all(json);
@@ -78,8 +55,6 @@ export default async function handler(req, res) {
     console.log("ERORR in FETCH", e.message);
     res.status(500).json({ success: false, data: null, error: e.message });
   }
-
-  // console.log(allData[allData.length - 1]);
 
   // R1 Data
   let data1 = allData[0];
@@ -154,50 +129,6 @@ export default async function handler(req, res) {
     return;
   }
 
-  // // R1 Data
-  // let response1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
-  // let response2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
-  // let data1 = await response1.json();
-  // let data2 = await response2.json();
-  // let R1Data = { ...data1.data, ...data2.data };
-
-  // // R3 Data
-  // response = await fetch(`${backendURL}/api/v1/r3b?GSTIN=${gstin}`);
-  // data = await response.json();
-  // let R3Data = processData(
-  //   data.data,
-  //   (key) =>
-  //     key === "itc_elg" ||
-  //     key === "intr_ltfee" ||
-  //     key === "qn" ||
-  //     key === "sup_details" ||
-  //     key === "inward_sup"
-  // );
-
-  // // R9 Data
-  // response = await fetch(`${backendURL}/api/v1/r9?GSTIN=${gstin}`);
-  // data = await response.json();
-  // let R9Data = processData(
-  //   data.data,
-  //   (key) => key.startsWith("table") || key === "tax_pay"
-  // );
-
-  // // R9C Data
-  // response = await fetch(`${backendURL}/api/v1/r9c?GSTIN=${gstin}`);
-  // data = await response.json();
-  // let R9CData = data.data;
-
-  // // GSTIN Details
-  // response = await fetch(`${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`);
-  // data = await response.json();
-  // let gstin_det = data.data;
-  // gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
-  // let { bzdtls } = gstin_det.GSTINDetails;
-  // let GSTINDetails = {
-  //   legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
-  //   trade_name: bzdtls.bzdtlsbz.trdnm,
-  // };
-
   const table1 = new (function () {
     this.row1 = new (function () {
       const data = R1Data.table12;
@@ -266,22 +197,6 @@ export default async function handler(req, res) {
   })();
   const table3 = new (function () {
     this.row1 = new (function () {
-      // const data1 = R9Data.table5?.total_tover;
-      // const data2 = R9Data.table10?.dbn_amd;
-      // const data3 = R9Data.table10?.cdn_amd;
-      // this.iamt = Math.abs(
-      //   (data1?.iamt || 0) + (data2?.iamt || 0) - (data3?.iamt || 0)
-      // );
-      // this.camt = Math.abs(
-      //   (data1?.camt || 0) - (data2?.camt || 0) - (data3?.camt || 0)
-      // );
-      // this.samt = Math.abs(
-      //   (data1?.samt || 0) - (data2?.samt || 0) - (data3?.samt || 0)
-      // );
-      // this.csamt = Math.abs(
-      //   (data1?.csamt || 0) - (data2?.csamt || 0) - (data3?.csamt || 0)
-      // );
-      // this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
       const data1 = R9Data.table10?.total_turnover;
       this.txval = Math.abs(data1?.txval || 0);
       this.iamt = Math.abs(data1?.iamt || 0);
@@ -326,11 +241,6 @@ export default async function handler(req, res) {
           (data4?.csamt || 0)
       );
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-      // this.iamt = null;
-      // this.camt = null;
-      // this.samt = null;
-      // this.csamt = null;
-      // this.total = null;
     })();
     this.ratio = Math.abs(this.row2.txval / this.row1.txval);
     this.row3 = new (function () {
@@ -353,12 +263,6 @@ export default async function handler(req, res) {
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row4 = {
-      // txval: null,
-      // iamt: null,
-      // camt: null,
-      // samt: null,
-      // csamt: null,
-      // total: null,
       txval: Math.abs(this.ratio * this.row3.txval),
       iamt: Math.abs(this.ratio * this.row3.iamt),
       camt: Math.abs(this.ratio * this.row3.camt),
@@ -371,7 +275,6 @@ export default async function handler(req, res) {
     this.row5 = new (function () {
       const data1 = R9Data.table7?.rule42;
       const data2 = R9Data.table7?.rule43;
-      // this.txval = null;
       this.txval = Math.abs((data1?.txval || 0) + (data2?.txval || 0));
       this.iamt = Math.abs((data1?.iamt || 0) + (data2?.iamt || 0));
       this.camt = Math.abs((data1?.camt || 0) + (data2?.camt || 0));
@@ -380,7 +283,6 @@ export default async function handler(req, res) {
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
     this.row6 = {
-      // txval: null,
       txval: (this.row4.txval || 0) - (this.row5.txval || 0),
       iamt: (this.row4.iamt || 0) - (this.row5.iamt || 0),
       camt: (this.row4.camt || 0) - (this.row5.camt || 0),
@@ -389,55 +291,20 @@ export default async function handler(req, res) {
       total: (this.row4.total || 0) - (this.row5.total || 0),
     };
   })();
-  // const table4 = new (function () {
-  //   this.row1 = new (function () {
-  //     this.iamt = Math.abs(parseInt(row1_iamt));
-  //     this.camt = Math.abs(parseInt(row1_camt));
-  //     this.samt = Math.abs(parseInt(row1_samt));
-  //     this.csamt = Math.abs(parseInt(row1_csamt));
-  //     this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-  //   })();
-  //   this.row2 = new (function () {
-  //     this.iamt = Math.abs(parseInt(row2_iamt));
-  //     this.camt = Math.abs(parseInt(row2_camt));
-  //     this.samt = Math.abs(parseInt(row2_samt));
-  //     this.csamt = Math.abs(parseInt(row2_csamt));
-  //     this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-  //   })();
-  //   this.row3 = new (function () {
-  //     this.iamt = Math.abs(parseInt(row3_iamt));
-  //     this.camt = Math.abs(parseInt(row3_camt));
-  //     this.samt = Math.abs(parseInt(row3_samt));
-  //     this.csamt = Math.abs(parseInt(row3_csamt));
-  //     this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
-  //   })();
-  //   this.row4 = {
-  //     iamt: Math.abs(this.row1.iamt + this.row2.iamt + this.row3.iamt),
-  //     camt: Math.abs(this.row1.camt + this.row2.camt + this.row3.camt),
-  //     samt: Math.abs(this.row1.samt + this.row2.samt + this.row3.samt),
-  //     csamt: Math.abs(
-  //       Math.abs(this.row1.csamt + this.row2.csamt + this.row3.csamt)
-  //     ),
-  //     total: Math.abs(this.row1.total + this.row2.total + this.row3.total),
-  //   };
-  // })();
+
   const table5 = new (function () {
     this.row1 = new (function () {
       this.iamt = Math.abs(
         table1.row3.iamt + table2.row5.iamt + table3.row6.iamt
-        // + table4.row4.iamt
       );
       this.camt = Math.abs(
         table1.row3.camt + table2.row5.camt + table3.row6.camt
-        // + table4.row4.camt
       );
       this.samt = Math.abs(
         table1.row3.samt + table2.row5.samt + table3.row6.samt
-        // + table4.row4.samt
       );
       this.csamt = Math.abs(
         table1.row3.csamt + table2.row5.csamt + table3.row6.csamt
-        // + table4.row4.csamt
       );
       this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
     })();
@@ -695,17 +562,9 @@ export default async function handler(req, res) {
     })();
     this.row2 = new (function () {
       const data = R9CData?.row12c;
-      // this.iamt = Math.abs((data?.iamt || 0));
-      // this.camt = Math.abs((data?.camt || 0));
-      // this.samt = Math.abs((data?.samt || 0));
-      // this.csamt = Math.abs((data?.csamt || 0));
       this.total = Math.abs(data?.itc_book_curr || 0);
     })();
     this.row3 = {
-      // iamt: this.row1.iamt - this.row2.iamt,
-      // camt: this.row1.camt - this.row2.camt,
-      // samt: this.row1.samt - this.row2.samt,
-      // csamt: this.row1.csamt - this.row2.csamt,
       total: Math.abs(this.row1.total - this.row2.total),
     };
     this.flag = dev || this.row1.total != this.row2.total;
@@ -718,7 +577,6 @@ export default async function handler(req, res) {
       this.camt = Math.abs((data1?.camt || 0) + (data2?.camt || 0));
       this.samt = Math.abs((data1?.samt || 0) + (data2?.samt || 0));
       this.csamt = Math.abs((data1?.csamt || 0) + (data2?.csamt || 0));
-      // this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
       this.total = Math.abs((data1?.txval || 0) + (data2?.txval || 0));
     })();
     this.row2 = new (function () {
@@ -727,7 +585,6 @@ export default async function handler(req, res) {
       this.camt = Math.abs(data?.camt || 0);
       this.samt = Math.abs(data?.samt || 0);
       this.csamt = Math.abs(data?.csamt || 0);
-      // this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
       this.total = Math.abs(data?.txval || 0);
     })();
     this.row3 = {
@@ -746,22 +603,13 @@ export default async function handler(req, res) {
       this.camt = Math.abs(data?.camt || 0);
       this.samt = Math.abs(data?.samt || 0);
       this.csamt = Math.abs(data?.csamt || 0);
-      // this.total = Math.abs(this.camt + this.iamt + this.samt + this.csamt);
       this.total = Math.abs(data?.txval || 0);
     })();
     this.row2 = new (function () {
       const data = R9CData.row5p;
-      // this.iamt = Math.abs((data?.iamt || 0));
-      // this.camt = Math.abs((data?.camt || 0));
-      // this.samt = Math.abs((data?.samt || 0));
-      // this.csamt = Math.abs((data?.csamt || 0));
       this.total = Math.abs(data?.annul_turn_adj || 0);
     })();
     this.row3 = {
-      // iamt: this.row1.iamt - this.row2.iamt,
-      // camt: this.row1.camt - this.row2.camt,
-      // samt: this.row1.samt - this.row2.samt,
-      // csamt: this.row1.csamt - this.row2.csamt,
       total: this.row1.total - this.row2.total,
     };
     this.flag = dev || this.row1.total !== this.row2.total;
@@ -823,10 +671,6 @@ export default async function handler(req, res) {
   const table15 = new (function () {
     this.row1 = new (function () {
       const data = R9CData.row12f;
-      // this.iamt = Math.abs((data?.iamt || 0));
-      // this.camt = Math.abs((data?.camt || 0));
-      // this.samt = Math.abs((data?.samt || 0));
-      // this.csamt = Math.abs((data?.csamt || 0));
       this.total = Math.abs(data?.unrec_itc || 0);
     })();
   })();
@@ -878,7 +722,6 @@ export default async function handler(req, res) {
     table1,
     table2,
     table3,
-    // table4,
     table5,
     table6,
     table7,
@@ -894,8 +737,6 @@ export default async function handler(req, res) {
     table17,
     table18,
   };
-
-  // console.log({ R1Data, R3Data, R9Data });
 
   res.status(200).json({
     success: true,

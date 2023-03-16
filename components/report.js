@@ -14,13 +14,6 @@ pdfMake.fonts = {
     bolditalics:
       "http://localhost:3000/fonts/Noto_Sans/NotoSans-BoldItalic.ttf",
   },
-  // mangal: {
-  //   normal: "http://localhost:3000/fonts/Noto_Sans/NotoSans-Regular.ttf",
-  //   bold: "http://localhost:3000/fonts/Noto_Sans/NotoSans-Bold.ttf",
-  //   italics: "http://localhost:3000/fonts/Noto_Sans/NotoSans-Italic.ttf",
-  //   bolditalics:
-  //     "http://localhost:3000/fonts/Noto_Sans/NotoSans-BoldItalic.ttf",
-  // },
 };
 
 const html2pdfmakeStyles = {
@@ -1333,8 +1326,6 @@ const Report = React.memo(function Report({
     html2pdfmakeStyles
   );
 
-  // https://aymkdn.github.io/html-to-pdfmake/index.html
-
   let iframeContainer = useRef(null);
 
   let docDefinition = useRef({
@@ -1370,7 +1361,6 @@ const Report = React.memo(function Report({
         remarksPDFs.push(ab);
         await remarkFiles.forEach(async ({ file, arrayBuffer }) => {
           if (file.type === "application/pdf") {
-            // pdf file
             remarksPDFs.push(arrayBuffer);
             if (remarksPDFs.length == remarkFiles.length + 1) {
               await handleMerging(remarksPDFs);

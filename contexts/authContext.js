@@ -16,7 +16,6 @@ export default function AuthProvider({ children }) {
   }, []);
 
   function setUserAuthInfo(token) {
-    // TODO: Ask for a re-login if the token is expired
     localStorage.setItem("token", token);
     setAuthState({ token });
   }

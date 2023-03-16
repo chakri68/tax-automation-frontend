@@ -36,14 +36,7 @@ export default function GSTINReviewModal({
       trigger={<Button disabled={btnDisabled}>Get Details</Button>}
     >
       <Modal.Header>GSTIN {gstin} Details</Modal.Header>
-      <Modal.Content
-      // image
-      >
-        {/* <Image
-                                size="medium"
-                                src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
-                                wrapped
-                              /> */}
+      <Modal.Content>
         <Modal.Description>
           <Header>{gstin}</Header>
           <Form>

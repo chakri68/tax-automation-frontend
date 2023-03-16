@@ -37,10 +37,6 @@ export async function getServerSideProps(context) {
     S = Buffer.from(S, "base64").toString("ascii");
     RU = Buffer.from(RU, "base64").toString("ascii");
     let token = jwt.sign({ S, P, RU }, process.env.JWT_KEY);
-    // TODO: Add expiresIn to the jwt token
-    // let token = jwt.sign({ S, P, RU }, process.env.JWT_KEY, {
-    //   expiresIn: 30 * 60,
-    // });
     let md5Hash = MD5(
       `${S}|${formatDate(new Date())}|${process.env.PIN}`
     ).toString();
