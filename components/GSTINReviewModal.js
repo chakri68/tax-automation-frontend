@@ -7,13 +7,18 @@ export default function GSTINReviewModal({
   gstin,
   GSTINReviewData,
   GetReportBtn,
+  open,
+  onOpenStateChange,
 }) {
   let [reviewData, setReviewData] = useState({
     review: GSTINReviewData.review || "",
-    actionRequired: GSTINReviewData.actionRequired || false,
+    actionRequired: GSTINReviewData.actionRequired || true,
   });
-  let [open, setOpen] = useState(false);
   let [loading, setLoading] = useState(false);
+
+  function handleActionRequiredChange(actionRequired) {
+    setReviewData({ ...reviewData, actionRequired: actionRequired });
+  }
 
   useEffect(() => {
     setReviewData({
@@ -24,8 +29,9 @@ export default function GSTINReviewModal({
 
   return (
     <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
+      closeIcon
+      onClose={() => onOpenStateChange(false)}
+      onOpen={() => onOpenStateChange(true)}
       open={open}
       trigger={<Button disabled={btnDisabled}>Get Details</Button>}
     >
@@ -41,15 +47,21 @@ export default function GSTINReviewModal({
         <Modal.Description>
           <Header>{gstin}</Header>
           <Form>
-            <Form.Checkbox
-              checked={reviewData.actionRequired}
-              name="actionRequired"
-              label="Action Required"
-              onChange={(e, { checked }) =>
-                setReviewData({ ...reviewData, actionRequired: checked })
-              }
-            />
+            <Form.Group inline>
+              <label>Action Required</label>
+              <Form.Radio
+                label="Yes"
+                checked={reviewData.actionRequired}
+                onChange={() => handleActionRequiredChange(true)}
+              />
+              <Form.Radio
+                label="No"
+                checked={!reviewData.actionRequired}
+                onChange={() => handleActionRequiredChange(false)}
+              />
+            </Form.Group>
             <Form.Input
+              disabled={reviewData.actionRequired}
               placeholder="Remarks"
               name="review"
               value={reviewData.review}
@@ -65,7 +77,7 @@ export default function GSTINReviewModal({
         <Button
           type="submit"
           color="red"
-          onClick={() => setOpen(false)}
+          onClick={() => onOpenStateChange(false)}
           disabled={loading}
         >
           Cancel

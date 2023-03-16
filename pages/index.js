@@ -15,8 +15,9 @@ import { withRouter } from "next/router";
 import { AppContext } from "../contexts/appContext.js";
 import { AuthContext } from "../contexts/authContext.js";
 import GSTINReviewModal from "../components/GSTINReviewModal.js";
-import { purgeText } from "../components/utils.js";
 import Protected from "../components/ProtectedComponent.js";
+import { MemoizedGSTINTable } from "../components/GSTINTable.js";
+import { MemoizedGSTINDropdown } from "../components/GSTINDropdown.js";
 
 export default withRouter(
   class Home extends Component {
@@ -35,6 +36,18 @@ export default withRouter(
       moreDetailsModalOpen: false,
     };
     static contextType = AuthContext;
+
+    handleRowSelect = (gstinData) => {
+      this.setState({
+        selectedGSTIN: {
+          gstin: gstinData.gstin,
+          id: gstinData.id,
+          actionRequired: gstinData.actionRequired,
+          review: gstinData.review,
+        },
+      });
+      this.setState({ moreDetailsModalOpen: true });
+    };
 
     handleSaveGSTINReview = async (reviewData, appContextVal) => {
       let res = await fetch("/api/review", {
@@ -174,34 +187,21 @@ export default withRouter(
                         {value.appData.GSTINList &&
                         value.appData.GSTINList.length != 0 ? (
                           <>
-                            <Dropdown
-                              placeholder="Select GSTIN"
-                              fluid
-                              search
-                              selection
+                            <MemoizedGSTINDropdown
                               loading={loading}
-                              options={value.appData.GSTINList.map(
-                                ({ id, gstin, actionRequired, review }) => {
-                                  return {
-                                    key: id,
-                                    text: gstin,
-                                    value: JSON.stringify({
-                                      gstin,
-                                      id,
-                                      actionRequired,
-                                      review,
-                                    }),
-                                  };
-                                }
-                              )}
-                              onChange={(e, { value }) => {
+                              list={value.appData.GSTINList}
+                              onChange={(gstinData) =>
                                 this.setState({
-                                  selectedGSTIN: JSON.parse(value),
-                                });
-                              }}
+                                  selectedGSTIN: gstinData,
+                                })
+                              }
                             />
                             <br />
                             <GSTINReviewModal
+                              open={this.state.moreDetailsModalOpen}
+                              onOpenStateChange={(open) =>
+                                this.setState({ moreDetailsModalOpen: open })
+                              }
                               gstin={this.state.selectedGSTIN?.gstin}
                               GSTINReviewData={this.state.selectedGSTIN}
                               btnDisabled={!this.state.selectedGSTIN?.gstin}
@@ -231,92 +231,13 @@ export default withRouter(
                       <Grid.Column style={{ maxWidth: "max(90vw, 600px)" }}>
                         {value.appData.GSTINList &&
                         value.appData.GSTINList.length != 0 ? (
-                          <Table celled selectable padded>
-                            <Table.Header>
-                              <Table.Row>
-                                <Table.HeaderCell textAlign="center">
-                                  S. No.
-                                </Table.HeaderCell>
-                                <Table.HeaderCell textAlign="center">
-                                  GSTIN Number
-                                </Table.HeaderCell>
-                                <Table.HeaderCell textAlign="center">
-                                  Trade Name
-                                </Table.HeaderCell>
-                                <Table.HeaderCell textAlign="center">
-                                  Legal Name
-                                </Table.HeaderCell>
-                                <Table.HeaderCell textAlign="center">
-                                  Generate Notice
-                                </Table.HeaderCell>
-                                <Table.HeaderCell textAlign="center">
-                                  Remarks
-                                </Table.HeaderCell>
-                                <Table.HeaderCell textAlign="center">
-                                  Action Required
-                                </Table.HeaderCell>
-                              </Table.Row>
-                            </Table.Header>
-                            <Table.Body>
-                              {value.appData.GSTINList.map(
-                                (
-                                  {
-                                    legal_name,
-                                    trade_name,
-                                    gstin,
-                                    actionRequired,
-                                    review,
-                                  },
-                                  ind
-                                ) => {
-                                  return (
-                                    <Table.Row
-                                      key={gstin}
-                                      positive={
-                                        actionRequired != null &&
-                                        !actionRequired
-                                      }
-                                      negative={
-                                        actionRequired != null && actionRequired
-                                      }
-                                    >
-                                      <Table.Cell textAlign="center">
-                                        {ind + 1}
-                                      </Table.Cell>
-                                      <Table.Cell textAlign="center">
-                                        {gstin}
-                                      </Table.Cell>
-                                      <Table.Cell textAlign="left">
-                                        {trade_name || "-"}
-                                      </Table.Cell>
-                                      <Table.Cell textAlign="left">
-                                        {legal_name || "-"}
-                                      </Table.Cell>
-                                      <Table.Cell textAlign="center">
-                                        <Button
-                                          onClick={() =>
-                                            this.handleGSTINSelection(gstin)
-                                          }
-                                        >
-                                          Generate Report
-                                        </Button>
-                                      </Table.Cell>
-                                      <Table.Cell textAlign="center">
-                                        {review ? purgeText(review) : ""}
-                                      </Table.Cell>
-                                      <Table.Cell textAlign="center">
-                                        {actionRequired == null
-                                          ? ""
-                                          : actionRequired
-                                          ? "True"
-                                          : "False"}
-                                      </Table.Cell>
-                                    </Table.Row>
-                                  );
-                                }
-                              )}
-                            </Table.Body>
-                          </Table>
+                          <MemoizedGSTINTable
+                            onRowClick={this.handleRowSelect}
+                            list={value.appData.GSTINList}
+                            onReportBtnClick={(gstin) =>
+                              this.handleGSTINSelection(gstin)
+                            }
+                          />
                         ) : (
                           ""
                         )}
