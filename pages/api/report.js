@@ -145,6 +145,18 @@ export default async function handler(req, res) {
     trade_name: bzdtls.bzdtlsbz.trdnm,
   };
   console.log("FETCHING DONE");
+
+  // Check user privileges
+
+  if (gstin_det.div_scode.toLowerCase() !== decodedJWT.S.toLowerCase()) {
+    res.status(403).json({
+      success: false,
+      data: null,
+      error: "Unauthorized Access",
+    });
+    return;
+  }
+
   // // R1 Data
   // let response1 = await fetch(`${backendURL}/api/v1/r1?GSTIN=${gstin}`);
   // let response2 = await fetch(`${backendURL}/api/v1/r12?GSTIN=${gstin}`);
