@@ -43,6 +43,10 @@ input:-webkit-autofill:focus,
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
+input:-webkit-autofill {
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.87) !important;
+}
+
 .nav {
   background-image: linear-gradient(#021243, #077eca);
   border-bottom: 4px solid #021243;
