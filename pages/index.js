@@ -233,10 +233,7 @@ export default withRouter(
                         value.appData.GSTINList.length != 0 ? (
                           <MemoizedGSTINTable
                             onRowClick={this.handleRowSelect}
-                            list={value.appData.GSTINList}
-                            onReportBtnClick={(gstin) =>
-                              this.handleGSTINSelection(gstin)
-                            }
+                            onReportBtnClick={this.handleGSTINSelection}
                           />
                         ) : (
                           ""

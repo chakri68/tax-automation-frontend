@@ -1,8 +1,11 @@
 import { Button, Table } from "semantic-ui-react";
 import { purgeText } from "./utils";
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../contexts/appContext";
 
-export function RawGSTINTable({ list, onRowClick, onReportBtnClick }) {
+export function RawGSTINTable({ onRowClick, onReportBtnClick }) {
+  const appContext = useContext(AppContext);
+
   console.log("GSTINList RERENDERING");
   return (
     <Table celled selectable padded>
@@ -22,7 +25,7 @@ export function RawGSTINTable({ list, onRowClick, onReportBtnClick }) {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {list.map(
+        {appContext.appData.GSTINList.map(
           (
             { id, legal_name, trade_name, gstin, actionRequired, review },
             ind
