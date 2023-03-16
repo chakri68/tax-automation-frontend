@@ -24,7 +24,6 @@ function processData(json) {
 }
 
 const GSTR9 = React.memo(function GSTR9({ tableData, setPdfMake }) {
-  console.log({ R9Data: tableData });
   let {
     gstin,
     table4,

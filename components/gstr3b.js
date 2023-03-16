@@ -55,7 +55,6 @@ const GSTR3B = React.memo(function GSTR3B({ tableData, setPdfMake }) {
   // Null values
   // let tax_pmtJSON = jsonparse(tax_pmt);
   // let sup_interJSON = jsonparse(sup_inter);
-  console.log({ R3BData: tableData });
 
   let [iFrameSrc, setIFrameSrc] = useState("");
   var html = htmlToPdfmake(

@@ -57,8 +57,6 @@ export default async function handler(req, res) {
 
   // All data at once
 
-  console.log("STARTING THE FETCH");
-
   try {
     let urls = [
       `${backendURL}/api/v1/r1?GSTIN=${gstin}`,
@@ -144,7 +142,6 @@ export default async function handler(req, res) {
     legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
     trade_name: bzdtls.bzdtlsbz.trdnm,
   };
-  console.log("FETCHING DONE");
 
   // Check user privileges
 
@@ -340,7 +337,6 @@ export default async function handler(req, res) {
       const data1 = R9Data.table6?.total_itc_availed;
       const data2 = R9Data.table10?.itc_availd;
       const data3 = R9Data.table10?.itc_rvsl;
-      console.log({ data1, data2, data3 });
       this.txval = null;
       this.iamt = Math.abs(
         (data1?.iamt || 0) + (data2?.iamt || 0) - (data3?.iamt || 0)
@@ -900,8 +896,6 @@ export default async function handler(req, res) {
   };
 
   // console.log({ R1Data, R3Data, R9Data });
-
-  console.log("DONEE");
 
   res.status(200).json({
     success: true,

@@ -119,8 +119,6 @@ const Report = React.memo(function Report({
 
   const tableCount = useRef(0);
 
-  console.log({ reportData: tableData, remarks: remarkFiles });
-
   let {
     GSTINDetails,
     table1,
@@ -1348,15 +1346,12 @@ const Report = React.memo(function Report({
   });
 
   async function handleMerging(pdfs) {
-    console.log({ pdfs });
     const merger = new PDFMerger();
     for (let i = 0; i < pdfs.length; i++) {
-      console.log({ pdf: pdfs[i] });
       await merger.add(pdfs[i]);
     }
     const finalPDF = await merger.saveAsBlob();
     const url = URL.createObjectURL(finalPDF);
-    console.log({ url });
     setIFrameSrc(url);
     setPdfUrl(url);
   }
@@ -1374,7 +1369,6 @@ const Report = React.memo(function Report({
         let ab = await blob.arrayBuffer();
         remarksPDFs.push(ab);
         await remarkFiles.forEach(async ({ file, arrayBuffer }) => {
-          console.log({ file, arrayBuffer });
           if (file.type === "application/pdf") {
             // pdf file
             remarksPDFs.push(arrayBuffer);
@@ -1391,7 +1385,6 @@ const Report = React.memo(function Report({
             styles: pdfMakeStyles,
           });
           pdfDocGen.getBlob(async (blob) => {
-            console.log({ blob });
             let ab = await blob.arrayBuffer();
             remarksPDFs.push(ab);
             if (remarksPDFs.length == remarkFiles.length + 1) {

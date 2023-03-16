@@ -111,7 +111,6 @@ async function getReportData(gstin, postData, callback) {
     body: JSON.stringify(postData),
   });
   let data = await res.json();
-  console.log({ repprtData: data });
   if (!data.success) {
     callback(null, data.error);
     return;
@@ -143,7 +142,6 @@ export default function GSTSummary() {
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     setFiles(acceptedFiles);
-    console.log({ acceptedFiles });
   }, []);
   const {
     getRootProps,
@@ -191,7 +189,6 @@ export default function GSTSummary() {
         // file.bufferData = binaryStr;
         remarksData.push({ file, arrayBuffer: binaryStr });
         if (remarksData.length == files.length) {
-          console.log({ files, remarksData });
           setBuffferData(remarksData);
         }
       };

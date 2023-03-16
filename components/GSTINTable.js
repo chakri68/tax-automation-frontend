@@ -6,7 +6,6 @@ import { AppContext } from "../contexts/appContext";
 export function RawGSTINTable({ onRowClick, onReportBtnClick }) {
   const appContext = useContext(AppContext);
 
-  console.log("GSTINList RERENDERING");
   return (
     <Table celled selectable padded>
       <Table.Header>

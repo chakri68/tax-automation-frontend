@@ -40,7 +40,6 @@ const GSTR1 = React.memo(function GSTR1({ tableData, gstin, setPdfMake }) {
     "table11(B)2": table11_B_2,
     table12,
   } = tableData;
-  console.log({ R1Data: tableData });
 
   let [iFrameSrc, setIFrameSrc] = useState("");
   var html = htmlToPdfmake(
