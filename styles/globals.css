@@ -78,3 +78,7 @@ input:-webkit-autofill:focus,
 .nav_main .subheading {
   font-size: medium !important;
 }
+
+.is-hoverable:hover {
+  cursor: pointer;
+}
