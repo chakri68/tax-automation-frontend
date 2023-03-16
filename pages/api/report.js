@@ -93,11 +93,11 @@ export default async function handler(req, res) {
 
   // R9C Data
   data = allData[3];
-  let R9CData = data.data;
+  let R9CData = data.data || {};
 
   // GSTIN Details
   data = allData[4];
-  let gstin_det = data.data;
+  let gstin_det = data.data || {};
   gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
   let { bzdtls } = gstin_det.GSTINDetails;
   let GSTINDetails = {
