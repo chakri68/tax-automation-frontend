@@ -1,4 +1,4 @@
-import { Icon } from "semantic-ui-react";
+import { Icon, Message } from "semantic-ui-react";
 import Navbar from "../../components/Navbar.js";
 import React, {
   useCallback,
@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 // import styles from "../styles/Home.module.css";
@@ -27,6 +28,8 @@ import { styled } from "@stitches/react";
 import { useDropzone } from "react-dropzone";
 import { AuthContext } from "../../contexts/authContext.js";
 import Protected from "../../components/ProtectedComponent.js";
+import ErrorModal from "../../components/ErrorModal.js";
+import StatelessModal from "../../components/StatelessModal.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const { backendURL } = config;
@@ -108,6 +111,11 @@ async function getReportData(gstin, postData, callback) {
     body: JSON.stringify(postData),
   });
   let data = await res.json();
+  console.log({ repprtData: data });
+  if (!data.success) {
+    callback(null, data.error);
+    return;
+  }
   callback(data.data);
 }
 
@@ -129,6 +137,8 @@ export default function GSTSummary() {
   let [files, setFiles] = useState([]);
   let [fileReading, setFileReading] = useState(false);
   let [bufferData, setBuffferData] = useState([]);
+  let [errorState, setErrorState] = useState({ error: false, message: null });
+  let [warningModalOpen, setWarningModalOpen] = useState(true);
 
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
@@ -197,6 +207,7 @@ export default function GSTSummary() {
   let [GSTR9Data, setGSTR9Data] = useState(null);
   let [GSTR3BData, setGSTR3BData] = useState(null);
   let [reportData, setReportData] = useState(null);
+  let [warnings, setWarnings] = useState([]);
   // let [reportData, setReportData] = useState({});
 
   const authContext = useContext(AuthContext);
@@ -209,11 +220,16 @@ export default function GSTSummary() {
       getReportData(
         gstin,
         { gstin, token: authContext.authState.token },
-        (data) => {
+        (data, error = null) => {
+          if (error) {
+            setErrorState({ error: true, message: error });
+            return;
+          }
           setReportData(data.Report);
           setGSTR1Data(data.R1Data);
           setGSTR3BData(data.R3Data);
           setGSTR9Data(data.R9Data);
+          setWarnings(data.warnings);
         }
       );
     }
@@ -222,13 +238,66 @@ export default function GSTSummary() {
     <>
       <Protected>
         <Navbar />
+        <ErrorModal
+          open={errorState.error}
+          toggleOpen={(open) => setErrorState({ ...errorState, error: open })}
+          onExit={router.reload}
+        >
+          <p>{errorState.message}</p>
+        </ErrorModal>
         <StyledSection>
           <PDFSegment raised>
+            <Header as="h3" color="teal" textAlign="center">
+              Generated Report
+            </Header>
+            {warnings.length > 0 ? (
+              <>
+                <Message negative>
+                  <Message.Header>Missing Data</Message.Header>
+                  <p>
+                    This gstin has some missing data. Click{" "}
+                    <Button
+                      compact
+                      size="small"
+                      onClick={() => setWarningModalOpen(true)}
+                    >
+                      here
+                    </Button>{" "}
+                    for more details
+                  </p>
+                </Message>
+                <Modal
+                  basic
+                  closeOnDimmerClick={false}
+                  open={warningModalOpen}
+                  onOpen={() => setWarningModalOpen(true)}
+                  onClose={() => setWarningModalOpen(false)}
+                >
+                  <Header
+                    color="orange"
+                    icon="warning sign"
+                    content="Missing Data"
+                  />
+                  <Modal.Content>
+                    {warnings.map(({ table, message }, ind) => {
+                      return <h2 key={ind}>{`${table}: ${message}`}</h2>;
+                    })}
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button
+                      color="orange"
+                      onClick={() => setWarningModalOpen(false)}
+                    >
+                      Ok
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
+              </>
+            ) : (
+              ""
+            )}
             {reportData != null && fileReading != true ? (
               <>
-                <Header as="h3" color="teal" textAlign="center">
-                  Generated Report
-                </Header>
                 <Button
                   fluid
                   disabled={pdfUrl == null}
