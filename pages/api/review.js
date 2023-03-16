@@ -18,6 +18,7 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       id,
       review,
+      action: actionRequired,
     }),
     headers: {
       "Content-Type": "application/json",
