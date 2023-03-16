@@ -75,15 +75,6 @@ const PDFSegment = styled(Segment, {
   aspectRatio: "1 / 1.414",
 });
 
-const DynamicGSTR9 = dynamic(() => import("../../components/gstr9"), {
-  ssr: false,
-});
-const DynamicGSTR3B = dynamic(() => import("../../components/gstr3b"), {
-  ssr: false,
-});
-const DynamicGSTR1 = dynamic(() => import("../../components/gstr1"), {
-  ssr: false,
-});
 const DynamicReport = dynamic(() => import("../../components/report"), {
   ssr: false,
 });
