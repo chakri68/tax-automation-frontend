@@ -13,34 +13,20 @@ export default async function handler(req, res) {
   }
   let decodedJWT = jwt.verify(token, process.env.JWT_KEY);
 
-  let responses = await Promise.all([
-    fetch(`${backendURL}/api/v1/post-review`, {
-      method: "POST",
-      body: JSON.stringify({
-        id,
-        review,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+  let response = await fetch(`${backendURL}/api/v1/post-status`, {
+    method: "POST",
+    body: JSON.stringify({
+      id,
+      review,
     }),
-    fetch(`${backendURL}/api/v1/action-required`, {
-      method: "POST",
-      body: JSON.stringify({
-        id,
-        action: actionRequired,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }),
-  ]);
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-  let data = await Promise.all(responses.map((response) => response.json()));
-  res
-    .status(200)
-    .json({
-      success: true,
-      data: { actionRequired: data[1], review: data[0] },
-    });
+  let data = await response.json();
+  res.status(200).json({
+    success: true,
+    data: data,
+  });
 }
