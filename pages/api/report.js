@@ -7,6 +7,9 @@ const dev = false;
 // Some util functions to parse the weird ass data from the database
 function processData(json, matcher) {
   let res = {};
+  if (!json) {
+    return null;
+  }
   Object.keys(json).map((key) => {
     if (matcher(key)) {
       res[key] = JSON.parse(json[key]);
@@ -45,59 +48,96 @@ export default async function handler(req, res) {
   // [R1, R12, R3b, R9, R9C, gstin-details]
   // fetching all the data
 
+  const warnings = [];
+
+  function addWarning(errorTable) {
+    warnings.push(errorTable);
+    return {};
+  }
+
   // All data at once
 
   console.log("STARTING THE FETCH");
 
-  let urls = [
-    `${backendURL}/api/v1/r1?GSTIN=${gstin}`,
-    `${backendURL}/api/v1/r3b?GSTIN=${gstin}`,
-    `${backendURL}/api/v1/r9?GSTIN=${gstin}`,
-    `${backendURL}/api/v1/r9c?GSTIN=${gstin}`,
-    `${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`,
-  ];
+  try {
+    let urls = [
+      `${backendURL}/api/v1/r1?GSTIN=${gstin}`,
+      `${backendURL}/api/v1/r3b?GSTIN=${gstin}`,
+      `${backendURL}/api/v1/r9?GSTIN=${gstin}`,
+      `${backendURL}/api/v1/r9c?GSTIN=${gstin}`,
+      `${backendURL}/api/v1/gstin-details?GSTIN=${gstin}`,
+    ];
 
-  let reqs = urls.map((url) => fetch(url));
-  // let reqs = urls.map((url) => fetch(url, {
-  //   method: "POST",
-  //   body: JSON.stringify({ token }),
-  // }));
-  let responses = await Promise.all(reqs);
-  let json = responses.map((response) => response.json());
-  let allData = await Promise.all(json);
+    let reqs = urls.map((url) => fetch(url));
+    // let reqs = urls.map((url) => fetch(url, {
+    //   method: "POST",
+    //   body: JSON.stringify({ token }),
+    // }));
+    let responses = await Promise.all(reqs);
+    let json = responses.map((response) => response.json());
+    var allData = await Promise.all(json);
+  } catch (e) {
+    console.log("ERORR in FETCH", e.message);
+    res.status(500).json({ success: false, data: null, error: e.message });
+  }
 
   // console.log(allData[allData.length - 1]);
 
   // R1 Data
   let data1 = allData[0];
-  let R1Data = { ...data1.data };
+  let R1Data =
+    data1.data ||
+    addWarning({
+      table: "R1",
+      message: "No entires found for the given gstin",
+    });
 
   // R3 Data
   data = allData[1];
-  let R3Data = processData(
-    data.data,
-    (key) =>
-      key === "itc_elg" ||
-      key === "intr_ltfee" ||
-      key === "qn" ||
-      key === "sup_details" ||
-      key === "inward_sup"
-  );
+  let R3Data =
+    processData(
+      data.data,
+      (key) =>
+        key === "itc_elg" ||
+        key === "intr_ltfee" ||
+        key === "qn" ||
+        key === "sup_details" ||
+        key === "inward_sup"
+    ) ||
+    addWarning({
+      table: "R3",
+      message: "No entires found for the given gstin",
+    });
 
   // R9 Data
   data = allData[2];
-  let R9Data = processData(
-    data.data,
-    (key) => key.startsWith("table") || key === "tax_pay"
-  );
+  let R9Data =
+    processData(
+      data.data,
+      (key) => key.startsWith("table") || key === "tax_pay"
+    ) ||
+    addWarning({
+      table: "R9",
+      message: "No entires found for the given gstin",
+    });
 
   // R9C Data
   data = allData[3];
-  let R9CData = data.data || {};
+  let R9CData =
+    data.data ||
+    addWarning({
+      table: "R9C",
+      message: "No entires found for the given gstin",
+    });
 
   // GSTIN Details
   data = allData[4];
-  let gstin_det = data.data || {};
+  let gstin_det =
+    data.data ||
+    addWarning({
+      table: "GSTIN_Details",
+      message: "No entires found for the given gstin",
+    });
   gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
   let { bzdtls } = gstin_det.GSTINDetails;
   let GSTINDetails = {
