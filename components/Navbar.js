@@ -1,4 +1,4 @@
-import { Image, Header } from "semantic-ui-react";
+import { Header, Image } from "semantic-ui-react";
 
 function Navbar() {
   return (

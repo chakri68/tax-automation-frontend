@@ -1,21 +1,21 @@
-import { Icon, Message } from "semantic-ui-react";
-import Navbar from "../../components/Navbar.js";
 import React, {
   useCallback,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
+import { Icon, Message } from "semantic-ui-react";
+import Navbar from "../../components/Navbar.js";
 // import styles from "../styles/Home.module.css";
 import config from "../../config";
 
+import { styled } from "@stitches/react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
+import { useDropzone } from "react-dropzone";
 import {
   Button,
   Dimmer,
@@ -24,12 +24,9 @@ import {
   Modal,
   Segment,
 } from "semantic-ui-react";
-import { styled } from "@stitches/react";
-import { useDropzone } from "react-dropzone";
-import { AuthContext } from "../../contexts/authContext.js";
-import Protected from "../../components/ProtectedComponent.js";
 import ErrorModal from "../../components/ErrorModal.js";
-import StatelessModal from "../../components/StatelessModal.js";
+import Protected from "../../components/ProtectedComponent.js";
+import { AuthContext } from "../../contexts/authContext.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const { backendURL } = config;

@@ -1,6 +1,6 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { AuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../contexts/authContext";
 
 export default function Protected({
   children,

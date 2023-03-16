@@ -1,23 +1,13 @@
-import Navbar from "../components/Navbar.js";
-import {
-  Button,
-  Card,
-  Form,
-  Grid,
-  Header,
-  Dropdown,
-  Table,
-  Modal,
-  Image,
-} from "semantic-ui-react";
-import React, { Component } from "react";
 import { withRouter } from "next/router";
+import React, { Component } from "react";
+import { Button, Card, Form, Grid, Header } from "semantic-ui-react";
+import { MemoizedGSTINDropdown } from "../components/GSTINDropdown.js";
+import GSTINReviewModal from "../components/GSTINReviewModal.js";
+import { MemoizedGSTINTable } from "../components/GSTINTable.js";
+import Navbar from "../components/Navbar.js";
+import Protected from "../components/ProtectedComponent.js";
 import { AppContext } from "../contexts/appContext.js";
 import { AuthContext } from "../contexts/authContext.js";
-import GSTINReviewModal from "../components/GSTINReviewModal.js";
-import Protected from "../components/ProtectedComponent.js";
-import { MemoizedGSTINTable } from "../components/GSTINTable.js";
-import { MemoizedGSTINDropdown } from "../components/GSTINDropdown.js";
 
 export default withRouter(
   class Home extends Component {

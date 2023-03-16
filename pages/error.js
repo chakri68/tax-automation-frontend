@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import { Container, Grid, Header, Message } from "semantic-ui-react";
+import { Container, Message } from "semantic-ui-react";
 import { AuthContext } from "../contexts/authContext";
 
 export default function Error() {

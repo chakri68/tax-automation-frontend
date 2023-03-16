@@ -1,7 +1,7 @@
-import { Button, Table } from "semantic-ui-react";
-import { purgeText } from "./utils";
 import React, { useContext } from "react";
+import { Button, Table } from "semantic-ui-react";
 import { AppContext } from "../contexts/appContext";
+import { purgeText } from "./utils";
 
 export function RawGSTINTable({ onRowClick, onReportBtnClick }) {
   const appContext = useContext(AppContext);
