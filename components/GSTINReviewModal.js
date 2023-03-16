@@ -61,6 +61,14 @@ export default function GSTINReviewModal({
               />
             </Form.Group>
             <Form.Input
+              error={
+                !reviewData.actionRequired && reviewData.review.length == 0
+                  ? {
+                      content: "Review field can't be empty",
+                      pointing: "below",
+                    }
+                  : false
+              }
               disabled={reviewData.actionRequired}
               placeholder="Remarks"
               name="review"
@@ -83,6 +91,7 @@ export default function GSTINReviewModal({
           Cancel
         </Button>
         <Button
+          disabled={!reviewData.actionRequired && reviewData.review.length == 0}
           loading={loading}
           content="Save"
           labelPosition="right"
