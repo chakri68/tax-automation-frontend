@@ -4,6 +4,13 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --footer-height: 4rem;
+}
+
+body,
+#__next {
+  position: relative;
+  min-height: calc(100vh - var(--footer-height));
 }
 
 a {
@@ -76,4 +83,29 @@ input:-webkit-autofill {
 
 .is-hoverable:hover {
   cursor: pointer;
+}
+
+footer {
+  height: var(--footer-height);
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer .main {
+  display: grid;
+  place-content: center;
+  height: 100%;
+}
+
+a.link {
+  color: #077eca;
+}
+
+a.link:hover {
+  cursor: pointer;
+  color: #021243;
 }

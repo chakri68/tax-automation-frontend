@@ -24,6 +24,7 @@ import {
   Segment,
 } from "semantic-ui-react";
 import ErrorModal from "../../components/ErrorModal.js";
+import Footer from "../../components/Footer.js";
 import Protected from "../../components/ProtectedComponent.js";
 import { AuthContext } from "../../contexts/authContext.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -426,6 +427,7 @@ export default function GSTSummary() {
         )}
       </PDFSegment> */}
         </StyledSection>
+        <Footer />
       </Protected>
     </>
   );

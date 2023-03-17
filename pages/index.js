@@ -1,6 +1,7 @@
 import { withRouter } from "next/router";
 import React, { Component } from "react";
 import { Button, Card, Form, Grid, Header } from "semantic-ui-react";
+import Footer from "../components/Footer.js";
 import { MemoizedGSTINDropdown } from "../components/GSTINDropdown.js";
 import GSTINReviewModal from "../components/GSTINReviewModal.js";
 import { MemoizedGSTINTable } from "../components/GSTINTable.js";
@@ -201,6 +202,7 @@ export default withRouter(
                 </>
               )}
             </AppContext.Consumer>
+            <Footer />
           </Protected>
         </>
       );
