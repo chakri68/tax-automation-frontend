@@ -5,13 +5,15 @@ import PDFMerger from "pdf-merger-js/browser";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import React, { useEffect, useRef, useState } from "react";
+import config from "../config";
+let { frontendURL } = config;
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 pdfMake.fonts = {
   Noto_Sans: {
-    normal: "http://localhost:80/fonts/Noto_Sans/NotoSans-Regular.ttf",
-    bold: "http://localhost:80/fonts/Noto_Sans/NotoSans-Bold.ttf",
-    italics: "http://localhost:80/fonts/Noto_Sans/NotoSans-Italic.ttf",
-    bolditalics: "http://localhost:80/fonts/Noto_Sans/NotoSans-BoldItalic.ttf",
+    normal: `${frontendURL}/fonts/Noto_Sans/NotoSans-Regular.ttf`,
+    bold: `${frontendURL}/fonts/Noto_Sans/NotoSans-Bold.ttf`,
+    italics: `${frontendURL}/fonts/Noto_Sans/NotoSans-Italic.ttf`,
+    bolditalics: `${frontendURL}/fonts/Noto_Sans/NotoSans-BoldItalic.ttf`,
   },
 };
 
