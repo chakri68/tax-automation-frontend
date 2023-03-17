@@ -5,9 +5,11 @@ export default function Footer() {
     <footer>
       <Message floating className="main" color="blue">
         Developed by{" "}
-        <a className="link" href="https://iiitl.ac.in">
-          Indian Institute of Information Technology, Lucknow{" "}
-          <Icon name="share" />
+        <a className="link" href="https://iiitl.ac.in" target='_blank' rel="noreferrer">
+          <strong>
+            Indian Institute of Information Technology, Lucknow{" "}
+          </strong>
+          <Icon name="external alternate" />
         </a>
       </Message>
     </footer>
