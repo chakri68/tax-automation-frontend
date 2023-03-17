@@ -41,6 +41,7 @@ input:-webkit-autofill {
   background-image: linear-gradient(#021243, #077eca);
   border-bottom: 4px solid #021243;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .nav_container {
