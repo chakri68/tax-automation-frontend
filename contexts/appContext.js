@@ -7,14 +7,15 @@ export default function AppProvider({ children }) {
     GSTINList: [],
     empDetails: null,
     scode: null,
+    return_url: null,
   });
 
   let authContext = useContext(AuthContext);
 
   useEffect(() => {
     if (authContext.authState.token) {
-      let { S } = jwt_decode(authContext.authState.token);
-      setAppData({ ...appData, scode: S });
+      let { S, RU } = jwt_decode(authContext.authState.token);
+      setAppData({ ...appData, scode: S, return_url: RU });
     }
   }, [authContext.authState.token]);
 
