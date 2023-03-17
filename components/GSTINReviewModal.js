@@ -91,7 +91,11 @@ export default function GSTINReviewModal({
           icon="checkmark"
           onClick={async () => {
             setLoading(true);
-            await handleOnSubmit(reviewData);
+            await handleOnSubmit(
+              reviewData.actionRequired
+                ? { actionRequired: reviewData.actionRequired, review: null }
+                : reviewData
+            );
             setLoading(false);
           }}
           positive
