@@ -137,6 +137,19 @@ export default function GSTSummary() {
     [isFocused, isDragAccept, isDragReject]
   );
 
+  function handleDownload() {
+    let element = document.createElement("a");
+    element.setAttribute("href", pdfUrl);
+    element.setAttribute("download", `${gstin.toUpperCase()}_17-18.pdf`);
+
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
   async function handleFiles() {
     let remarksData = [];
     files.forEach((file, ind) => {
@@ -343,6 +356,14 @@ export default function GSTSummary() {
                     />
                   </Modal.Actions>
                 </Modal>
+                <Button
+                  fluid
+                  style={{ margin: "3px 0px" }}
+                  disabled={pdfUrl == null}
+                  onClick={handleDownload}
+                >
+                  Download
+                </Button>
                 <DynamicReport
                   tableData={reportData}
                   gstin={gstin}
