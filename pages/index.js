@@ -106,14 +106,6 @@ export default withRouter(
             <AppContext.Consumer>
               {(value) => (
                 <>
-                  {value.appData.empDetails ? (
-                    <div className="office">
-                      Office: {value.appData.empDetails.sector},{" "}
-                      {value.appData.empDetails.DESIG}
-                    </div>
-                  ) : (
-                    ""
-                  )}
                   <Grid relaxed textAlign="center" verticalAlign="middle">
                     <Grid.Row columns={1}>
                       <Grid.Column style={{ maxWidth: 450 }}>
@@ -144,13 +136,7 @@ export default withRouter(
                         {value.appData.empDetails ? (
                           <Card
                             fluid
-                            header={value.appData.empDetails.name}
-                            meta={`${value.appData.empDetails.DESIG} - ${value.appData.empDetails.sector}`}
-                            extra={
-                              <p>
-                                Employee Id: {value.appData.empDetails.EmpID}
-                              </p>
-                            }
+                            header={`${value.appData.empDetails.Sector}`}
                           />
                         ) : (
                           ""
