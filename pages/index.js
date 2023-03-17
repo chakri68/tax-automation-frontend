@@ -136,7 +136,7 @@ export default withRouter(
                         {value.appData.empDetails ? (
                           <Card
                             fluid
-                            header={`${value.appData.empDetails.Sector}`}
+                            header={`${value.appData.scode} - ${value.appData.empDetails.Sector}`}
                           />
                         ) : (
                           ""
