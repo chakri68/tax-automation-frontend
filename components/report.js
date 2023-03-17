@@ -8,10 +8,10 @@ import React, { useEffect, useRef, useState } from "react";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 pdfMake.fonts = {
   Noto_Sans: {
-    normal: "http://0.0.0.0:80/fonts/Noto_Sans/NotoSans-Regular.ttf",
-    bold: "http://0.0.0.0:80/fonts/Noto_Sans/NotoSans-Bold.ttf",
-    italics: "http://0.0.0.0:80/fonts/Noto_Sans/NotoSans-Italic.ttf",
-    bolditalics: "http://0.0.0.0:80/fonts/Noto_Sans/NotoSans-BoldItalic.ttf",
+    normal: "http://localhost:80/fonts/Noto_Sans/NotoSans-Regular.ttf",
+    bold: "http://localhost:80/fonts/Noto_Sans/NotoSans-Bold.ttf",
+    italics: "http://localhost:80/fonts/Noto_Sans/NotoSans-Italic.ttf",
+    bolditalics: "http://localhost:80/fonts/Noto_Sans/NotoSans-BoldItalic.ttf",
   },
 };
 
