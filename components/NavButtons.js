@@ -3,8 +3,8 @@ import { Button, Grid } from "semantic-ui-react";
 export default function NavButtons({ back, home }) {
   return (
     <Grid centered>
-      <Grid.Row>
-        <Grid.Column>
+      <Grid.Row columns={2}>
+        <Grid.Column textAlign="right">
           <Button
             labelPosition="left"
             icon="arrow left"
@@ -12,7 +12,7 @@ export default function NavButtons({ back, home }) {
             content="Back"
           />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column textAlign="left">
           <Button
             labelPosition="right"
             icon="home"
