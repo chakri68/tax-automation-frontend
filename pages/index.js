@@ -1,3 +1,4 @@
+import Head from "next/head.js";
 import { withRouter } from "next/router";
 import React, { Component } from "react";
 import { Button, Card, Form, Grid, Header } from "semantic-ui-react";
@@ -102,6 +103,12 @@ export default withRouter(
       let { loading } = this.state;
       return (
         <>
+          <Head>
+            <title>
+              Department of Commercial Taxes | Government of Uttar Pradesh,
+              India
+            </title>
+          </Head>
           <Protected>
             <Navbar />
             <AppContext.Consumer>

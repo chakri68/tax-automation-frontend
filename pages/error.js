@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
@@ -17,6 +18,9 @@ export default function Error() {
 
   return (
     <>
+      <Head>
+        <title>Error</title>
+      </Head>
       <Message
         style={{
           maxWidth: "600px",

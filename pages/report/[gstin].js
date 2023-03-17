@@ -11,6 +11,7 @@ import config from "../../config";
 
 import { styled } from "@stitches/react";
 import dynamic from "next/dynamic";
+import Head from "next/head.js";
 import { useRouter } from "next/router";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -205,6 +206,9 @@ export default function GSTSummary() {
   }, [authContext, gstin]);
   return (
     <>
+      <Head>
+        <title>Report | {gstin}</title>
+      </Head>
       <Protected>
         <Navbar />
         <ErrorModal
