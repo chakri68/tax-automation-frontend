@@ -15,16 +15,6 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
-
 input:-webkit-autofill:focus,
 .ui.form .field.no-auto-fill-color.field input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 0 transparent inset !important;
