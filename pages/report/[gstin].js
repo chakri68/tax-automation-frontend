@@ -121,8 +121,8 @@ export default function GSTSummary() {
     noKeyboard: true,
     accept: {
       "application/pdf": [],
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-        [],
+      // "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+      //   [],
     },
   });
 
@@ -274,7 +274,7 @@ export default function GSTSummary() {
                     </Button>
                   }
                 >
-                  <Modal.Header>Select a pdf/word document</Modal.Header>
+                  <Modal.Header>Select a pdf document</Modal.Header>
                   <Modal.Content>
                     <Segment
                       placeholder
@@ -284,10 +284,10 @@ export default function GSTSummary() {
                       {...getRootProps({ style: dropboxStyles })}
                     >
                       <Header icon>
-                        <Icon name="file word outline" />
+                        <Icon name="file pdf outline" />
                         {files.length > 0
                           ? ""
-                          : "No docx documents are listed for this customer."}
+                          : "No pdf documents are listed for this gstin."}
                       </Header>
                       <Button
                         primary
@@ -295,7 +295,7 @@ export default function GSTSummary() {
                           files.length > 0 ? "Add document" : "Choose Document"
                         }
                         labelPosition="left"
-                        icon="file word outline"
+                        icon="file pdf outline"
                         onClick={selectFiles}
                       />
                       <input {...getInputProps()} />
