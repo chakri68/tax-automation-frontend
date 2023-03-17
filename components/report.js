@@ -226,9 +226,8 @@ const Report = React.memo(function Report({
   </div>
 
   <ol style="list-style: none">
-    ${
-      table7?.flag
-        ? `
+    ${table7?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार दाखिल जी0एस0टी0आर-1 (4A, 4B, 4C, 6B, 6C,
@@ -357,10 +356,9 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
-    } ${
-      table11?.flag
-        ? `
+      : ``
+    } ${table11?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार GSTR-9 के कॉलम 5N में घोषित सकल करावर्त
@@ -440,10 +438,9 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
-    } ${
-      table8?.flag
-        ? `
+      : ``
+    } ${table8?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार GSTR-1 में घोषित करदेयता एवं मासिक
@@ -570,10 +567,9 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
-    } ${
-      table6?.flag
-        ? `
+      : ``
+    } ${table6?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार मासिक विवरणी GSTR-3B में दावाकृत आई0टी0सी0
@@ -652,10 +648,9 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
-    } ${
-      table12?.flag
-        ? `
+      : ``
+    } ${table12?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार GSTR-9 के कॉलम 9 में वित्‍तीय वर्ष में
@@ -731,7 +726,7 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
+      : ``
     }
     <li>
       <p class="bold fs-mid">
@@ -836,9 +831,8 @@ const Report = React.memo(function Report({
       </table>
     </li>
     <br />
-    ${
-      table10?.flag
-        ? `
+    ${table10?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार GSTR-1 के कॉलम 9(B) में घोषित क्रेडिट
@@ -913,7 +907,7 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
+      : ``
     }
     <li>
       <p class="bold fs-mid">
@@ -965,9 +959,8 @@ const Report = React.memo(function Report({
       </table>
     </li>
     <br />
-    ${
-      table9?.flag
-        ? `
+    ${table9?.flag
+      ? `
     <li>
       <p class="bold fs-mid">
         ${getTableNum()}. निम्नानुसार वर्तमान वित्‍तीय वर्ष में प्राप्‍त परन्‍तु
@@ -1044,7 +1037,7 @@ const Report = React.memo(function Report({
     </li>
     <br />
     `
-        : ``
+      : ``
     }
     <li>
       <p class="bold fs-mid">

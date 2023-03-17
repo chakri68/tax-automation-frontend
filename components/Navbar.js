@@ -26,15 +26,15 @@ function Navbar() {
             alt="Govt. of UP"
           />
         </div>
-        <NavButtons
-          back={() => router.back()}
-          home={
-            appContext.appData.return_url
-              ? () => router.replace(appContext.appData.return_url)
-              : () => {}
-          }
-        />
       </nav>
+      <NavButtons
+        back={() => router.back()}
+        home={
+          appContext.appData.return_url
+            ? () => router.replace(appContext.appData.return_url)
+            : () => { }
+        }
+      />
     </>
   );
 }

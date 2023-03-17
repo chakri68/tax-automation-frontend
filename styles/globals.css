@@ -7,6 +7,7 @@ body {
   --footer-height: 4rem;
 }
 
+
 body,
 #__next {
   position: relative;
@@ -26,6 +27,7 @@ input:-webkit-autofill:focus,
 .ui.form .field.no-auto-fill-color.field input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 0 transparent inset !important;
 }
+
 input:-webkit-autofill:focus,
 .ui.form .field.no-auto-fill-color.field input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 0 transparent inset !important;
@@ -35,8 +37,8 @@ input:-webkit-autofill:focus,
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
-.ui.search.dropdown.active > input.search,
-.ui.search.dropdown.visible > input.search {
+.ui.search.dropdown.active>input.search,
+.ui.search.dropdown.visible>input.search {
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
@@ -63,7 +65,7 @@ input:-webkit-autofill {
 
 .nav_main {
   text-transform: capitalize;
-  font-family: "Times New Roman", Times, serif;
+  /* font-family: "Times New Roman", Times, serif; */
   color: #62b3d7;
   font-size: 2rem;
   font-weight: bold;
@@ -72,11 +74,12 @@ input:-webkit-autofill {
 
 .nav_main .heading,
 .nav_main .subheading {
-  font-family: "Times New Roman", Times, serif !important;
+  /* font-family: "Times New Roman", Times, serif !important; */
   text-transform: uppercase !important;
   color: #62b3d7 !important;
   font-size: x-large !important;
 }
+
 .nav_main .subheading {
   font-size: medium !important;
 }
