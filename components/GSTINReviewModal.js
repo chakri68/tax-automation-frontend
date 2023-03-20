@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Header, Modal } from "semantic-ui-react";
+import { Button, Form, Header, Message, Modal } from "semantic-ui-react";
 
 export default function GSTINReviewModal({
   handleOnSubmit,
@@ -13,6 +13,7 @@ export default function GSTINReviewModal({
   let [reviewData, setReviewData] = useState({
     review: GSTINReviewData.review || "",
     actionRequired: GSTINReviewData.actionRequired || true,
+    viewed: GSTINReviewData.viewed || false,
   });
   let [loading, setLoading] = useState(false);
 
@@ -24,6 +25,7 @@ export default function GSTINReviewModal({
     setReviewData({
       review: GSTINReviewData.review || "",
       actionRequired: GSTINReviewData.actionRequired || false,
+      viewed: GSTINReviewData.viewed || false,
     });
   }, [GSTINReviewData]);
 
@@ -39,7 +41,16 @@ export default function GSTINReviewModal({
       <Modal.Content>
         <Modal.Description>
           <Header>{gstin}</Header>
-          <Form>
+          {reviewData.viewed ? (
+            ""
+          ) : (
+            <Message
+              warning
+              header="Review can't be saved"
+              content="Please view the report before the review"
+            />
+          )}
+          <Form warning={!reviewData.viewed}>
             <Form.Group inline>
               <label>Action Required</label>
               <Form.Radio
@@ -84,7 +95,10 @@ export default function GSTINReviewModal({
           Cancel
         </Button>
         <Button
-          disabled={!reviewData.actionRequired && reviewData.review.length == 0}
+          disabled={
+            !reviewData.viewed ||
+            (!reviewData.actionRequired && reviewData.review.length == 0)
+          }
           loading={loading}
           content="Save"
           labelPosition="right"
@@ -93,7 +107,10 @@ export default function GSTINReviewModal({
             setLoading(true);
             await handleOnSubmit(
               reviewData.actionRequired
-                ? { actionRequired: reviewData.actionRequired, review: null }
+                ? {
+                    actionRequired: reviewData.actionRequired,
+                    review: null,
+                  }
                 : reviewData
             );
             setLoading(false);
