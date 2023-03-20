@@ -7,12 +7,30 @@ export default function AuthProvider({ children }) {
 
   let [initLoad, setInitLoad] = useState(true);
 
+  async function checkLoginStatus(token) {
+    let res = await fetch("/api/verify", {
+      method: "POST",
+      body: JSON.stringify({
+        token: token,
+      }),
+    });
+    let data = await res.json();
+    return data.success && data.data.verified;
+  }
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
-      setAuthState({ token });
+      checkLoginStatus(token).then((verified) => {
+        if (verified) setAuthState({ token });
+        else {
+          localStorage.removeItem("token");
+        }
+        setInitLoad(false);
+      });
+    } else {
+      setInitLoad(false);
     }
-    setInitLoad(false);
   }, []);
 
   function setUserAuthInfo(token) {

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
+import { Dimmer, Loader, Segment } from "semantic-ui-react";
 import { AuthContext } from "../contexts/authContext";
 
 export default function Protected({
@@ -26,5 +27,13 @@ export default function Protected({
     }
   }, [authContext]);
 
-  return loading ? "" : children;
+  return loading ? (
+    <Segment style={{ width: "100vw", height: "100vh" }}>
+      <Dimmer active>
+        <Loader indeterminate>Checking Access</Loader>
+      </Dimmer>
+    </Segment>
+  ) : (
+    children
+  );
 }
