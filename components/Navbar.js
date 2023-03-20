@@ -28,11 +28,11 @@ function Navbar() {
         </div>
       </nav>
       <NavButtons
-        back={() => router.back()}
+        back={router.asPath === "/" ? null : () => router.replace("/")}
         home={
           appContext.appData.return_url
             ? () => router.replace(appContext.appData.return_url)
-            : () => { }
+            : () => {}
         }
       />
     </>
