@@ -7,7 +7,6 @@ body {
   --footer-height: 4rem;
 }
 
-
 body,
 #__next {
   position: relative;
@@ -37,8 +36,8 @@ input:-webkit-autofill:focus,
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
-.ui.search.dropdown.active>input.search,
-.ui.search.dropdown.visible>input.search {
+.ui.search.dropdown.active > input.search,
+.ui.search.dropdown.visible > input.search {
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
@@ -106,10 +105,18 @@ footer .main {
 }
 
 a.link {
-  color: #077eca;
+  color: rgb(7, 126, 202);
 }
 
 a.link:hover {
   cursor: pointer;
   color: #021243;
+}
+.bg-blue {
+  background-color: #dff0ff;
+}
+
+.ui.selectable.table tbody tr.bg-blue:hover {
+  background: rgba(7, 6, 202, 0.05) !important;
+  color: rgba(0, 0, 0, 0.95) !important;
 }
