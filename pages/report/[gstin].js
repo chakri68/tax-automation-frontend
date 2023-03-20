@@ -337,7 +337,7 @@ export default function GSTSummary() {
                       fluid
                       disabled={pdfUrl == null}
                     >
-                      Add Remarks
+                      Upload Remarks
                     </Button>
                   }
                 >
