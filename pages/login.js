@@ -2,6 +2,7 @@ import { MD5 } from "crypto-js";
 import jwt from "jsonwebtoken";
 import { useRouter } from "next/router.js";
 import { useContext, useEffect } from "react";
+import { formatDate } from "../components/utils";
 import { AppContext } from "../contexts/appContext";
 import { AuthContext } from "../contexts/authContext";
 
@@ -64,16 +65,4 @@ export async function getServerSideProps(context) {
       },
     };
   }
-}
-
-function formatDate(date) {
-  let day = date.getUTCDate();
-  let month = date.getUTCMonth() + 1;
-  let year = date.getUTCFullYear().toString();
-
-  day = day < 10 ? "0" + day.toString() : day.toString();
-  month = month < 10 ? "0" + month.toString() : month.toString();
-  year = year.slice(year.length - 2, year.length);
-
-  return `${day}${month}${year}`;
 }
