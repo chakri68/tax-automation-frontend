@@ -26,7 +26,9 @@ import {
 } from "semantic-ui-react";
 import ErrorModal from "../../components/ErrorModal.js";
 import Footer from "../../components/Footer.js";
+import { MemoizedGSTINReview } from "../../components/GSTINReview.js";
 import Protected from "../../components/ProtectedComponent.js";
+import { AppContext } from "../../contexts/appContext.js";
 import { AuthContext } from "../../contexts/authContext.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -62,10 +64,11 @@ const rejectStyle = {
 
 const StyledSection = styled("section", {
   display: "flex",
+  gap: "2rem",
   flexDirection: "row",
   flexWrap: "wrap",
   alignContent: "center",
-  justifyContent: "space-around",
+  justifyContent: "center",
   alignItems: "center",
   padding: "10px",
   marginTop: "20px",
@@ -105,6 +108,15 @@ export default function GSTSummary() {
   let [bufferData, setBuffferData] = useState([]);
   let [errorState, setErrorState] = useState({ error: false, message: null });
   let [warningModalOpen, setWarningModalOpen] = useState(true);
+  /**
+   * @typedef ReviewData
+   * @property {string} id
+   * @property {string} gstin
+   * @property {string} review
+   * @property {boolean} viewed
+   * @property {boolean} actionRequired
+   */
+  let [reviewData, setReviewData] = useState(/** @type {ReviewData} */ null);
 
   const onDrop = useCallback((acceptedFiles) => {
     setFiles(acceptedFiles);
@@ -137,6 +149,27 @@ export default function GSTSummary() {
     }),
     [isFocused, isDragAccept, isDragReject]
   );
+
+  async function handleSaveGSTINReview(newReviewData) {
+    let res = await fetch("/api/review", {
+      method: "POST",
+      body: JSON.stringify({
+        ...newReviewData,
+        id: reviewData.id,
+        token: authContext.authState.token,
+      }),
+    });
+    let data = await res.json();
+    let reqInd = appContext.appData.GSTINList.findIndex(
+      (x) => x.id == reviewData.id
+    );
+    let list = appContext.appData.GSTINList;
+    list[reqInd] = {
+      ...appContext.appData.GSTINList[reqInd],
+      ...newReviewData,
+    };
+    appContext.update({ GSTINList: list });
+  }
 
   function handleDownload() {
     let element = document.createElement("a");
@@ -187,6 +220,7 @@ export default function GSTSummary() {
   let [warnings, setWarnings] = useState([]);
 
   const authContext = useContext(AuthContext);
+  const appContext = useContext(AppContext);
 
   useEffect(() => {
     if (gstin) {
@@ -203,6 +237,17 @@ export default function GSTSummary() {
           setGSTR3BData(data.R3Data);
           setGSTR9Data(data.R9Data);
           setWarnings(data.warnings);
+          setReviewData(data.reviewData);
+
+          let reqInd = appContext.appData.GSTINList.findIndex(
+            (x) => x.gstin == gstin
+          );
+          let list = appContext.appData.GSTINList;
+          list[reqInd] = {
+            ...appContext.appData.GSTINList[reqInd],
+            viewed: true,
+          };
+          appContext.update({ GSTINList: list });
         }
       );
     }
@@ -384,76 +429,15 @@ export default function GSTSummary() {
               </Dimmer>
             )}
           </PDFSegment>
-          {/* <PDFSegment raised>
-        {GSTR1Data != null ? (
-          <>
-            <Header as="h3" color="teal" textAlign="center">
-              GSTR-1
-            </Header>
-            <Button
-              fluid
-              disabled={pdfMakeGSTR1 == null}
-              onClick={() => pdfMakeGSTR1.open()}
-            >
-              Open In New Tab
-            </Button>
-            <DynamicGSTR1
-              tableData={GSTR1Data}
-              gstin={gstin}
-              setPdfMake={setPdfMakeGSTR1}
+          {reportData ? (
+            <MemoizedGSTINReview
+              gstin={reviewData.gstin}
+              GSTINReviewData={reviewData}
+              handleOnSubmit={handleSaveGSTINReview}
             />
-          </>
-        ) : (
-          <Dimmer active>
-            <Loader />
-          </Dimmer>
-        )}
-      </PDFSegment>
-      <PDFSegment raised>
-        {GSTR3BData != null ? (
-          <>
-            <Header as="h3" color="teal" textAlign="center">
-              GSTR-3B
-            </Header>
-            <Button
-              fluid
-              disabled={pdfMakeGSTR3b == null}
-              onClick={() => pdfMakeGSTR3b.open()}
-            >
-              Open In New Tab
-            </Button>
-            <DynamicGSTR3B
-              tableData={GSTR3BData}
-              setPdfMake={setPdfMakeGSTR3b}
-            />
-          </>
-        ) : (
-          <Dimmer active>
-            <Loader />
-          </Dimmer>
-        )}
-      </PDFSegment>
-      <PDFSegment raised>
-        {GSTR9Data != null ? (
-          <>
-            <Header as="h3" color="teal" textAlign="center">
-              GSTR-9
-            </Header>
-            <Button
-              fluid
-              disabled={pdfMakeGSTR9 == null}
-              onClick={() => pdfMakeGSTR9.open()}
-            >
-              Open In New Tab
-            </Button>
-            <DynamicGSTR9 tableData={GSTR9Data} setPdfMake={setPdfMakeGSTR9} />
-          </>
-        ) : (
-          <Dimmer active>
-            <Loader />
-          </Dimmer>
-        )}
-      </PDFSegment> */}
+          ) : (
+            ""
+          )}
         </StyledSection>
         <Footer />
       </Protected>
