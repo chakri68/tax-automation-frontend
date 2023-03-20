@@ -141,7 +141,10 @@ export default function GSTSummary() {
   function handleDownload() {
     let element = document.createElement("a");
     element.setAttribute("href", pdfUrl);
-    element.setAttribute("download", `${gstin.toUpperCase()}_17-18.pdf`);
+    element.setAttribute(
+      "download",
+      `${gstin.toUpperCase()}1718${generateUniqueId()}_61.pdf`
+    );
 
     element.style.display = "none";
     document.body.appendChild(element);
