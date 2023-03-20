@@ -118,7 +118,7 @@ export default withRouter(
                     <Grid.Row columns={1}>
                       <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as="h2" color="teal" textAlign="center">
-                          Get tax discrepancies
+                          Return Discrepancies
                         </Header>
                         <Form
                           onSubmit={(e) =>

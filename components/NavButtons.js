@@ -9,7 +9,7 @@ export default function NavButtons({ back, home }) {
             labelPosition="left"
             icon="arrow left"
             onClick={back}
-            content="Back"
+            content="Back to List"
           />
         </Grid.Column>
         <Grid.Column textAlign="left">
@@ -17,7 +17,7 @@ export default function NavButtons({ back, home }) {
             labelPosition="right"
             icon="home"
             onClick={home}
-            content="Home"
+            content="Back to Dashboard"
           />
         </Grid.Column>
       </Grid.Row>
