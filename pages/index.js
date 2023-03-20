@@ -32,6 +32,7 @@ export default withRouter(
           id: gstinData.id,
           actionRequired: gstinData.actionRequired,
           review: gstinData.review,
+          viewed: gstinData.viewed,
         },
       });
       this.setState({ moreDetailsModalOpen: true });
@@ -86,6 +87,7 @@ export default withRouter(
           gstin: gstin_details.GSTIN,
           actionRequired: gstin_details.actionRequired,
           review: gstin_details.review,
+          viewed: gstin_details.viewed,
         });
       });
       return { GSTINList: DropListGSTINs, empDetails: data.data.emp };
