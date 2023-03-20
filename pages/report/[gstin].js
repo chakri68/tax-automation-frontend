@@ -28,6 +28,7 @@ import ErrorModal from "../../components/ErrorModal.js";
 import Footer from "../../components/Footer.js";
 import { MemoizedGSTINReview } from "../../components/GSTINReview.js";
 import Protected from "../../components/ProtectedComponent.js";
+import { generateUniqueId } from "../../components/utils.js";
 import { AppContext } from "../../contexts/appContext.js";
 import { AuthContext } from "../../contexts/authContext.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
