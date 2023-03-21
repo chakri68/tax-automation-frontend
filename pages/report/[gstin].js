@@ -161,15 +161,18 @@ export default function GSTSummary() {
       }),
     });
     let data = await res.json();
-    let reqInd = appContext.appData.GSTINList.findIndex(
-      (x) => x.id == reviewData.id
-    );
-    let list = appContext.appData.GSTINList;
-    list[reqInd] = {
-      ...appContext.appData.GSTINList[reqInd],
-      ...newReviewData,
-    };
-    appContext.update({ GSTINList: list });
+    if (appContext.appData.GSTINList.length != 0) {
+      console.log({ data: appContext.appData });
+      let reqInd = appContext.appData.GSTINList.findIndex(
+        (x) => x.id == reviewData.id
+      );
+      let list = appContext.appData.GSTINList;
+      list[reqInd] = {
+        ...appContext.appData.GSTINList[reqInd],
+        ...newReviewData,
+      };
+      appContext.update({ GSTINList: list });
+    }
   }
 
   function handleDownload() {
@@ -224,7 +227,7 @@ export default function GSTSummary() {
   const appContext = useContext(AppContext);
 
   useEffect(() => {
-    if (gstin) {
+    if (gstin && authContext.isAuthenticated()) {
       getReportData(
         gstin,
         { gstin, token: authContext.authState.token },
@@ -239,16 +242,18 @@ export default function GSTSummary() {
           setGSTR9Data(data.R9Data);
           setWarnings(data.warnings);
           setReviewData(data.reviewData);
-
-          let reqInd = appContext.appData.GSTINList.findIndex(
-            (x) => x.gstin == gstin
-          );
-          let list = appContext.appData.GSTINList;
-          list[reqInd] = {
-            ...appContext.appData.GSTINList[reqInd],
-            viewed: true,
-          };
-          appContext.update({ GSTINList: list });
+          if (appContext.appData.GSTINList.length != 0) {
+            console.log({ data: appContext.appData });
+            let reqInd = appContext.appData.GSTINList.findIndex(
+              (x) => x.gstin == gstin
+            );
+            let list = appContext.appData.GSTINList;
+            list[reqInd] = {
+              ...appContext.appData.GSTINList[reqInd],
+              viewed: true,
+            };
+            appContext.update({ GSTINList: list });
+          }
         }
       );
     }
