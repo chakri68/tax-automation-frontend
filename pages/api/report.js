@@ -118,6 +118,14 @@ export default async function handler(req, res) {
     trade_name: bzdtls.bzdtlsbz.trdnm,
   };
 
+  let reviewData = {
+    id: gstin_det.id,
+    gstin: gstin_det.GSTIN,
+    actionRequired: gstin_det.actionRequired,
+    review: gstin_det.review,
+    viewed: gstin_det.viewed,
+  };
+
   // Check user privileges
 
   if (gstin_det.div_scode.toLowerCase() !== decodedJWT.S.toLowerCase()) {
@@ -127,6 +135,35 @@ export default async function handler(req, res) {
       error: "Unauthorized Access",
     });
     return;
+  }
+
+  // update the viewed status
+  let viewed_res = await fetch(`${backendURL}/api/v1/post-viewed`, {
+    method: "POST",
+    body: JSON.stringify({
+      gstin,
+      viewed: true,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  viewed_res = await viewed_res.json();
+
+  console.log({ viewed_res });
+
+  function parseValue(val) {
+    return isNaN(val) ? null : Math.abs(val);
+  }
+
+  function addNullables(...vals) {
+    let res = 0;
+    for (let val in vals) {
+      if (val == null || val == undefined) return null;
+      res += val;
+    }
+    return Math.abs(res);
   }
 
   const table1 = new (function () {
@@ -740,6 +777,15 @@ export default async function handler(req, res) {
 
   res.status(200).json({
     success: true,
-    data: { R1Data, R3Data, R9Data, R9CData, Report, warnings },
+    data: {
+      reviewData,
+      GSTINDetails,
+      R1Data,
+      R3Data,
+      R9Data,
+      R9CData,
+      Report,
+      warnings,
+    },
   });
 }
