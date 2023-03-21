@@ -53,7 +53,7 @@ export default async function handler(req, res) {
     var allData = await Promise.all(json);
   } catch (e) {
     console.log("ERORR in FETCH", e.message);
-    res.status(500).json({ success: false, data: null, error: e.message });
+    res.status(400).json({ success: false, data: null, error: e.message });
   }
 
   // R1 Data
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     data1.data ||
     addWarning({
       table: "R1",
-      message: "No entires found for the given gstin",
+      message: "No entries found for the given gstin",
     });
 
   // R3 Data
@@ -79,7 +79,7 @@ export default async function handler(req, res) {
     ) ||
     addWarning({
       table: "R3",
-      message: "No entires found for the given gstin",
+      message: "No entries found for the given gstin",
     });
 
   // R9 Data
@@ -91,7 +91,7 @@ export default async function handler(req, res) {
     ) ||
     addWarning({
       table: "R9",
-      message: "No entires found for the given gstin",
+      message: "No entries found for the given gstin",
     });
 
   // R9C Data
@@ -100,7 +100,7 @@ export default async function handler(req, res) {
     data.data ||
     addWarning({
       table: "R9C",
-      message: "No entires found for the given gstin",
+      message: "No entries found for the given gstin",
     });
 
   // GSTIN Details
@@ -109,7 +109,7 @@ export default async function handler(req, res) {
     data.data ||
     addWarning({
       table: "GSTIN_Details",
-      message: "No entires found for the given gstin",
+      message: "No entries found for the given gstin",
     });
   gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
   let { bzdtls } = gstin_det.GSTINDetails;
