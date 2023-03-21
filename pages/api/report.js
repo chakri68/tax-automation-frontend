@@ -485,7 +485,7 @@ export default async function handler(req, res) {
       csamt: this.row7.csamt - this.row8.csamt,
       total: this.row7.total - this.row8.total,
     };
-    this.flag = dev || this.row7.total > this.row8.total;
+    this.flag = dev || Object.values(this.row9).filter((x) => x > 0).length > 0;
   })();
   const table8 = new (function () {
     this.row1 = new (function () {
@@ -586,7 +586,7 @@ export default async function handler(req, res) {
       csamt: this.row7.csamt - this.row8.csamt,
       total: this.row7.total - this.row8.total,
     };
-    this.flag = dev || this.row7.total > this.row8.total;
+    this.flag = dev || Object.values(this.row9).filter((x) => x > 0).length > 0;
   })();
   const table9 = new (function () {
     this.row1 = new (function () {
