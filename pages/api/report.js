@@ -116,6 +116,7 @@ export default async function handler(req, res) {
   let GSTINDetails = {
     legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
     trade_name: bzdtls.bzdtlsbz.trdnm,
+    reference_number: `${gstin}/17-18/61`,
   };
 
   let reviewData = {
