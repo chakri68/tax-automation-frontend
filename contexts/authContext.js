@@ -39,7 +39,7 @@ export default function AuthProvider({ children }) {
   }
 
   function isAuthenticated() {
-    return !!authState.token;
+    return !initLoad && !!authState.token;
   }
 
   return (
