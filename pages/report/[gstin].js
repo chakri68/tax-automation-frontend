@@ -108,7 +108,7 @@ export default function GSTSummary() {
   let [fileReading, setFileReading] = useState(false);
   let [bufferData, setBuffferData] = useState([]);
   let [errorState, setErrorState] = useState({ error: false, message: null });
-  let [warningModalOpen, setWarningModalOpen] = useState(true);
+  let [warningModalOpen, setWarningModalOpen] = useState(false);
   /**
    * @typedef ReviewData
    * @property {string} id
