@@ -19,7 +19,11 @@ export function createHash(data, len) {
 }
 
 export function generateUniqueId() {
-  return new Date().toLocaleDateString("en-IN").split("/").join("");
+  let [date, time] = new Date().toLocaleString("en-IN").split(", ");
+  return (
+    time.replace(" pm", "").split(":").slice(0, 3).join("") +
+    date.split("/").join("")
+  );
 }
 
 export function formatDate(date) {
