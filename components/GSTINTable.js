@@ -123,8 +123,8 @@ export function RawGSTINTable({ onRowClick, onReportBtnClick }) {
                     {actionRequired == null
                       ? ""
                       : actionRequired
-                      ? "True"
-                      : "False"}
+                      ? "Yes"
+                      : "No"}
                   </Table.Cell>
                 </Table.Row>
               );
