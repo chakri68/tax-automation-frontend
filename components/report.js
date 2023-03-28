@@ -199,11 +199,11 @@ const Report = React.memo(function Report({
     <p><span class="bold fs-midl">To, </span></p>
     <p>
       <span class="bold fs-mid">Legal Name: </span
-      ><span>${GSTINDetails.legal_name}</span>
+      ><span>${GSTINDetails?.legal_name || "-"}</span>
     </p>
     <p>
       <span class="bold fs-mid">Trade Name: </span
-      ><span>${GSTINDetails.trade_name}</span>
+      ><span>${GSTINDetails?.trade_name || "-"}</span>
     </p>
     <p><span class="bold fs-mid">GSTIN: </span><span>${gstin}</span></p>
     <p><span class="bold fs-mid">Tax Period: </span><span>2017-18</span></p>
