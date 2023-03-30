@@ -188,6 +188,7 @@ export default withRouter(
                               }
                             /> */}
                             <Button
+                              disabled={!this.state.selectedGSTIN?.gstin}
                               onClick={() =>
                                 this.handleGSTINSelection(
                                   this.state.selectedGSTIN?.gstin
