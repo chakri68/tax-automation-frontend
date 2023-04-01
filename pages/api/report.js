@@ -54,6 +54,7 @@ export default async function handler(req, res) {
   } catch (e) {
     console.log("ERORR in FETCH", e.message);
     res.status(400).json({ success: false, data: null, error: e.message });
+    return;
   }
 
   // R1 Data
