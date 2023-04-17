@@ -610,18 +610,18 @@
           <tr style="height: 21px">
             <td class="c-1">A</td>
             <td>Transition Credit through TRAN-I (GSTR9_6K)</td>
-            <td class="n-a"></td>
+            <td>${checkRound(table14?.row1?.samt) ?? "-"}</td>
             <td>${checkRound(table14?.row1?.camt) ?? "-"}</td>
-            <td>${checkRound(table14?.row1?.iamt) ?? "-"}</td>
+            <td class="n-a"></td>
             <td class="n-a"></td>
             <td>${checkRound(table14?.row1?.total) ?? "-"}</td>
           </tr>
           <tr style="height: 21px">
             <td class="c-1">B</td>
             <td>Transition Credit through TRAN-II (GSTR9_6L)</td>
-            <td class="n-a"></td>
+            <td>${checkRound(table14?.row2?.samt) ?? "-"}</td>
             <td>${checkRound(table14?.row2?.camt) ?? "-"}</td>
-            <td>${checkRound(table14?.row2?.iamt) ?? "-"}</td>
+            <td class="n-a"></td>
             <td class="n-a"></td>
             <td>${checkRound(table14?.row2?.total) ?? "-"}</td>
           </tr>
