@@ -1,14 +1,17 @@
 import { styled } from "@stitches/react";
+import { useState } from "react";
 import { Button } from "semantic-ui-react";
+import EntryForm from "./EntryForm.js";
 
 export default function NavButtons({ back, home }) {
   let btns = [back, home].filter((x) => x != null);
   const StyledGrid = styled("div", {
     display: "grid",
-    maxWidth: btns.length == 1 ? "fit-content" : "450px",
+    maxWidth: btns.length == 1 ? "fit-content" : "500px",
     margin: "2rem auto",
-    gridTemplateColumns: btns.map(() => "1fr").join(" "),
+    gridTemplateColumns: btns.map(() => "1fr").join(" ") + " 1fr",
   });
+  let [open, setOpen] = useState(false);
   return (
     <StyledGrid centered>
       {back != null ? (
@@ -21,6 +24,14 @@ export default function NavButtons({ back, home }) {
       ) : (
         ""
       )}
+      <EntryForm
+        handleOnSubmit={(data) => {
+          console.log({ data });
+        }}
+        btnDisabled={false}
+        open={open}
+        onOpenStateChange={setOpen}
+      />
       {home != null ? (
         <Button
           labelPosition="right"
