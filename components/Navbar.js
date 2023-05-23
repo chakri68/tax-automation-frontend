@@ -4,7 +4,7 @@ import { Header, Image } from "semantic-ui-react";
 import { AppContext } from "../contexts/appContext";
 import NavButtons from "./NavButtons";
 
-function Navbar() {
+function Navbar({ token }) {
   const appContext = useContext(AppContext);
   const router = useRouter();
   return (
@@ -34,6 +34,18 @@ function Navbar() {
             ? () => router.replace(appContext.appData.return_url)
             : () => {}
         }
+        handleEntryFormSubmit={async (formData) => {
+          let res = await fetch("/api/misdata", {
+            method: "POST",
+            body: JSON.stringify({
+              token,
+              boweb: formData?.boweb || 0,
+              drc: formData?.drc || 0,
+              further_action: formData?.further_action || 0,
+            }),
+          });
+          let data = await res.json();
+        }}
       />
     </>
   );

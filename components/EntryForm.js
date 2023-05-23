@@ -26,33 +26,34 @@ export default function EntryForm({
       <Modal.Header>Sent Forms</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <Form warning={!formData.viewed}>
+          <Form>
             <Form.Group inline>
               <label>No of ASMT-10 Sent Through BOWEB</label>
               <Form.Input
-                checked={formData.boweb}
+                type="number"
+                value={formData.boweb}
                 onChange={(e, { value }) =>
                   setFormData({ ...formData, boweb: value })
                 }
               />
             </Form.Group>
-            <Form.Group inline>
+            <Form.Group inline widths={"equal"}>
               <label>
                 Amount Deposited After Issueing of ASMT-10 through (DRC-03)
               </label>
               <Form.Input
                 type="number"
-                checked={formData.drc}
+                value={formData.drc}
                 onChange={(e, { value }) =>
                   setFormData({ ...formData, drc: value })
                 }
               />
             </Form.Group>
-            <Form.Group inline>
+            <Form.Group inline widths={"equal"}>
               <label>No of Dealer Selected For further Action for 73/74</label>
               <Form.Input
                 type="number"
-                checked={formData.further_action}
+                value={formData.further_action}
                 onChange={(e, { value }) =>
                   setFormData({ ...formData, further_action: value })
                 }

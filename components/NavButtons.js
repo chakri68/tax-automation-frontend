@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "semantic-ui-react";
 import EntryForm from "./EntryForm.js";
 
-export default function NavButtons({ back, home }) {
+export default function NavButtons({ back, home, handleEntryFormSubmit }) {
   let btns = [back, home].filter((x) => x != null);
   const StyledGrid = styled("div", {
     display: "grid",
@@ -25,9 +25,7 @@ export default function NavButtons({ back, home }) {
         ""
       )}
       <EntryForm
-        handleOnSubmit={(data) => {
-          console.log({ data });
-        }}
+        handleOnSubmit={handleEntryFormSubmit}
         btnDisabled={false}
         open={open}
         onOpenStateChange={setOpen}
