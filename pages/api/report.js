@@ -115,8 +115,8 @@ export default async function handler(req, res) {
   gstin_det.GSTINDetails = JSON.parse(gstin_det.GSTINDetails);
   let { bzdtls } = gstin_det.GSTINDetails;
   let GSTINDetails = {
-    legal_name: bzdtls.bzdtlsbz.lgnmbzpan,
-    trade_name: bzdtls.bzdtlsbz.trdnm,
+    legal_name: bzdtls?.bzdtlsbz?.lgnmbzpan || "",
+    trade_name: bzdtls?.bzdtlsbz?.trdnm || "",
     reference_number: `${gstin}/17-18/61`,
   };
 
@@ -129,6 +129,8 @@ export default async function handler(req, res) {
   };
 
   // Check user privileges
+
+  console.log({ scode: gstin_det.div_scode.toLowerCase() });
 
   if (gstin_det.div_scode.toLowerCase() !== decodedJWT.S.toLowerCase()) {
     res.status(403).json({
@@ -143,6 +145,7 @@ export default async function handler(req, res) {
   let viewed_res = await fetch(`${backendURL}/api/v1/post-viewed`, {
     method: "POST",
     body: JSON.stringify({
+      scode: decodedJWT.S,
       gstin,
       viewed: true,
     }),
