@@ -2,10 +2,12 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { Header, Image } from "semantic-ui-react";
 import { AppContext } from "../contexts/appContext";
+import { AuthContext } from "../contexts/authContext";
 import NavButtons from "./NavButtons";
 
-function Navbar({ token }) {
+function Navbar() {
   const appContext = useContext(AppContext);
+  const authContext = useContext(AuthContext);
   const router = useRouter();
   return (
     <>
@@ -35,10 +37,18 @@ function Navbar({ token }) {
             : () => {}
         }
         handleEntryFormSubmit={async (formData) => {
+          console.log({
+            body: {
+              token: authContext.authState.token,
+              boweb: formData?.boweb || 0,
+              drc: formData?.drc || 0,
+              further_action: formData?.further_action || 0,
+            },
+          });
           let res = await fetch("/api/misdata", {
             method: "POST",
             body: JSON.stringify({
-              token,
+              token: authContext.authState.token,
               boweb: formData?.boweb || 0,
               drc: formData?.drc || 0,
               further_action: formData?.further_action || 0,
