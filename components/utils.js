@@ -37,3 +37,10 @@ export function formatDate(date) {
 
   return `${day}${month}${year}`;
 }
+/**
+ * @param  {string} gstin
+ */
+export function checkGSTIN(gstin) {
+  let matcher = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/;
+  return matcher.test(gstin);
+}
