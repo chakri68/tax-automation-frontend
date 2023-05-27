@@ -93,7 +93,7 @@ export default function EntryForm({
               />
             </Form.Group>
             <Label style={{ marginBottom: "0.5rem" }}>
-              GSTINS ({new Set(formData.gstin_array).size})
+              GSTINS ({formData.gstin_array.length})
             </Label>
             <GSTINLabels>
               {formData.gstin_array.map((gstin) => (
