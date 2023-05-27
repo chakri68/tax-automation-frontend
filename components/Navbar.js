@@ -43,6 +43,7 @@ function Navbar() {
               boweb: formData?.boweb || 0,
               drc: formData?.drc || 0,
               further_action: formData?.further_action || 0,
+              gstin_array: formData?.gstin_array || [],
             },
           });
           let res = await fetch("/api/misdata", {
@@ -52,6 +53,7 @@ function Navbar() {
               boweb: formData?.boweb || 0,
               drc: formData?.drc || 0,
               further_action: formData?.further_action || 0,
+              gstin_array: formData?.gstin_array || [],
             }),
           });
           let data = await res.json();
