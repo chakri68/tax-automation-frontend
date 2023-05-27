@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import config from "../../config";
 
 const { backendURL } = config;
@@ -17,6 +18,7 @@ export default async function handler(req, res) {
         boweb: body?.boweb || 0,
         drc: body?.drc || 0,
         further_action: body?.further_action || 0,
+        gstin_array: body?.gstin_array || [],
       }),
       headers: {
         "Content-Type": "application/json",
