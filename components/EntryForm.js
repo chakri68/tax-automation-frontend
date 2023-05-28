@@ -43,7 +43,7 @@ export default function EntryForm({
                 type="number"
                 value={formData.boweb}
                 onChange={(e, { value }) =>
-                  setFormData({ ...formData, boweb: value })
+                  setFormData({ ...formData, boweb: parseInt(value) })
                 }
               />
             </Form.Group>
@@ -55,7 +55,7 @@ export default function EntryForm({
                 type="number"
                 value={formData.drc}
                 onChange={(e, { value }) =>
-                  setFormData({ ...formData, drc: value })
+                  setFormData({ ...formData, drc: parseInt(value) })
                 }
               />
             </Form.Group>
@@ -65,7 +65,7 @@ export default function EntryForm({
                 type="number"
                 value={formData.further_action}
                 onChange={(e, { value }) =>
-                  setFormData({ ...formData, further_action: value })
+                  setFormData({ ...formData, further_action: parseInt(value) })
                 }
               />
             </Form.Group>
