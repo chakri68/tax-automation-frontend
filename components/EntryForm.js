@@ -129,6 +129,7 @@ export default function EntryForm({
         </Button>
         <Button
           loading={loading}
+          disabled={formData.boweb != formData.gstin_array.length}
           content="Save"
           labelPosition="right"
           icon="checkmark"
