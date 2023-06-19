@@ -4,17 +4,23 @@ import config from "../../config";
 const { backendURL } = config;
 
 export default async function handler(req, res) {
-  let { token } = JSON.parse(req.body);
-  if (!token) {
-    res
-      .status(400)
-      .json({ success: false, data: null, message: "TOKEN NOT PROVIDED" });
-    return;
+  try {
+    let { token } = JSON.parse(req.body);
+    if (!token) {
+      res
+        .status(400)
+        .json({ success: false, data: null, message: "TOKEN NOT PROVIDED" });
+      return;
+    }
+    let decodedJWT = jwt.verify(token, process.env.JWT_KEY);
+    let response = await fetch(
+      `${backendURL}/api/v1/gstin-list?scode=${decodedJWT.S}`
+    );
+    let data = await response.json();
+    if (data.error != null) throw new Error(data?.message);
+    res.status(200).json({ success: true, data: data.data });
+  } catch (e) {
+    console.error("HANDLED ERROR", e);
+    res.status(400).json({ success: false, data: null, message: e.message });
   }
-  let decodedJWT = jwt.verify(token, process.env.JWT_KEY);
-  let response = await fetch(
-    `${backendURL}/api/v1/gstin-list?scode=${decodedJWT.S}`
-  );
-  let data = await response.json();
-  res.status(200).json({ success: true, data: data.data });
 }

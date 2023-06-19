@@ -51,8 +51,11 @@ export default async function handler(req, res) {
     let responses = await Promise.all(reqs);
     let json = responses.map((response) => response.json());
     var allData = await Promise.all(json);
+    for (let data of allData) {
+      if (data.error != null) throw new Error(data?.message);
+    }
   } catch (e) {
-    console.log("ERORR in FETCH", e.message);
+    console.error("HANDLED ERROR", e);
     res.status(400).json({ success: false, data: null, error: e.message });
     return;
   }

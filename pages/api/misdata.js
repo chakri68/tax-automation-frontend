@@ -26,12 +26,13 @@ export default async function handler(req, res) {
     });
 
     let data = await response.json();
+    if (data.error != null) throw new Error(data?.message);
     res.status(200).json({
       success: true,
       data: data,
     });
   } catch (e) {
-    console.log({ handledError: e });
+    console.error("HANDLED ERROR", e);
     res.status(400).json({ success: false, data: null, message: e.message });
   }
 }
