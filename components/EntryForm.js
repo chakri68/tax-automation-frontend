@@ -136,6 +136,12 @@ export default function EntryForm({
           onClick={async () => {
             setLoading(true);
             await handleOnSubmit(formData);
+            setFormData({
+              boweb: 0,
+              drc: 0,
+              further_action: 0,
+              gstin_array: [],
+            });
             setLoading(false);
           }}
           positive
