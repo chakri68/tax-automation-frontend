@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       res.status(200).json({ success: true, data: { verified: false } });
     }
   } catch (e) {
-    console.log(e.message);
+    console.error("HANDLED ERROR", e);
     res
       .status(400)
       .json({ success: false, data: null, message: "INVALID TOKEN" });
