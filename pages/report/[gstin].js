@@ -31,6 +31,7 @@ import Protected from "../../components/ProtectedComponent.js";
 import { generateUniqueId } from "../../components/utils.js";
 import { AppContext } from "../../contexts/appContext.js";
 import { AuthContext } from "../../contexts/authContext.js";
+import { useError } from "../../contexts/errorContext.js";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const { backendURL } = config;
@@ -86,16 +87,20 @@ const DynamicReport = dynamic(() => import("../../components/report"), {
 });
 
 async function getReportData(gstin, postData, callback) {
-  let res = await fetch(`/api/report?gstin=${gstin}`, {
-    method: "POST",
-    body: JSON.stringify(postData),
-  });
-  let data = await res.json();
-  if (!data.success) {
-    callback(null, data.error);
-    return;
+  try {
+    let res = await fetch(`/api/report?gstin=${gstin}`, {
+      method: "POST",
+      body: JSON.stringify(postData),
+    });
+    let data = await res.json();
+    if (!data.success) {
+      callback(null, data.error);
+      return;
+    }
+    callback(data.data);
+  } catch (error) {
+    handleFetchError(error);
   }
-  callback(data.data);
 }
 
 export default function GSTSummary() {
@@ -152,26 +157,32 @@ export default function GSTSummary() {
   );
 
   async function handleSaveGSTINReview(newReviewData) {
-    let res = await fetch("/api/review", {
-      method: "POST",
-      body: JSON.stringify({
-        ...newReviewData,
-        id: reviewData.id,
-        token: authContext.authState.token,
-      }),
-    });
-    let data = await res.json();
-    if (appContext.appData.GSTINList.length != 0) {
-      console.log({ data: appContext.appData });
-      let reqInd = appContext.appData.GSTINList.findIndex(
-        (x) => x.id == reviewData.id
-      );
-      let list = appContext.appData.GSTINList;
-      list[reqInd] = {
-        ...appContext.appData.GSTINList[reqInd],
-        ...newReviewData,
-      };
-      appContext.update({ GSTINList: list });
+    try {
+      let res = await fetch("/api/review", {
+        method: "POST",
+        body: JSON.stringify({
+          ...newReviewData,
+          id: reviewData.id,
+          token: authContext.authState.token,
+        }),
+      });
+      let data = await res.json();
+      if (!data.success) throw new Error(data?.message);
+      if (appContext.appData.GSTINList.length != 0) {
+        console.log({ data: appContext.appData });
+        let reqInd = appContext.appData.GSTINList.findIndex(
+          (x) => x.id == reviewData.id
+        );
+        let list = appContext.appData.GSTINList;
+        list[reqInd] = {
+          ...appContext.appData.GSTINList[reqInd],
+          ...newReviewData,
+        };
+        appContext.update({ GSTINList: list });
+      }
+      handleFetchSuccess("Review Saved Successfully!");
+    } catch (error) {
+      handleFetchError(error);
     }
   }
 
@@ -225,6 +236,14 @@ export default function GSTSummary() {
 
   const authContext = useContext(AuthContext);
   const appContext = useContext(AppContext);
+  const {
+    error,
+    successMessage,
+    handleFetchError,
+    handleFetchSuccess,
+    clearError,
+    clearSuccessMessage,
+  } = useError();
 
   useEffect(() => {
     if (gstin && authContext.isAuthenticated()) {

@@ -1,6 +1,7 @@
 import { styled } from "@stitches/react";
 import { useState } from "react";
 import { Button } from "semantic-ui-react";
+import { useError } from "../contexts/errorContext";
 import EntryForm from "./EntryForm.js";
 
 export default function NavButtons({ back, home, handleEntryFormSubmit }) {
@@ -12,6 +13,14 @@ export default function NavButtons({ back, home, handleEntryFormSubmit }) {
     gridTemplateColumns: btns.map(() => "1fr").join(" ") + " 1fr",
   });
   let [open, setOpen] = useState(false);
+  const {
+    error,
+    successMessage,
+    handleFetchError,
+    handleFetchSuccess,
+    clearError,
+    clearSuccessMessage,
+  } = useError();
   return (
     <StyledGrid centered>
       {back != null ? (
@@ -25,7 +34,15 @@ export default function NavButtons({ back, home, handleEntryFormSubmit }) {
         ""
       )}
       <EntryForm
-        handleOnSubmit={handleEntryFormSubmit}
+        handleOnSubmit={async (data) => {
+          try {
+            await handleEntryFormSubmit(data);
+            handleFetchSuccess("Data Saved Successfully!");
+          } catch (e) {
+            handleFetchError(e);
+            setOpen(!open);
+          }
+        }}
         btnDisabled={false}
         open={open}
         onOpenStateChange={setOpen}
