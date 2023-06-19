@@ -17,6 +17,7 @@ export default async function handler(req, res) {
     let response = await fetch(`${backendURL}/api/v1/post-status`, {
       method: "POST",
       body: JSON.stringify({
+        scode: decodedJWT.S,
         id,
         review,
         action: actionRequired,
