@@ -41,6 +41,8 @@ export function formatDate(date) {
  * @param  {string} gstin
  */
 export function checkGSTIN(gstin) {
-  let matcher = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/;
+  // GSTIN: https://cleartax.in/s/know-your-gstin
+  // PAN: https://cleartax.in/g/terms/permanent-account-number-pan
+  let matcher = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}[A-Z]{1}[Z]{1}[A-Z\d]{1}$/;
   return matcher.test(gstin);
 }
