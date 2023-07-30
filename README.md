@@ -12,23 +12,22 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## File structure
+- components:
+  - The "components" directory is where you store React components that are used throughout your application. These components are usually reusable pieces of UI that are used across multiple pages.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- contexts:
+  - The "contexts" directory is used for managing application-wide state using React Context API. Contexts are used to share data between components without having to pass props down the component tree manually.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- pages:
+  - The "pages" directory is a crucial part of Next.js. It contains individual files that correspond to different pages of the application. Each file in this directory represents a specific route and is automatically associated with a URL based on its filename. For example, if you have a file named "about.js" in the "pages" directory, it will be accessible at "/about".
 
-## Learn More
+- pages/api:
+  - The "pages/api" directory is a special directory in Next.js that is used for creating serverless API routes. These API routes allow you to define server-side functions that can be accessed from the frontend using simple HTTP requests. Each file in this directory represents a separate API endpoint, and you can use various HTTP methods (GET, POST, PUT, DELETE, etc.) to handle different types of requests.
 
-To learn more about Next.js, take a look at the following resources:
+- public:
+  - The "public" directory is where you store static assets such as images, fonts, and other files that you want to make publicly accessible. When you place a file in this directory, it becomes available at the root of your application URL. For example, if you place an image called "logo.png" in the "public" directory, you can access it in your code using "/logo.png".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- styles:
+  - The "styles" directory is used for managing styles in your Next.js application. It includes global CSS files, CSS modules, or any other styling solutions you might prefer.
+   
