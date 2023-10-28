@@ -112,7 +112,10 @@ export function RawGSTINTable({ onRowClick, onReportBtnClick }) {
                   <Table.Cell textAlign="left">{trade_name || "-"}</Table.Cell>
                   <Table.Cell textAlign="left">{legal_name || "-"}</Table.Cell>
                   <Table.Cell textAlign="center">
-                    <Button onClick={() => onReportBtnClick(gstin)}>
+                    <Button
+                      onClick={() => onReportBtnClick(gstin)}
+                      disabled={true}
+                    >
                       Generate Report
                     </Button>
                   </Table.Cell>
